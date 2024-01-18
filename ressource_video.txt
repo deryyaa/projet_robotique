@@ -1,3 +1,4 @@
 Ressource vidéo:
 Pour github :
-https://www.youtube.com/watch?v=fVHPa3Q73Uc -> (5 min) aide a comprendre les pulls/push mais aussi qu'est ce qu'un conflit.
+https://www.youtube.com/watch?v=fVHPa3Q73Uc -> (5 min) aide a comprendre le travail en groupe sur github.
+https://www.youtube.com/watch?v=hPfgekYUKgk -> (24 min) aide a comprendre les commandes les plus utiles.
