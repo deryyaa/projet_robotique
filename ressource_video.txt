@@ -1,0 +1,3 @@
+Ressource vidéo:
+Pour github :
+https://www.youtube.com/watch?v=fVHPa3Q73Uc -> (5 min) aide a comprendre les pulls/push mais aussi qu'est ce qu'un conflit.
