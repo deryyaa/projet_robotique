@@ -1,0 +1,12 @@
+Github :
+
+git clone [nom du projet] -> créer une copie du projet
+git add [nom du fichier] -> ajoute le fichier au commit (qui doit être validé par la suite)
+git commit -m "Message" -> fait un commit avec le message
+git push -> valide les modifications et les commits
+git pull -> doit être fait dans le repertoire du projet et effectue les modification fais par les autres membres du groupes.
+git branch [nom de la branch] -> créer une branch (Les branches permettent de faire des modification sans impacter la branch principal)
+git branch -> permet de voir sur quel branch on se trouve (* en vert)
+git checkout [nom de la branch] -> permet de se rendre sur la branch.
+git merge [nom de la branch] -> permet d'appliqué les modifications de la branch sur la branch principales (il faut se trouver sur la branch principales pour faire cette commandes)
+git branch -v [nom de la branch] -> supprime la branch
