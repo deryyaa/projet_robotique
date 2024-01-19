@@ -24,8 +24,10 @@ class Monde:
         self.robot=robot
 
 
-robot= Robot(8,44)
+robot= Robot(1,20)
 m1 = Monde(9,45)
-m1.affiche() 
+m1.setRobot(robot)
+m1.affiche()
+robot.avancer(5,5)
 m1.setRobot(robot)
 m1.affiche()
