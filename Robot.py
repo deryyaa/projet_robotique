@@ -13,9 +13,20 @@ class Robot:
 
 
 # TEST
-robot1 = Robot(5,5,5)
-robot2 = Robot(5,5)
-print(robot1.x,robot1.y)
-robot1.avancer(1,1)
-print(robot1.x,robot1.y)
-print(robot2.vitesse)
+# creation des robots
+robot1 = Robot(5, 5)
+robot2 = Robot(5, 5)
+
+# affichage des positions initiales
+print("robot 1 :", robot1.x, robot1.y)
+print("robot 2 :", robot2.x, robot2.y)
+
+# on fait avancer le premier robot
+robot1.avancer(1, 1)
+
+print("apres deplacement")
+print("robot 1 :", robot1.x, robot1.y)
+print("robot 2 :", robot2.x, robot2.y)
+
+# affichage de la vitesse du deuxieme robot
+print("vitesse robot 2 :", robot2.vitesse)
