@@ -7,6 +7,7 @@ class Robot:
     pass
     
 
+
 #TEST
 robot1 = Robot(5,5,5)
 robot2 = Robot(5,5)
