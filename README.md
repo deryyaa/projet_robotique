@@ -1,5 +1,2 @@
-Ce que le projet fait
-Pourquoi le projet est utile
-Prise en main du projet par les utilisateurs
-Où les utilisateurs peuvent obtenir de l’aide sur votre projet
-Qui maintient et contribue au projet
+Le projet a pour but de developper un ensemble de programme permettant au robot Dexter de se deplacer et de realiser certaines tâches
+Nicolas Baskiotis, Sorbonne Université 
