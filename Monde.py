@@ -1,9 +1,11 @@
 class Monde:
     def __init__(self,ligne,colonne):
+        """ constructeur """
         self.ligne=ligne
         self.colonne=colonne
 
     def affiche(self):
+        """fonction qui permet d'afficher le monde dans le terminale"""
         a="+"+"-"*self.colonne+"+"+"\n"
         for i in range(self.ligne):
             a+="|"
