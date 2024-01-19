@@ -1,8 +1,10 @@
+from Robot import Robot
 class Monde:
     def __init__(self,ligne,colonne):
         """ constructeur """
         self.ligne=ligne
         self.colonne=colonne
+        self.robot=None
 
     def affiche(self):
         """fonction qui permet d'afficher le monde dans le terminale"""
@@ -10,13 +12,20 @@ class Monde:
         for i in range(self.ligne):
             a+="|"
             for j in range(self.colonne):
-                a+=" "
+                if self.robot!=None and self.robot.x==i and self.robot.y==j:
+                    a+="X"
+                else:
+                    a+=" "
             a+="|\n"
 
         a+="+"+"-"*self.colonne+"+"+"\n"
         print(a)
+    def setRobot(self, robot):
+        self.robot=robot
 
 
-
+robot= Robot(8,44)
 m1 = Monde(9,45)
 m1.affiche() 
+m1.setRobot(robot)
+m1.affiche()
