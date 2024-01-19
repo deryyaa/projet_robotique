@@ -17,4 +17,4 @@ class Monde:
 
 
 m1 = Monde(9,45)
-m1.affiche()
+m1.affiche() 
