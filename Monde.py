@@ -12,7 +12,7 @@ class Monde:
         for i in range(self.ligne):
             a+="|"
             for j in range(self.colonne):
-                if self.robot!=None and self.robot.x==i and self.robot.y==j:
+                if self.robot!=None and int(self.robot.x)==i and int(self.robot.y)==j:
                     a+="X"
                 else:
                     a+=" "
