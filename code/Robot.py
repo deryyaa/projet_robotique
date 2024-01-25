@@ -1,4 +1,4 @@
-from math import math
+import math
 class Robot:
     def __init__(self,x,y,vitesse=0,dir=0): # Constructeur
         self.vitesse=vitesse
