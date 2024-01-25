@@ -19,3 +19,5 @@ class Robot:
         else:
             self.x=self.x+self.vitesse*math.cos(self.dir)
             self.y=self.y+self.vitesse*math.sin(self.dir)
+    def tourne(self,angle):
+        self.dir=(self.dir+angle)%(2*math.PI)
