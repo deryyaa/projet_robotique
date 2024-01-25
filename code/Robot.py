@@ -4,7 +4,7 @@ class Robot:
         self.vitesse=vitesse
         self.x=x
         self.y=y
-        self.dir=dir
+        self.dir=dir%360
 
     def avancer(self,m, x1,y1):
         """fonction qui fait avancer le robot"""
@@ -17,7 +17,7 @@ class Robot:
         if (self.x+self.vitesse*math.cos(self.dir)>=m.ligne) or (self.y+self.vitesse*math.sin(self.dir)>=m.colonne):
             return "mur"
         else:
-            self.x=self.x+self.vitesse*math.cos(self.dir)
-            self.y=self.y+self.vitesse*math.sin(self.dir)
+            self.x=self.x+self.vitesse*math.cos(math.radians(self.dir))
+            self.y=self.y+self.vitesse*math.sin(math.radians(self.dir))
     def tourne(self,angle):
-        self.dir=(self.dir+angle)%(2*math.PI)
+        self.dir+=angle
