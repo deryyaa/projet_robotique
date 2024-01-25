@@ -1,0 +1,24 @@
+COMPTE RENDU DU 24/01/24 8h45-12h30
+
+Objectifs : 
+  - mieux gerer l'organisation 
+  - mieux gerer la cohesion de groupe 
+  - discussion sur les prochaines etapes de la modelisation du projet 
+
+Actions : 
+  - avoir identifié les problemes d'organisations : un rdv dans la semaine (samedi), 
+  travailler tout le long de la semaine, rien dans la categorie "in progress" le jour du rdv client, 
+  temps estimé dans to do et mettre le temps reel une fois dans done, grosses taches(objectifs) dans "stories" et sprint dans le "to do"  
+  - raffiner les taches, les rendre plus unitaire et moins multiple (tache de 30min, plus doit etre exceptionnel sauf recherche)
+  - avoir mieux distribuer le travail de sorte a ce que tout le monde code et commit 
+
+Pour semaine pro : 
+  - etre plus au point sur la modelisation du robot (avoir une idee plus claire du robot et son environnement) --> accorder une discussion pour ce point 
+  - avoir compris l'heritage en python 
+  - une arborescence sur github pour mieux s'y retrouver 
+  - modelisation continue du robot 
+  - implementer le temps dans l'environnement 
+  - faire deplacer le robot dans une direction (avancer a une certaine vitesse, reculer, tourner) 
+  - implementer des obstacles dans l'environnement 
+  - avoir choisis la librairie graphique 
+  - avoir choisis l'interface graphique 
