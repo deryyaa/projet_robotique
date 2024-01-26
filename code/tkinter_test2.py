@@ -1,42 +1,47 @@
 from tkinter import *
 from Robot import Robot
-from Monde import Monde  # Assurez-vous que la classe Monde est correctement définie dans un fichier Monde.py
+from Monde import Monde
 
 # Création du monde
-monde = Monde(400, 600)  # Définissez les dimensions du monde
+monde = Monde(400, 400)
 
+# Création de la fenêtre principale
 fenetre = Tk()
+fenetre.title("Robot dans le monde")
+
+# Création du canevas avec les bonnes dimensions en fonction du monde
 cnv = Canvas(fenetre, width=monde.colonne, height=monde.ligne, bg="ivory")
 cnv.pack()
 
-# Création des limites du monde
-cnv.create_line(100, 100, 100, 300, width=1, fill="black")
-cnv.create_line(100, 300, 500, 300, width=1, fill="black")
-cnv.create_line(500, 300, 500, 100, width=1, fill="black")
-cnv.create_line(500, 100, 100, 100, width=1, fill="black")
+# Dessin des lignes du monde en fonction de ses dimensions
+cnv.create_line(0, 0, monde.colonne, 0, width=1, fill="black")         # ligne du haut
+cnv.create_line(0, 0, 0, monde.ligne, width=1, fill="black")            # ligne de gauche
+cnv.create_line(0, monde.ligne, monde.colonne, monde.ligne, width=1, fill="black")    # ligne du bas
+cnv.create_line(monde.colonne, 0, monde.colonne, monde.ligne, width=1, fill="black")  # ligne de droite
 
 # Création du robot dans le monde
-robot1 = Robot(300, 200, 20, 20, monde)
+robot1 = Robot(300, 200, 20, 20)  # Position du robot dans le monde
 
 # Dessin du robot sur le canevas
 robot_id = cnv.create_rectangle(robot1.x, robot1.y, robot1.x + robot1.largeur, robot1.y + robot1.longueur, fill="blue")
 
 def move(event):
+    global robot1
     key = event.keysym
     if key == 'Up':
-        robot1.avancer(5,monde)
+        robot1.avancer(5, monde)  # Utilisation de la méthode avancer avec le monde
     elif key == 'Down':
-        robot1.reculer(5,monde)
+        robot1.reculer(5, monde)   # Utilisation de la méthode reculer avec le monde
     elif key == 'Left':
         robot1.tourner_gauche(10)
     elif key == 'Right':
         robot1.tourner_droite(10)
 
-    # Vérifie si les nouvelles coordonnées du robot sont dans les limites du monde
-    if 0 <= robot1.x <= monde.colonne - robot1.largeur and 0 <= robot1.y <= monde.ligne - robot1.longueur:
-        cnv.coords(robot_id, robot1.x, robot1.y, robot1.x + robot1.largeur, robot1.y + robot1.longueur)
+    # Mise à jour des coordonnées du robot sur le canevas
+    cnv.coords(robot_id, robot1.x, robot1.y, robot1.x + robot1.largeur, robot1.y + robot1.longueur)
 
+# Association de la fonction de mouvement à l'événement de pression de touche
 fenetre.bind('<KeyPress>', move)
+
+# Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
-
-
