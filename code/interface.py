@@ -5,4 +5,15 @@ window = tk.Tk()
 cnv = tk.Canvas(window, width=600, height=400,
 bg='ivory')
 cnv.pack(padx=50, pady=50) #marge en y et x
+
+cnv.create_rectangle(100,100,400,400,fill="blue")
+
+
+
+
+
+
+
+
+
 window.mainloop()

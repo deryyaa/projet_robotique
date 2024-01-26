@@ -1,10 +1,12 @@
 import math
 class Robot:
-    def __init__(self,x,y,vitesse=0,dir=0): # Constructeur
+    def __init__(self,x,y,longueur ,largeur,vitesse=0,dir=0): # Constructeur
         self.vitesse=vitesse
         self.x=x
         self.y=y
         self.dir=dir%360
+        self.largeur=largeur
+        self.longueur=longueur
 
     def avancer(self,m, x1,y1):
         """fonction qui fait avancer le robot"""
