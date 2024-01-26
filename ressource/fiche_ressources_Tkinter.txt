@@ -1,0 +1,43 @@
+Module : from tkinter import *
+Fonctions utiles 
+Fenêtre : 
+-	Créer une fenêtre : 	 tk() -> ex : window = tk()
+-	Afficher une fenêtre :	 mainloop() -> ex : window.mainloop()
+-	Titre de la fenêtre :	 title( “Nom “ ) -> ex : window.title(“ robot “)
+-	Taille de la fenêtre : 	geometry( “largeurxlongueur “) -> ex : window.geometry(“1000 x 1000“)
+-	Couleur en fond (background) :	ex: window[‘bg’] = ‘black’
+-	Site : 
+  https://www.youtube.com/watch?v=wxnXNcUYBQ&list=PLjrnnc4BZaRCR5eOXSTAgKJpBl62Y7o45
+
+Texte :
+-	Ajouter un texte :	Label(fenetre, text= “…“, font= (“type police, taille, style), foreground = “ couleur “, background = “ couleur “)
+ ex : label =  Label(window, text =“Modélisation robot “, font = (“calibri “,20,“italic“, fg =“white“, bg=“black“ )
+-	Placer un texte à un endroit de la fenêtre : 	
+  ex : label.pack(side = RIGHT, padx = 50) -> à 50 pixels du côté droite
+  ou 
+  ex : label.place(x=’100’, y=’100’)
+-	Site :
+  https://www.youtube.com/watch?v=yA2E4uXIn0g&list=PLjrnnc4BZaRCR5eOXSTAgKJpBl62Y7o45&index=2
+
+Bouton pour exécuter une commande:
+-	Créer un bouton : Button(fenetre, text= “…“, foreground = “ couleur “, background = “ couleur “, command = nom_fonction)
+  Ex : 
+  Bouton = Button(window, text =“avancer robot “, fg =“white“, bg=“black“, command = avancer)
+-	Placer un texte :
+  Ex : cf : partie Texte 2e tiret : bouton.pack()
+-	Site :
+  https://www.youtube.com/watch?v=_DDmnhEnXao&list=PLjrnnc4BZaRCR5eOXSTAgKJpBl62Y7o45&index=4
+
+Image :
+-	Mettre une image dans une fenêtre :
+  Ex :
+  Photo  = PhotoImage(file = ‘nom_img.png ‘)
+  Label = Label(fenetre, image=photo)
+-	Site
+  https://www.youtube.com/watch?v=4yBsjbBM7Eo&list=PLjrnnc4BZaRCR5eOXSTAgKJpBl62Y7o45&index=8
+
+autres sites utiles:
+-	site mode d’emploi tkinter: https://docs.python.org/fr/3/library/tkinter.html#the-window-manager
+-	chaines youtube :
+	ordiRoutier : https://www.youtube.com/watch?v=wxnXNcUYBQ&list=PLjrnnc4BZaRCR5eOXSTAgKJpBl62Y7o45
+	Graven – Développement : https://www.youtube.com/watch?v=N4M4W7JPOL4&list=RDQMOt7GXWl42Ng&start_radio=1

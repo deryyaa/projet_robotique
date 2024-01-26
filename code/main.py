@@ -34,7 +34,7 @@ print("test monde")
 monde.setRobot(robot2)
 
 while True:
-    resultat = robot2.avancer(monde, 1, 2)
+    resultat = robot2.avancer(monde, 1.5, 2)
     if resultat == "mur":
         print("Le robot a rencontré un mur !")
         break
