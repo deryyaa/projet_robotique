@@ -4,8 +4,8 @@ from Monde import Monde
 # TEST CLASSE ROBOT
 print("test robot")
 # creation des robots
-robot1 = Robot(0, 0) # creation d'un robot en point x, y
-robot2 = Robot(0, 0)
+robot1 = Robot(0, 0,0,0) # creation d'un robot en point x, y
+robot2 = Robot(0, 0,0,0)
 monde = Monde(10,20) # creation d'un monde x*y
 
 # affichage des positions initiales
