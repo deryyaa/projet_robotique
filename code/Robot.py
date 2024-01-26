@@ -9,19 +9,21 @@ class Robot:
         self.largeur = largeur
         self.longueur = longueur
 
-    def avancer(self, distance):
+    def avancer(self, distance, monde):
         """ Avance le robot dans sa direction actuelle """
         dx = distance * math.cos(math.radians(self.dir))
         dy = distance * math.sin(math.radians(self.dir))
-        self.x += dx
-        self.y += dy
+        if self.peut_avancer(dx, dy, monde):
+            self.x += dx
+            self.y += dy
 
-    def reculer(self, distance):
+    def reculer(self, distance, monde):
         """ Recule le robot dans sa direction opposée """
         dx = distance * math.cos(math.radians(self.dir))
         dy = distance * math.sin(math.radians(self.dir))
-        self.x -= dx
-        self.y -= dy
+        if self.peut_avancer(-dx, -dy, monde):
+            self.x -= dx
+            self.y -= dy
 
     def tourner_droite(self, angle):
         """ Tourne le robot vers la droite """
@@ -30,3 +32,11 @@ class Robot:
     def tourner_gauche(self, angle):
         """ Tourne le robot vers la gauche """
         self.dir = (self.dir + angle) % 360
+
+    def peut_avancer(self, dx, dy, monde):
+        """ Vérifie si le robot peut avancer sans dépasser les limites du monde """
+        new_x = self.x + dx
+        new_y = self.y + dy
+        if 0 <= new_x < monde.ligne and 0 <= new_y < monde.colonne:
+            return True
+        return False
