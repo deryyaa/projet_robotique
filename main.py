@@ -13,7 +13,7 @@ print("robot 1 :", robot1.x, robot1.y)
 print("robot 2 :", robot2.x, robot2.y)
 
 # on fait avancer le premier robot
-robot1.avancer(monde, 1, 1)
+robot1.avancer(monde, 1.4, 1)
 
 # affichage de la vitesse du deuxieme robot
 print("vitesse robot 2 :", robot2.vitesse)
