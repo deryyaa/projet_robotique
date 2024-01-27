@@ -10,3 +10,4 @@ class Obstacle:
         Obstacle.obstacle_crees += 1
     
     print("OK")
+    print("tet")
