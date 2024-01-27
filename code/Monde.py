@@ -26,3 +26,7 @@ class Monde:
     def setRobot(self, robot):
         """Initialise le robot dans le monde"""
         self.robot = robot
+
+    def setObstacle(self, obstacle):
+        """Initialise un obstacle dans le monde"""
+        self.obstacle = obstacle
