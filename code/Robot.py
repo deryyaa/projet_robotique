@@ -49,7 +49,6 @@ class Robot:
         debut = time.time()
         vitesse = distance/temps #distance à parcourir sur une seconde
         while time.time()-debut < temps : 
-            print("le robot se déplace")
             if self.peut_avancer(self.x+vitesse ,self.y+vitesse, monde):
                 self.avancer(vitesse,monde)
             else: 
