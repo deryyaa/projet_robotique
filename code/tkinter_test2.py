@@ -13,12 +13,6 @@ fenetre.title("Robot dans le monde")
 cnv = Canvas(fenetre, width=monde.colonne, height=monde.ligne, bg="ivory")
 cnv.pack()
 
-# Dessin des lignes du monde en fonction de ses dimensions
-cnv.create_line(0, 0, monde.colonne, 0, width=1, fill="black")         # ligne du haut
-cnv.create_line(0, 0, 0, monde.ligne, width=1, fill="black")            # ligne de gauche
-cnv.create_line(0, monde.ligne, monde.colonne, monde.ligne, width=1, fill="black")    # ligne du bas
-cnv.create_line(monde.colonne, 0, monde.colonne, monde.ligne, width=1, fill="black")  # ligne de droite
-
 # Création du robot dans le monde
 robot1 = Robot(300, 200, 20, 20)  # Position du robot dans le monde
 
