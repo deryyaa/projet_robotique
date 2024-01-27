@@ -1,4 +1,6 @@
 import math
+import random
+import time 
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse=0, dir=0):
@@ -40,3 +42,23 @@ class Robot:
         if 0 <= new_x < monde.ligne and 0 <= new_y < monde.colonne:
             return True
         return False
+    
+    def deplacement_vitesse(self,distance,temps,monde):
+        """Déplacer le robot dans le monde pendant un n secondes """
+        print("le robot commence à se deplacer.")
+        debut = time.time()
+        vitesse = distance/temps #distance à parcourir sur une seconde
+        while time.time()-debut < temps : 
+            print("le robot se déplace")
+            if self.peut_avancer(self.x+vitesse ,self.y+vitesse, monde):
+                self.avancer(vitesse,monde)
+            else: 
+                self.reculer(vitesse,monde)
+            
+            monde.affiche()
+            time.sleep(vitesse)
+            
+        print("fin de deplacement")
+                
+
+
