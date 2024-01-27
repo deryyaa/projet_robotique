@@ -1,4 +1,5 @@
 from Robot import Robot
+from Obstacle import Obstacle
 
 class Monde:
     def __init__(self, ligne, colonne):
@@ -6,6 +7,7 @@ class Monde:
         self.ligne = ligne  # initialisation des coordonnées
         self.colonne = colonne
         self.robot = None
+        self.obstacle = None
 
     def affiche(self):
         """fonction qui permet d'afficher le monde dans le terminal"""
@@ -25,3 +27,7 @@ class Monde:
     def setRobot(self, robot):
         """Initialise le robot dans le monde"""
         self.robot = robot
+
+    def setObstacle(self, obstacle):
+        """Initialise un obstacle dans le monde"""
+        self.obstacle = obstacle

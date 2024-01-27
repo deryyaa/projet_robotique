@@ -1,46 +1,36 @@
 from Robot import Robot
 from Monde import Monde
+from random import randint
+from time import sleep
+from Obstacle import Obstacle
+# Création du monde
+monde = Monde(10, 20)
 
-# TEST CLASSE ROBOT
-print("test robot")
-# creation des robots
-robot1 = Robot(0, 0,0,0) # creation d'un robot en point x, y
-robot2 = Robot(0, 0,0,0)
-monde = Monde(10,20) # creation d'un monde x*y
+# Création des obstacles
+obstacle1 = Obstacle(2, 2, 1, 1)
+obstacle2 = Obstacle(8, 18, 1, 1)
+monde.setObstacle(obstacle1)
 
-# affichage des positions initiales
-print("robot 1 :", robot1.x, robot1.y)
-print("robot 2 :", robot2.x, robot2.y)
+# Création du robot
+robot1 = Robot(5, 5, 1, 1, 1, 180)
+monde.setRobot(robot1)
 
-# on fait avancer le premier robot
-robot1.avancer(monde, 1.4, 1)
+for _ in range(100):
+    direction = randint(0, 3)  # 0: Avancer, 1: Reculer, 2: Tourner à gauche, 3: Tourner à droite
 
-# affichage de la vitesse du deuxieme robot
-print("vitesse robot 2 :", robot2.vitesse)
+    if direction == 0 and not (robot1.x + 1 == obstacle1.x and robot1.y == obstacle1.y):  # Vérifie si le prochain mouvement ne heurte pas l'obstacle
+        robot1.avancer(1, monde)
+    elif direction == 1 and not (robot1.x - 1 == obstacle1.x and robot1.y == obstacle1.y):
+        robot1.reculer(1, monde)
+    elif direction == 2:
+        robot1.tourner_gauche(10)
+    elif direction == 3:
+        robot1.tourner_droite(10)
 
-#TEST CLASSE MONDE
-"""
-monde.setRobot(robot2)
-monde.affiche() # affiche le monde
-robot2.avancer(monde,5,5) # fait avancer le robot
-monde.setRobot(robot2) # ajoute le robot au monde
-monde.affiche() """
+    monde.affiche()
 
-# AUTRE TEST
+    # Temps de repos de 0.1 seconde entre chaque itération
+    sleep(0.1)
 
-print("\n")
-print("test monde") 
-
-monde.setRobot(robot2)
-
-while True:
-    resultat = robot2.avancer(monde, 1.5, 2)
-    if resultat == "mur":
-        print("Le robot a rencontré un mur !")
-        break
-    else :
-        monde.affiche()
-
-print("\napres deplacement")
-print("robot 1 :", robot1.x, robot1.y)
-print("robot 2 :", robot2.x, robot2.y)
+# Affichage des coordonnées avec deux chiffres après la virgule
+print("x : {:.2f}, y : {:.2f}".format(robot1.x, robot1.y))

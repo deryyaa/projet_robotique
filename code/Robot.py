@@ -5,6 +5,7 @@ import time
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse=0, dir=0):
         self.vitesse = vitesse
+        self.nom="dexter"
         self.x = x
         self.y = y
         self.dir = dir % 360
