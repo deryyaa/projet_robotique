@@ -1,6 +1,7 @@
 from tkinter import *
 from Robot import Robot
 from Monde import Monde
+import math
 
 # Création du monde
 monde = Monde(400, 400)
@@ -17,8 +18,21 @@ cnv.pack()
 robot1 = Robot(300, 200, 20, 20)  # Position du robot dans le monde
 
 # Dessin du robot sur le canevas
-robot_id = cnv.create_rectangle(robot1.x, robot1.y, robot1.x + robot1.largeur, robot1.y + robot1.longueur, fill="blue")
 
+def dessineRobot(canvas,robot):
+    canvas.delete("rectangle")
+    cos_robot=math.cos(math.radians(robot.dir))
+    sin_robot=math.sin(math.radians(robot.dir))
+    canvas.create_polygon(robot.x+robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
+                          robot.x-robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
+                          robot.y-robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
+                          robot.x-robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
+                          robot.y-robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
+                          robot.x+robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
+                          fill="blue",tags="rectangle")
+dessineRobot(cnv,robot1)
 def move(event):
     global robot1
     key = event.keysym
@@ -32,7 +46,7 @@ def move(event):
         robot1.tourner_droite(10)
 
     # Mise à jour des coordonnées du robot sur le canevas
-    cnv.coords(robot_id, robot1.x, robot1.y, robot1.x + robot1.largeur, robot1.y + robot1.longueur)
+    dessineRobot(cnv,robot1)
 
 # Association de la fonction de mouvement à l'événement de pression de touche
 fenetre.bind('<KeyPress>', move)
