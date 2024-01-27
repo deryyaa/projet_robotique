@@ -10,5 +10,5 @@ class Obstacle:
         self.largeur=largeur
         self.longeur=longeur
         Obstacle.obstacle_crees += 1
-    
-    print("OK")
+
+
