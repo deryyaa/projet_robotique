@@ -3,14 +3,16 @@ from Monde import Monde
 from random import randint
 from time import sleep
 from Obstacle import Obstacle
+# Création du monde
+monde = Monde(10, 20)
 
 # Création des obstacles
 obstacle1 = Obstacle(2, 2, 1, 1)
 obstacle2 = Obstacle(8, 18, 1, 1)
+monde.setObstacle(obstacle1)
 
 # Création du robot
 robot1 = Robot(5, 5, 1, 1, 1, 180)
-monde = Monde(10, 20)
 monde.setRobot(robot1)
 
 for _ in range(100):
