@@ -45,17 +45,16 @@ class Robot:
         return False
     
     def deplacement_vitesse(self,distance,temps,monde):
-        """Déplacer le robot dans le monde pendant un n secondes """
-        print("le robot commence à se deplacer.")
+        """Déplacer le robot avec une distance dans le monde pendant un temps """
+        print("le robot commence a se deplacer.")
         debut = time.time()
         vitesse = distance/temps #distance à parcourir sur une seconde
+        duree = temps/distance #temps en seconde à attendre entre chaque déplacement
         while time.time()-debut < temps : 
             if self.peut_avancer(self.x+vitesse ,self.y+vitesse, monde):
                 self.avancer(vitesse,monde)
-            else: 
-                self.reculer(vitesse,monde)
-            monde.affiche()
-            time.sleep(vitesse)
+                monde.affiche()
+            time.sleep(duree)
             
         print("fin de deplacement")
                 
