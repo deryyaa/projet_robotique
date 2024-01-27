@@ -16,9 +16,9 @@ Pour semaine pro :
   - etre plus au point sur la modelisation du robot (avoir une idee plus claire du robot et son environnement) --> accorder une discussion pour ce point 
   - avoir compris l'heritage en python 
   - une arborescence sur github pour mieux s'y retrouver 
-  - modelisation continue du robot 
   - implementer le temps dans l'environnement 
   - faire deplacer le robot dans une direction (avancer a une certaine vitesse, reculer, tourner) 
   - implementer des obstacles dans l'environnement 
   - avoir choisis la librairie graphique 
   - avoir choisis l'interface graphique 
+  - representation graphique (representation continue) du robot et du monde 
