@@ -18,7 +18,6 @@ cnv.pack()
 robot1 = Robot(300, 200, 20, 20)  # Position du robot dans le monde
 
 # Dessin du robot sur le canevas
-
 def dessineRobot(canvas,robot):
     canvas.delete("rectangle")
     cos_robot=math.cos(math.radians(robot.dir))
@@ -33,6 +32,7 @@ def dessineRobot(canvas,robot):
                           robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
                           fill="blue",tags="rectangle")
 dessineRobot(cnv,robot1)
+    
 def move(event):
     global robot1
     key = event.keysym
