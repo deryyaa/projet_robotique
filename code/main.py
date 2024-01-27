@@ -19,9 +19,10 @@ for _ in range(100):
     else:
         robot1.tourner_droite(10)
 
-    # Affichage des coordonnées avec deux chiffres après la virgule
-    #print("x : {:.2f}, y : {:.2f}".format(robot1.x, robot1.y))
     monde.affiche()
 
     # Temps de repos de 1 seconde entre chaque itération
-    sleep(0.2)
+    sleep(0.1)
+
+# Affichage des coordonnées avec deux chiffres après la virgule
+print("x : {:.2f}, y : {:.2f}".format(robot1.x, robot1.y))
