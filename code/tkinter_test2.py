@@ -11,7 +11,7 @@ fenetre = Tk()
 fenetre.title("Robot dans le monde")
 
 # Création du canevas avec les bonnes dimensions en fonction du monde
-cnv = Canvas(fenetre, width=monde.colonne, height=monde.ligne, bg="ivory")
+cnv = Canvas(fenetre, width=monde.colonne+20, height=monde.ligne+20, bg="ivory")
 cnv.pack()
 
 # Création du robot dans le monde
