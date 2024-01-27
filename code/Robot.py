@@ -54,7 +54,6 @@ class Robot:
                 self.avancer(vitesse,monde)
             else: 
                 self.reculer(vitesse,monde)
-            
             monde.affiche()
             time.sleep(vitesse)
             
