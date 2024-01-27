@@ -1,0 +1,34 @@
+Aléatoire : import random
+Alea_entier = random.randint(1 ,10) -> renvoie un entier entre 1 et 10 inclus
+Alea_flottant = random.random() -> renvoie un flottant entre 0.0 et 1.0 exclus
+Alea_elem = random.choice(seq) -> renvoie un élément aléatoire d’une liste, tuple,
+chaine...
+Melange = random.shuffle(seq) -> mélange aléatoirement une séquence
+- Mathématique : import math
+Racine_carre = math.sqrt(valeur) -> renvoie la racine carrée de la valeur
+Exp = math.exp(val) -> renvoie l’exponentielle puissance val
+Log = math.log(10) -> renvoie le log de 10
+Angle_en_radian = math.radians(angle_en_deg)
+sin = math.sin(angle_en_rad)
+cos = math.cos(angle_en_rad)
+tan = math.tan(angle_en_rad)
+pi = math.pi
+- Temps : import time
+Tmps_act = time.time() -> renvoie le temps actuelle en seconde depuis 1er janvier
+1970
+Debut = time.time()
+Fin = time.time()
+Tmps_exécution = Fin – Debut
+Pause = time.sleep(5) -> pause de 5 secondes
+Tmps_actuelle = time.localtime() -> renvoie la date
+Tmps_actuelle.tm_year -> renvoie l’année
+tm_mon (mois) ; tm_mday (jour) ; tm_hour (heure); tm_min(minutes); tm_sec
+(secondes)
+Plus d’info :
+Alea : https://docs.python.org/fr/3.5/library/random.html
+Math : https://docs.python.org/fr/3.5/library/math.html
+Temps : https://docs.python.org/fr/3.5/library/time.html
+BIBLIOTHEQUES
+- Pygame : bibliothèque de jeux pour créer des jeux en 2D
+Avantages : bien établie, facile à apprendre
+Inconvénients : pas adapté aux jeux 3D

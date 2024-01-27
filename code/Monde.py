@@ -1,26 +1,27 @@
 from Robot import Robot
 
 class Monde:
-    def __init__(self,ligne,colonne):
+    def __init__(self, ligne, colonne):
         """ constructeur """
-        self.ligne=ligne # initialisation des coordonnes
-        self.colonne=colonne
-        self.robot=None
+        self.ligne = ligne  # initialisation des coordonnées
+        self.colonne = colonne
+        self.robot = None
 
     def affiche(self):
-        """fonction qui permet d'afficher le monde dans le terminale"""
-        a="+"+"-"*self.colonne+"+"+"\n"
+        """fonction qui permet d'afficher le monde dans le terminal"""
+        a = "+" + "-" * self.colonne + "+" + "\n"
         for i in range(self.ligne):
-            a+="|"
+            a += "|"
             for j in range(self.colonne):
-                if self.robot!=None and int(self.robot.x)==i and int(self.robot.y)==j:
-                    a+="X"
+                if self.robot is not None and int(self.robot.x) == i and int(self.robot.y) == j:
+                    a += "X"
                 else:
-                    a+=" "
-            a+="|\n"
+                    a += " "
+            a += "|\n"
 
-        a+="+"+"-"*self.colonne+"+"+"\n"
-        print(a) 
+        a += "+" + "-" * self.colonne + "+" + "\n"
+        print(a)
 
     def setRobot(self, robot):
-        self.robot=robot # initialisation du robot
+        """Initialise le robot dans le monde"""
+        self.robot = robot
