@@ -41,4 +41,14 @@ class Monde:
         """Initialise un obstacle dans le monde"""
         self.obstacles.append(obstacle)
 
-
+    def avancer_robot(self,distance,robot):
+        tmpx=robot.x
+        tmpy=robot.y
+        robot.avancer(distance,self)
+        for i in self.obstacles:
+            if int(i.x) ==int(robot.x) and int(i.y)== int(robot.y):
+                robot.x=tmpx
+                robot.y=tmpy
+                print("il y a un obstacle")
+                break
+                
