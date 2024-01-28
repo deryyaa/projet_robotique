@@ -1,6 +1,7 @@
 from tkinter import *
 from Robot import Robot
 from Monde import Monde
+from Obstacle import Obstacle
 import math
 
 # Création du monde
@@ -9,6 +10,7 @@ monde = Monde(400, 400)
 # Création de la fenêtre principale
 fenetre = Tk()
 fenetre.title("Robot dans le monde")
+fenetre.geometry("1080x720")
 
 # Création du canevas avec les bonnes dimensions en fonction du monde
 cnv = Canvas(fenetre, width=monde.colonne+20, height=monde.ligne+20, bg="ivory")
@@ -16,6 +18,15 @@ cnv.pack()
 
 # Création du robot dans le monde
 robot1 = Robot(300, 200, 20, 20)  # Position du robot dans le monde
+
+#création de 2 obstacle 
+for i in range(2):
+    monde.setObstacle(Obstacle(2+(i+1)*100, 40, 50, 50)) #creation de plusieurs obstacle pour crée une colision
+for i in monde.obstacles:
+    print(i.x,i.y)
+    cnv.create_rectangle(i.x-i.longeur/2,i.y-i.largeur/2,i.x+i.longeur/2,i.y+i.largeur/2,fill="grey") #affichage des 2 obstacles
+
+
 
 # Dessin du robot sur le canevas
 def dessineRobot(canvas,robot):
@@ -37,9 +48,11 @@ def move(event):
     global robot1
     key = event.keysym
     if key == 'Up':
-        robot1.avancer(5, monde)  # Utilisation de la méthode avancer avec le monde
+        #robot1.avancer(5, monde)  # Utilisation de la méthode avancer avec le monde
+        monde.avancer_robot(5,robot1)
     elif key == 'Down':
-        robot1.reculer(5, monde)   # Utilisation de la méthode reculer avec le monde
+        #robot1.avancer(-5, monde)   # Utilisation de la méthode reculer avec le monde
+        monde.avancer_robot(-5,robot1)
     elif key == 'Left':
         robot1.tourner_gauche(10)
     elif key == 'Right':
@@ -47,6 +60,8 @@ def move(event):
 
     # Mise à jour des coordonnées du robot sur le canevas
     dessineRobot(cnv,robot1)
+
+
 
 # Association de la fonction de mouvement à l'événement de pression de touche
 fenetre.bind('<KeyPress>', move)
