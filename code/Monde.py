@@ -12,20 +12,27 @@ class Monde:
 
     def affiche(self):
         """fonction qui permet d'afficher le monde dans le terminal"""
-       """ a = "+" + "-" * self.colonne + "+" + "\n"
+        a = "+" + "-" * self.colonne + "+" + "\n"
+        verification=False
         for i in range(self.ligne):
             a += "|"
             for j in range(self.colonne):
                 if self.robot is not None and int(self.robot.x) == i and int(self.robot.y) == j:
                     a += "X"
-                elif self.obstacles is not None and int(self.obstacles[i])
                 else:
-                    a += " "
+                    for d in self.obstacles:
+                        if int(d.x)==i and int(d.y)==j:
+                            verification=True
+                            a+="0"
+                    if verification:
+                        verification=False
+                    else:
+                        a += " "
             a += "|\n"
 
         a += "+" + "-" * self.colonne + "+" + "\n"
         print(a)
-    """
+    
     def setRobot(self, robot):
         """Initialise le robot dans le monde"""
         self.robot = robot
@@ -33,3 +40,5 @@ class Monde:
     def setObstacle(self, obstacle):
         """Initialise un obstacle dans le monde"""
         self.obstacles.append(obstacle)
+
+
