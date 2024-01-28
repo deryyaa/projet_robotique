@@ -10,7 +10,7 @@ monde = Monde(10, 20)
 obstacle1 = Obstacle(2, 2, 1, 1)
 obstacle2 = Obstacle(8, 18, 1, 1)
 monde.setObstacle(obstacle1)
-
+monde.setObstacle(obstacle2)
 # Création du robot
 robot1 = Robot(5, 5, 1, 1, 1, 180)
 monde.setRobot(robot1)
