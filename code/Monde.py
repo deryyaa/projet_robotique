@@ -42,11 +42,12 @@ class Monde:
         self.obstacles.append(obstacle)
 
     def avancer_robot(self,distance,robot):
+        """ verifie si il n'y a pas d'obstacle sur la position dans lequel le robot va avancer"""
         tmpx=robot.x
         tmpy=robot.y
         robot.avancer(distance,self)
         for i in self.obstacles:
-            if int(i.x) ==int(robot.x) and int(i.y)== int(robot.y):
+            if int(i.x) ==int(robot.x) and int(i.y)== int(robot.y):  #si il y a un obstacle on remet le robot a ces positions temporaire d'avant 
                 robot.x=tmpx
                 robot.y=tmpy
                 print("il y a un obstacle")

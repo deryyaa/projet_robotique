@@ -12,7 +12,7 @@ obstacle2 = Obstacle(8, 18, 1, 1)
 monde.setObstacle(obstacle1)
 monde.setObstacle(obstacle2)
 for i in range(5):
-    monde.setObstacle(Obstacle(2+i+1, 2, 1, 1))
+    monde.setObstacle(Obstacle(2+i+1, 2, 1, 1)) #creation de plusieurs obstacle pour crée une colision
 robot1 = Robot(5, 5, 1, 1, 1, 180)
 monde.setRobot(robot1)
 
