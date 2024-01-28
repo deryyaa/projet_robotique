@@ -7,7 +7,7 @@ class Monde:
         self.ligne = ligne  # initialisation des coordonnées
         self.colonne = colonne
         self.robot = None
-        self.obstacle = None
+        self.obstacles = []
 
     def affiche(self):
         """fonction qui permet d'afficher le monde dans le terminal"""
@@ -30,4 +30,4 @@ class Monde:
 
     def setObstacle(self, obstacle):
         """Initialise un obstacle dans le monde"""
-        self.obstacle = obstacle
+        self.obstacles.append(obstacle)
