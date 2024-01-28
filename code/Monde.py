@@ -8,22 +8,24 @@ class Monde:
         self.colonne = colonne
         self.robot = None
         self.obstacles = []
+        self.matrice=[[0 for i in range(self.colonne)] for x in range(self.ligne)]
 
     def affiche(self):
         """fonction qui permet d'afficher le monde dans le terminal"""
-        a = "+" + "-" * self.colonne + "+" + "\n"
+       """ a = "+" + "-" * self.colonne + "+" + "\n"
         for i in range(self.ligne):
             a += "|"
             for j in range(self.colonne):
                 if self.robot is not None and int(self.robot.x) == i and int(self.robot.y) == j:
                     a += "X"
+                elif self.obstacles is not None and int(self.obstacles[i])
                 else:
                     a += " "
             a += "|\n"
 
         a += "+" + "-" * self.colonne + "+" + "\n"
         print(a)
-
+    """
     def setRobot(self, robot):
         """Initialise le robot dans le monde"""
         self.robot = robot
