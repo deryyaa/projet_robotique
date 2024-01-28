@@ -9,7 +9,7 @@ monde = Monde(10, 20)
 # Création des obstacles
 obstacle1 = Obstacle(2, 2, 1, 1)
 obstacle2 = Obstacle(8, 18, 1, 1)
-monde.setObstacle(obstacle1)
+monde.setObstacle(obstacle1) # Ajout d'obstacles au monde
 monde.setObstacle(obstacle2)
 for i in range(5):
     monde.setObstacle(Obstacle(2+i+1, 2, 1, 1)) #creation de plusieurs obstacle pour crée une colision
