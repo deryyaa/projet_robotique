@@ -44,7 +44,7 @@ class Robot:
             return True
         return False
     
-    def deplacement_vitesse(self,distance,temps,monde):
+    def vitesse_discrete(self,distance,temps,monde):
         """Déplacer le robot avec une distance dans le monde pendant un temps """
         print("le robot commence a se deplacer.")
         debut = time.time()
@@ -57,6 +57,8 @@ class Robot:
             time.sleep(duree)
             
         print("fin de deplacement")
+
+
                 
 
 
