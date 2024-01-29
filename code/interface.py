@@ -1,6 +1,7 @@
 from tkinter import *
 from Robot import Robot
 from Monde import Monde
+from time import time
 import math
 
 # Création du monde
@@ -44,12 +45,20 @@ def move(event):
         robot1.tourner_gauche(10)
     elif key == 'Right':
         robot1.tourner_droite(10)
-
-    # Mise à jour des coordonnées du robot sur le canevas
+    # Mise à jour des coordonnées du robot sur le canevas     
     dessineRobot(cnv,robot1)
+
+def press(event):
+    keys.[event.keysym]=True
 
 # Association de la fonction de mouvement à l'événement de pression de touche
 fenetre.bind('<KeyPress>', move)
+
+
+
+
+   
+
 
 # Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
