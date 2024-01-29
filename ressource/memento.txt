@@ -10,3 +10,4 @@ git branch -> permet de voir sur quel branch on se trouve (* en vert)
 git checkout [nom de la branch] -> permet de se rendre sur la branch.
 git merge [nom de la branch] -> permet d'appliqué les modifications de la branch sur la branch principales (il faut se trouver sur la branch principales pour faire cette commandes)
 git branch -v [nom de la branch] -> supprime la branch
+git stash -> mettre de côté vos modifications locales (sans les commiter)
