@@ -33,38 +33,39 @@ def dessineRobot(canvas,robot):
                           robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
                           fill="blue",tags="rectangle")
 dessineRobot(cnv,robot1)
-    
-def move(event):
-    global robot1
+
+vitesse = 5
+
+def speed(event):
+    global vitesse
     key = event.keysym
+    if key == "p":
+        if vitesse <30:
+            vitesse += 5
+    elif key == "m" and vitesse - 5 > 0:
+        vitesse -= 5  
+    return vitesse
+
+def move(event):
+    global robot1,monde,vitesse
+    key = event.keysym
+    pas= speed(event)
     if key == 'Up':
-        robot1.avancer(5, monde)  # Utilisation de la méthode avancer avec le monde
+        robot1.avancer(pas, monde)  # Utilisation de la méthode avancer avec le monde
     elif key == 'Down':
-        robot1.reculer(5, monde)   # Utilisation de la méthode reculer avec le monde
+        robot1.reculer(pas, monde)   # Utilisation de la méthode reculer avec le monde
     elif key == 'Left':
         robot1.tourner_gauche(10)
     elif key == 'Right':
         robot1.tourner_droite(10)
+   
+        
     # Mise à jour des coordonnées du robot sur le canevas     
     dessineRobot(cnv,robot1)
-
-
-def press(event):
-    keys[event.keysym]=True
-
-def release(event):
-    keys[event.keysym]=False
-    
-dico = ["Up","Right","Left","Down","a","b"] #dictionnaire contenant les directions du robot et son niveau de vitesse (a pour lent, b pour vite et c très vite)
-keys = dict.fromkeys(dico,False)
 
 # Association de la fonction de mouvement à l'événement de pression de touche
 fenetre.bind('<KeyPress>', move)
 
-
-
-
-   
 
 
 # Lancement de la boucle principale de la fenêtre
