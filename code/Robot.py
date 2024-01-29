@@ -40,7 +40,7 @@ class Robot:
         """ Vérifie si le robot peut avancer sans dépasser les limites du monde """
         new_x = self.x + dx
         new_y = self.y + dy
-        if 0 <= new_x < monde.ligne and 0 <= new_y < monde.colonne:
+        if 0 <= new_x-self.longueur/2 and new_x-self.longueur/2 < monde.ligne and 0 <= new_y-self.longueur/2 and new_y+(self.longueur)/2 < monde.colonne:
             return True
         return False
     
