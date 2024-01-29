@@ -34,15 +34,15 @@ def dessineRobot(canvas,robot):
                           fill="blue",tags="rectangle")
 dessineRobot(cnv,robot1)
 
-vitesse = 5
+vitesse = 5 #vitesse initiale
 
 def speed(event):
     global vitesse
     key = event.keysym
-    if key == "p":
-        if vitesse <30:
+    if key == "p": # pression sur la touche p, ajout 5 à la vitesse
+        if vitesse <30: # vitesse limitée à 30
             vitesse += 5
-    elif key == "m" and vitesse - 5 > 0:
+    elif key == "m" and vitesse - 5 > 0:  # pression sur la touche m, diminue 5 à la vitesse
         vitesse -= 5  
     return vitesse
 
