@@ -48,8 +48,15 @@ def move(event):
     # Mise à jour des coordonnées du robot sur le canevas     
     dessineRobot(cnv,robot1)
 
+
 def press(event):
-    keys.[event.keysym]=True
+    keys[event.keysym]=True
+
+def release(event):
+    keys[event.keysym]=False
+    
+dico = ["Up","Right","Left","Down","a","b"] #dictionnaire contenant les directions du robot et son niveau de vitesse (a pour lent, b pour vite et c très vite)
+keys = dict.fromkeys(dico,False)
 
 # Association de la fonction de mouvement à l'événement de pression de touche
 fenetre.bind('<KeyPress>', move)
