@@ -1,8 +1,8 @@
-from Robot import Robot
-from Monde import Monde
+from robot import Robot
+from monde import Monde
 from random import randint
 from time import sleep
-from Obstacle import Obstacle
+from obstacle import Obstacle
 # Création du monde
 monde = Monde(10, 20)
 

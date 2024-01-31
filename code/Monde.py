@@ -1,5 +1,5 @@
-from Robot import Robot
-from Obstacle import Obstacle
+from robot import robot
+from obstacle import Obstacle
 
 class Monde:
     def __init__(self, ligne, colonne):

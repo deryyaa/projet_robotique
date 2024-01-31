@@ -1,7 +1,7 @@
 from tkinter import *
-from Robot import Robot
-from Monde import Monde
-from Obstacle import Obstacle
+from robot import Robot
+from monde import Monde
+from obstacle import Obstacle
 import math
 
 # Création du monde
