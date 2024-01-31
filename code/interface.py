@@ -43,16 +43,30 @@ def dessineRobot(canvas,robot):
                           robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
                           fill="blue",tags="rectangle")
 dessineRobot(cnv,robot1)
-    
-def move(event):
-    global robot1
+
+
+vitesse = 5
+
+def speed(event):
+    global vitesse
     key = event.keysym
+    if key == "p":
+        if vitesse <30:
+            vitesse += 5
+    elif key == "m" and vitesse - 5 > 0:
+        vitesse -= 5  
+    return vitesse
+
+def move(event):
+    global robot1,monde,vitesse
+    key = event.keysym
+    pas=speed(event)
     if key == 'Up':
         #robot1.avancer(5, monde)  # Utilisation de la méthode avancer avec le monde
-        monde.avancer_robot(5,robot1)
+        monde.avancer_robot(pas,robot1)
     elif key == 'Down':
         #robot1.avancer(-5, monde)   # Utilisation de la méthode reculer avec le monde
-        monde.avancer_robot(-5,robot1)
+        monde.avancer_robot(-pas,robot1)
     elif key == 'Left':
         robot1.tourner_gauche(10)
     elif key == 'Right':
