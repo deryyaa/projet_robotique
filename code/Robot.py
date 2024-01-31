@@ -40,11 +40,11 @@ class Robot:
         """ Vérifie si le robot peut avancer sans dépasser les limites du monde """
         new_x = self.x + dx
         new_y = self.y + dy
-        if 0 <= new_x < monde.ligne and 0 <= new_y < monde.colonne:
+        if 0 <= new_x-self.longueur/2 and new_x-self.longueur/2 < monde.ligne and 0 <= new_y-self.longueur/2 and new_y+(self.longueur)/2 < monde.colonne:
             return True
         return False
     
-    def deplacement_vitesse(self,distance,temps,monde):
+    def vitesse_discrete(self,distance,temps,monde):
         """Déplacer le robot avec une distance dans le monde pendant un temps """
         print("le robot commence a se deplacer.")
         debut = time.time()
@@ -57,6 +57,8 @@ class Robot:
             time.sleep(duree)
             
         print("fin de deplacement")
+
+
                 
 
 
