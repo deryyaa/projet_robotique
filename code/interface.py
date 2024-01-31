@@ -67,9 +67,9 @@ def move(event):
         #robot1.avancer(-5, monde)   # Utilisation de la méthode reculer avec le monde
         monde.avancer_robot(-pas,robot1)
     elif key == 'Left':
-        robot1.tourner_gauche(10)
-    elif key == 'Right':
         robot1.tourner_droite(10)
+    elif key == 'Right':
+        robot1.tourner_gauche(10)
 
     # Mise à jour des coordonnées du robot sur le canevas
     dessineRobot(cnv,robot1)
