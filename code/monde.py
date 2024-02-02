@@ -1,4 +1,4 @@
-from robot import robot
+from robot import Robot
 from obstacle import Obstacle
 
 class Monde:
