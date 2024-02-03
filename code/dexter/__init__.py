@@ -1,1 +1,1 @@
-from dexter.robot import Robot
+from .robot import *
