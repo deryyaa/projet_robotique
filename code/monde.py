@@ -1,4 +1,4 @@
-from robot import Robot
+from dexter import Robot
 from obstacle import Obstacle
 from utilitaire import collision_rect
 class Monde:
