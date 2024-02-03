@@ -12,10 +12,11 @@ Pour semaine pro :
   - Pouvoir faire tourner la simulation sans l'interface graphique (simulation independante) 
   - Reorganiser tout le repertoire github : mettre des packages et modules en place, creer un fichier .gitignore...
   - Reorganiser le code : mettre des tests unitaires pour chaque fonction, nommer test ce qui est test, pas de fonction statique, 
-    mieux documenter le code
+    mieux documenter le code, reajuster certaines fonctions ("collision" et "peut_avancer")  
   - Mettre le temps total de travail dans la semaine dans Done 
   - Ajouter le temps dans le monde : actions du robot en fonction du temps 
   - Modeliser les deux roues du robot avec pour chacune d'entre elle une vitesse propre ET anticiper le deplacement par rapport a la vitesse des roues
   - determiner la taille des roues 
+  - Rajouter au robot une marque pour distinguer le devant et le derriere 
 
 FUTURAMA TEAM 7
