@@ -1,4 +1,4 @@
-from robot import Robot
+from dexter import Robot
 from monde import Monde
 from random import randint
 from time import sleep
