@@ -1,3 +1,12 @@
+CONVENTIONS SYNTAXES : 
+  - Noms packages/modules en minuscule 
+  - Noms classes commencent par majuscule 
+  - Noms variables en minuscule
+  - separation par des _ 
+  - plusieurs classes dans un meme fichier (contrairement a java) 
+  - documentation avec """ DOC""" et commentaire avec #
+
+
 Ressources video : 
   - Suite de videos : https://www.youtube.com/watch?v=HWxBtxPBCAc&list=PLrSOXFDHBtfHg8fWBd7sKPxEmahwyVBkC 
 

@@ -1,0 +1,22 @@
+COMPTE RENDU DU 31/01/24 8h45-12h30
+
+Objectifs : 
+  - mieux comprendre les attentes du robot et de son environnement  
+  - discussion sur l'organisation du github 
+  - discussion des prochaines étapes de la modelisation du robot 
+
+Actions : /
+
+Pour semaine pro : 
+  - Mettre un message quand le robot touche les limites du monde (murs) 
+  - Pouvoir faire tourner la simulation sans l'interface graphique (simulation independante) 
+  - Reorganiser tout le repertoire github : mettre des packages et modules en place, creer un fichier .gitignore...
+  - Reorganiser le code : mettre des tests unitaires pour chaque fonction, nommer test ce qui est test, pas de fonction statique, 
+    mieux documenter le code, reajuster certaines fonctions ("collision" et "peut_avancer")  
+  - Mettre le temps total de travail dans la semaine dans Done 
+  - Ajouter le temps dans le monde : actions du robot en fonction du temps 
+  - Modeliser les deux roues du robot avec pour chacune d'entre elle une vitesse propre ET anticiper le deplacement par rapport a la vitesse des roues
+  - determiner la taille des roues 
+  - Rajouter au robot une marque pour distinguer le devant et le derriere 
+
+FUTURAMA TEAM 7
