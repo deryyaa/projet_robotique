@@ -1,6 +1,6 @@
-from dexter import Robot
-from code.univers.obstacle import Obstacle
-from utilitaire import collision_rect
+from code.dexter import robot
+from .obstacle import Obstacle
+from ..utilitaire import collision_rect
 class Monde:
     def __init__(self, ligne, colonne):
         """ constructeur """
