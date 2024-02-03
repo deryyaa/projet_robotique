@@ -1,5 +1,5 @@
 from dexter import Robot
-from monde import Monde
+from code.univers.monde import Monde
 
 # TEST CLASSE ROBOT
 print("test robot")
