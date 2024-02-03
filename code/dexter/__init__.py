@@ -1,1 +1,1 @@
-from .robot import *
+__all__ = ['robot']
