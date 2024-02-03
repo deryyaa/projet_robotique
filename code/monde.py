@@ -40,6 +40,14 @@ class Monde:
         """Initialise un obstacle dans le monde"""
         self.obstacles.append(obstacle)
 
+    def peut_avancer(self, dx, dy, robot):
+        """ Vérifie si le robot peut avancer sans dépasser les limites du monde """
+        new_x = robot.x + dx
+        new_y = robot.y + dy
+        if 0 <= new_x-robot.longueur/2 and new_x-robot.longueur/2 < self.ligne and 0 <= new_y-robot.longueur/2 and new_y+(robot.longueur)/2 < self.colonne:
+            return True
+        return False
+
     def avancer_robot(self,distance,robot):
         """ verifie si il n'y a pas d'obstacle sur la position dans lequel le robot va avancer"""
         tmpx=robot.x
@@ -50,10 +58,10 @@ class Monde:
                 #si il y a un obstacle on remet le robot a ces positions temporaire d'avant 
                 robot.x=tmpx
                 robot.y=tmpy
-                print("il y a un obstacle")
+                print("le robot vient de percuter le mur")
                 break
                 
-        
+    
     
     def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonnées de mon rectangle (obstacle et robot)
         """renvoie True quand les 2 rectangle r1,r2 se superpose"""
