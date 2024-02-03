@@ -1,1 +1,1 @@
-from interface import *
+from code.interface.inter_gra import *
