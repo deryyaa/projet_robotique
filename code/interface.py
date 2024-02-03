@@ -1,5 +1,5 @@
 from tkinter import *
-from robot import Robot
+from dexter import Robot
 from monde import Monde
 from obstacle import Obstacle
 import math
