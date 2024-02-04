@@ -9,6 +9,6 @@ git branch [nom de la branch] -> créer une branch (Les branches permettent de f
 git branch -> permet de voir sur quel branch on se trouve (* en vert)
 git checkout [nom de la branch] -> permet de se rendre sur la branch.
 git merge [nom de la branch] -> permet d'appliqué les modifications de la branch sur la branch principales (il faut se trouver sur la branch principales pour faire cette commandes)
-git branch -v [nom de la branch] -> supprime la branch
+git branch -v [nom de la branch] -> affiche le nom de la branche,l'identifiant du commit le plus récent et le message de commit associé à ce commit
 git stash -> mettre de côté vos modifications locales (sans les commiter)
 git stash apply ->écupérer vos modifications depuis le stash
