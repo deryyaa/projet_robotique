@@ -1,8 +1,9 @@
-from dexter import Robot
-from code.univers.monde import Monde
+from ..robot.robot import Robot
+from ..univers.monde import Monde
+from ..univers.obstacle import Obstacle
 from random import randint
 from time import sleep
-from code.univers.obstacle import Obstacle
+
 # Création du monde
 monde = Monde(10, 20)
 
