@@ -6,12 +6,14 @@ import time
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse=0, dir=0):
         self.vitesse = vitesse
+        self.vg=0 # Vitesse de la roue gauche
+        self.vd=0 # Vitesse de la roue droite
         self.nom="dexter"
         self.x = x
         self.y = y
-        self.dir = dir % 360
-        self.largeur = largeur
-        self.longueur = longueur
+        self.dir = dir % 360 # angle en degré
+        self.largeur = largeur # largeur du robot en cm
+        self.longueur = longueur # longueur du robot en cm
 
     def avancer(self, distance, monde):
         """ Avance le robot dans sa direction actuelle """
