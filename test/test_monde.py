@@ -22,3 +22,5 @@ class Test_Monde(unittest.TestCase):
         y=self.new_robot.y
         self.assertEqual(x,self.obstacle.x-1)
         self.assertEqual(y,self.obstacle.y-1)
+if __name__ =='__main__':
+    unittest.main()
