@@ -1,7 +1,7 @@
 import unittest
 import math
-from ..robot.robot import Robot
-from ..univers.monde import Monde
+from ..projet.robot.robot import Robot
+from ..projet.univers.monde import Monde
 #python3 -m unittest test/test_robot.py -v
 class Test_Robot(unittest.TestCase):
     def setUp(self):

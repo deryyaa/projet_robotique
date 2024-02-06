@@ -2,6 +2,7 @@ import sys
 import math
 import random
 import time 
+import unittest
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse=0, dir=0):

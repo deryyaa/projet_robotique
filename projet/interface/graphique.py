@@ -1,3 +1,4 @@
+import unittest
 from tkinter import *
 from ..robot.robot import Robot
 from ..univers.monde import Monde

@@ -1,6 +1,6 @@
 import unittest
-from ..robot.robot import Robot
-from ..univers.monde import Monde
+from ..projet.robot.robot import Robot
+from ..projet.univers.monde import Monde
 
 # TEST CLASSE ROBOT
 print("test robot")
