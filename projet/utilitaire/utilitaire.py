@@ -1,5 +1,3 @@
-
-
 def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonnées de mon rectangle (obstacle et robot)
     """renvoie True quand les 2 rectangle r1,r2 se superpose"""
     # Déballage des tuples pour obtenir les coordonnées et dimensions des rectangles

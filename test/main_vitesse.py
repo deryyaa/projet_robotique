@@ -1,5 +1,5 @@
-from robot import Robot
-from monde import Monde
+from ..robot.robot import Robot
+from ..univers.monde import Monde
 
 # TEST CLASSE ROBOT
 print("test robot")
