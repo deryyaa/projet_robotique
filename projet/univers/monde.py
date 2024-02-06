@@ -1,8 +1,7 @@
 import unittest
-from ..robot.robot import Robot
-from ..univers.monde import Monde
-from ..univers.obstacle import Obstacle
-from ..utilitaire.utilitaire import collision_rect
+from projet.robot.robot import Robot
+from projet.univers.obstacle import Obstacle
+from projet.utilitaire.utilitaire import collision_rect
 
 class Monde:
     def __init__(self, ligne, colonne):
