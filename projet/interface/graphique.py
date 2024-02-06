@@ -42,6 +42,11 @@ def dessineRobot(canvas,robot):
                           robot.x+robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
                           robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
                           fill="blue",tags="rectangle")
+    canvas.create_line(robot.x+robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
+                          robot.x+robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
+                          fill="red",tags="rectangle")
 dessineRobot(cnv,robot1)
 
 
