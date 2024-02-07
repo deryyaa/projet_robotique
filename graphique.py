@@ -70,31 +70,16 @@ def set_speed(v):
 curseur2 = Scale(fenetre, orient = "horizontal", label="vitesse",command=set_speed, from_=1, to=100)
 curseur2.pack()
 
-def move(event):
-    global robot1,monde,vitesse
-    key = event.keysym
-    pas=speed(event)
-    if key =='p':
-        #robot1.avancer(5, monde)  # Utilisation de la méthode avancer avec le monde
-        robot1.mouvement(0.05)
-    if key == 'Up':
-        #robot1.avancer(5, monde)  # Utilisation de la méthode avancer avec le monde
-        robot1.avancer()
-    elif key == 'Down':
-        #robot1.avancer(-5, monde)   # Utilisation de la méthode reculer avec le monde
-        robot1.reculer()
-    elif key == 'Right':
-        robot1.tourner_droite()
-    elif key == 'Left':
-        robot1.tourner_gauche()
-    elif key == 'd' :
-        robot1.augmenter_vd(1)
-    elif key == 'g' :
-        robot1.augmenter_vg(1)
-        
+def move():
+    global robot1,monde,vitesse,temps
+    debut = time.time()
+    while time.time()-debut<temps: 
+        monde.avancer_robot(vitesse,robot1) 
+        # Mise à jour des coordonnées du robot sur le canevas
+        dessineRobot(cnv,robot1)
+        fenetre.update()
+        time.sleep(1)
 
-    # Mise à jour des coordonnées du robot sur le canevas
-    dessineRobot(cnv,robot1)
 
 
 
