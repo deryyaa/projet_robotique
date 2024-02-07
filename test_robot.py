@@ -19,15 +19,10 @@ class Test_Robot(unittest.TestCase):
         self.new_monde=Monde(20,20)
 
     def test_avancer(self):
-        x=self.new_robot.x
-        y=self.new_robot.y
-        self.new_robot.avancer(10,self.new_monde)
-        new_x=self.new_robot.x
-        new_y=self.new_robot.y
-        self.assertEqual(new_x-x,10 * math.cos(math.radians(self.new_robot.dir)))
-        self.assertEqual(new_y-y,10 * math.cos(math.radians(self.new_robot.dir)))
-
-
+        self.new_robot.avancer()
+        self.assertEqual(self.new_robot.vd,5)
+        self.assertEqual(self.new_robot.vg,5)
+        
     def test_tourner_droite(self):
         dir=self.new_robot.dir
         self.new_robot.tourner_droite(13)
