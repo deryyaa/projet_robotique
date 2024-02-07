@@ -63,6 +63,12 @@ def set_time(t):
 curseur1 = Scale(fenetre, orient = "horizontal", label="temps",command=set_time, from_=1, to=100)
 curseur1.pack()
 
+vitesse=1
+def set_speed(v):
+    global vitesse
+    vitesse = int(v)
+curseur2 = Scale(fenetre, orient = "horizontal", label="vitesse",command=set_speed, from_=1, to=100)
+curseur2.pack()
 
 def move(event):
     global robot1,monde,vitesse
