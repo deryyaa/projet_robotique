@@ -32,6 +32,11 @@ class Test_Robot(unittest.TestCase):
         self.new_robot.tourner_gauche()
         self.assertEqual(self.new_robot.vd,5)
         self.assertEqual(self.new_robot.vg,-5)
+        
+    def test_reculer(self):
+        self.new_robot.reculer()
+        self.assertEqual(self.new_robot.vd,-5)
+        self.assertEqual(self.new_robot.vg,-5)
  
    
 if __name__ =='__main__':
