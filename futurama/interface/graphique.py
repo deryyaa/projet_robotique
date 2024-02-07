@@ -4,6 +4,9 @@ from futurama.univers.monde import Monde
 from futurama.univers.obstacle import Obstacle
 import math
 
+# python -m unittest futurama/interface/graphique.py -v
+# executer avec python ou python3
+
 # Création du monde
 monde = Monde(400, 400)
 
