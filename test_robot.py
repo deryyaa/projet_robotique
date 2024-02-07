@@ -24,16 +24,14 @@ class Test_Robot(unittest.TestCase):
         self.assertEqual(self.new_robot.vg,5)
         
     def test_tourner_droite(self):
-        dir=self.new_robot.dir
-        self.new_robot.tourner_droite(13)
-        new_dir=self.new_robot.dir
-        self.assertEqual(new_dir,dir-13%360)
+        self.new_robot.tourner_droite()
+        self.assertEqual(self.new_robot.vd,-5)
+        self.assertEqual(self.new_robot.vg,5)
 
     def test_tourner_gauche(self):
-        dir=self.new_robot.dir
-        self.new_robot.tourner_droite(13)
-        new_dir=self.new_robot.dir
-        self.assertEqual(new_dir,dir+13%360)
+        self.new_robot.tourner_gauche()
+        self.assertEqual(self.new_robot.vd,5)
+        self.assertEqual(self.new_robot.vg,-5)
  
    
 if __name__ =='__main__':
