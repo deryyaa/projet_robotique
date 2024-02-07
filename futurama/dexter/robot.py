@@ -5,6 +5,14 @@ import time
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse_max, dir=0):
+        """Initialise un objet Robot avec les paramètres spécifiés
+        x (float): La coordonnée x initiale du robot
+        y (float): La coordonnée y initiale du robot
+        longueur (float): La longueur du robot en centimètres
+        largeur (float): La largeur du robot en centimètres
+        vitesse_max (float): La vitesse maximale du robot
+        dir (float, facultatif): La direction initiale du robot en degrés. Par défaut, 0 degré
+        """
         self.vitesse_max = vitesse_max
         self.taille_roue = 10
         self.vg=0 # Vitesse de la roue gauche
@@ -57,6 +65,7 @@ class Robot:
             self.vd+=n
     
     def mouvement(self, dt):
+        """Met à jour la position et la direction du véhicule en fonction des vitesses des roues"""
         self.x += (self.taille_roue*(self.vg+self.vd)/2.0) * math.cos(math.radians(self.dir)) * dt
         self.y -= (self.taille_roue*(self.vg+self.vd)/2.0) * math.sin(math.radians(self.dir)) * dt
         self.dir += (self.vd - self.vg) * dt 

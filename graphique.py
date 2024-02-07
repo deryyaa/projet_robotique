@@ -26,9 +26,12 @@ for i in monde.obstacles:
     cnv.create_rectangle(i.x-i.longeur/2,i.y-i.largeur/2,i.x+i.longeur/2,i.y+i.largeur/2,fill="grey") #affichage des 2 obstacles
 
 
-
 # Dessin du robot sur le canevas
 def dessineRobot(canvas,robot):
+    """Dessine un robot sur le canvas avec les coordonnées et la direction spécifiées
+    canvas: Le canvas sur lequel le robot doit être dessiné
+    robot: L'objet représentant le robot avec les attributs x, y, dir, largeur et longueur.
+    """
     canvas.delete("rectangle")
     cos_robot=math.cos(math.radians(robot.dir))
     sin_robot=math.sin(math.radians(robot.dir))
@@ -47,6 +50,8 @@ dessineRobot(cnv,robot1)
 vitesse = 5
 
 def speed(event):
+    """Modifie la vitesse du robot en fonction grâce aux touches du clavier
+    event: L'événement clavier qui a déclenché la fonction"""
     global vitesse
     key = event.keysym
     if key == "p":

@@ -1,5 +1,4 @@
 # Ignorer le répertoire __pycache__
+*.pyc
 __pycache__/
-code/__pycache__/monde.cpython-311.pyc
-code/__pycache__/obstacle.cpython-311.pyc
-.gitignore
+
