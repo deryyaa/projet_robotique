@@ -81,9 +81,8 @@ def move():
         time.sleep(1)
 
 
+bouton= Button(fenetre,text="start",command=move)
+bouton.pack(padx=50,pady=50)
 
-
-# Association de la fonction de mouvement à l'événement de pression de touche
-fenetre.bind('<KeyPress>', move)
 # Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
