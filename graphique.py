@@ -5,7 +5,7 @@ from futurama.univers.obstacle import Obstacle
 import math
 
 # Création du monde
-monde = monde.Monde(400, 400)
+monde = Monde(400, 400)
 
 # Création de la fenêtre principale
 fenetre = Tk()
@@ -16,11 +16,11 @@ cnv = Canvas(fenetre, width=monde.colonne+20, height=monde.ligne, bg="ivory")
 cnv.pack()
 
 # Création du robot dans le monde
-robot1 = robot.Robot(300, 200, 20, 20 , 10)  # Position du robot dans le monde
+robot1 = Robot(300, 200, 20, 20 , 10)  # Position du robot dans le monde
 
 #création de 2 obstacle 
 for i in range(2):
-    monde.setObstacle(obstacle.Obstacle(2+(i+1)*100, 40, 50, 50)) #creation de plusieurs obstacle pour crée une colision
+    monde.setObstacle(Obstacle(2+(i+1)*100, 40, 50, 50)) #creation de plusieurs obstacle pour crée une colision
 for i in monde.obstacles:
     print(i.x,i.y)
     cnv.create_rectangle(i.x-i.longeur/2,i.y-i.largeur/2,i.x+i.longeur/2,i.y+i.largeur/2,fill="grey") #affichage des 2 obstacles
