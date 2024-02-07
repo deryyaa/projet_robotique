@@ -30,7 +30,7 @@ class Monde:
         """ verifie si il n'y a pas d'obstacle sur la position dans lequel le robot va avancer"""
         tmpx=robot.x #initialise ces positions dans une variable temporaires
         tmpy=robot.y
-        robot.avancer(distance,self)
+        robot.avancer_(distance,self)
         for i in self.obstacles:
             if collision_rect([(i.x-i.longeur/2,i.y-i.largeur/2),(i.x+i.longeur/2,i.y+i.largeur/2)],[(robot.x-robot.longueur/2,robot.y-robot.largeur/2),(robot.x+robot.longueur/2,robot.y+robot.largeur/2)]):
                 #si il y a un obstacle on remet le robot a ces positions temporaire d'avant (on le vérifie grâce aux coordonnées)
