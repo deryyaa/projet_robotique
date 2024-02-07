@@ -53,6 +53,8 @@ def dessineRobot(canvas,robot):
 dessineRobot(cnv,robot1)
 
 
+vitesse = 5
+
 
 temps=1
 def set_time(t):
