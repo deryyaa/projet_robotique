@@ -24,6 +24,13 @@ class Robot:
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
 
+    def avancer_(self, distance, monde):
+        """ Avance le robot dans sa direction actuelle """
+        dx = distance * math.cos(math.radians(self.dir))
+        dy = distance * math.sin(math.radians(self.dir))
+        if monde.peut_avancer(dx, dy,self):
+            self.x += dx
+
     def avancer(self):
         """ Avance le robot dans sa direction actuelle """
         self.vd=self.vitesse_max
