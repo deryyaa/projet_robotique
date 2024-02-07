@@ -16,22 +16,16 @@ class Robot:
         self.dir = dir % 360 # angle en degré
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
+        self.monde=Monde(20,20)
 
-    def avancer(self, distance, monde):
+    def avancer(self, distance):
         """ Avance le robot dans sa direction actuelle """
         dx = distance * math.cos(math.radians(self.dir))
         dy = distance * math.sin(math.radians(self.dir))
-        if monde.peut_avancer(dx, dy,self):
+        if self.monde.peut_avancer(dx, dy,self):
             self.x += dx
             self.y += dy
 
-    def reculer(self, distance, monde):
-        """ Recule le robot dans sa direction opposée """
-        dx = distance * math.cos(math.radians(self.dir))
-        dy = distance * math.sin(math.radians(self.dir))
-        if monde.peut_avancer(monde,-dx, -dy):
-            self.x -= dx
-            self.y -= dy
 
     def tourner_droite(self, angle):
         """ Tourne le robot vers la droite """
