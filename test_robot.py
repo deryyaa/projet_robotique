@@ -3,7 +3,7 @@ import math
 from futurama.dexter.robot import Robot
 from futurama.univers.monde import Monde
 
-#python3 -m unittest test/test_robot.py -v
+#python3 -m unittest test_robot.py -v
 
 #EXEMPLE:
 #Pour tout tester :
