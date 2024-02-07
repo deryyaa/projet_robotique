@@ -3,9 +3,10 @@ from futurama.dexter.robot import Robot
 from futurama.univers.monde import Monde
 from futurama.univers.obstacle import Obstacle
 import math
+import time
 
 # Création du monde
-monde = Monde(800, 800)
+monde = Monde(400, 400)
 
 # Création de la fenêtre principale
 fenetre = Tk()
@@ -52,19 +53,14 @@ def dessineRobot(canvas,robot):
 dessineRobot(cnv,robot1)
 
 
-vitesse = 5
 
-def speed(event):
-    """Modifie la vitesse du robot en fonction grâce aux touches du clavier
-    event: L'événement clavier qui a déclenché la fonction"""
-    global vitesse
-    key = event.keysym
-    if key == "p":
-        if vitesse <30:
-            vitesse += 5
-    elif key == "m" and vitesse - 5 > 0:
-        vitesse -= 5  
-    return vitesse
+temps=1
+def set_time(t):
+    global temps
+    temps = int(t)
+curseur1 = Scale(fenetre, orient = "horizontal", label="temps",command=set_time, from_=1, to=100)
+curseur1.pack()
+
 
 def move(event):
     global robot1,monde,vitesse
