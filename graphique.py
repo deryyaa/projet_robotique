@@ -60,15 +60,15 @@ temps=1
 def set_time(t):
     global temps
     temps = int(t)
-curseur1 = Scale(fenetre, orient = "horizontal", label="temps",command=set_time, from_=1, to=100)
-curseur1.pack()
+curseur1 = Scale(fenetre, orient = "vertical", label="temps",command=set_time, from_=1, to=100)
+curseur1.pack(side="left")
 
 vitesse=1
 def set_speed(v):
     global vitesse
     vitesse = int(v)
-curseur2 = Scale(fenetre, orient = "horizontal", label="vitesse",command=set_speed, from_=1, to=100)
-curseur2.pack()
+curseur2 = Scale(fenetre, orient = "vertical", label="vitesse",command=set_speed, from_=1, to=100)
+curseur2.pack(side="left")
 
 def move():
     global robot1,monde,vitesse,temps
@@ -82,7 +82,7 @@ def move():
 
 
 bouton= Button(fenetre,text="start",command=move)
-bouton.pack(padx=50,pady=50)
+bouton.pack(padx=150,pady=150)
 
 # Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
