@@ -7,8 +7,8 @@ class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse_max, dir=0):
         self.vitesse_max = vitesse_max
         self.taille_roue = 10
-        self.vg=4 # Vitesse de la roue gauche
-        self.vd=2 # Vitesse de la roue droite
+        self.vg=0 # Vitesse de la roue gauche
+        self.vd=0 # Vitesse de la roue droite
         self.nom="dexter"
         self.x = x
         self.y = y
@@ -36,6 +36,26 @@ class Robot:
         self.vd=self.vitesse_max
         self.vg=-self.vitesse_max
         
+    def augmenter_vg(self,n):
+        """Augmente la vitesse de la roue gauche"""
+        if(n<0):
+            print("n doit être positif")
+            exit
+        if(self.vg+n>self.vitesse_max):
+            self.vg=self.vitesse_max
+        else:
+            self.vg+=n
+    
+    def augmenter_vd(self,n):
+        """Augmente la vitesse de la roue droite"""
+        if(n<0):
+            print("n doit être positif")
+            exit
+        if(self.vd+n>self.vitesse_max):
+            self.vd=self.vitesse_max
+        else:
+            self.vd+=n
+    
     def mouvement(self, dt):
         self.x += (self.taille_roue*(self.vg+self.vd)/2.0) * math.cos(math.radians(self.dir)) * dt
         self.y -= (self.taille_roue*(self.vg+self.vd)/2.0) * math.sin(math.radians(self.dir)) * dt

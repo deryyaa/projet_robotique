@@ -5,7 +5,7 @@ from futurama.univers.obstacle import Obstacle
 import math
 
 # Création du monde
-monde = Monde(400, 400)
+monde = Monde(800, 800)
 
 # Création de la fenêtre principale
 fenetre = Tk()
@@ -32,7 +32,7 @@ def dessineRobot(canvas,robot):
     canvas.delete("rectangle")
     cos_robot=math.cos(math.radians(robot.dir))
     sin_robot=math.sin(math.radians(robot.dir))
-    canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
+    canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot, 
                           robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
                           robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
                           robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
@@ -73,6 +73,11 @@ def move(event):
         robot1.tourner_droite()
     elif key == 'Left':
         robot1.tourner_gauche()
+    elif key == 'd' :
+        robot1.augmenter_vd(1)
+    elif key == 'g' :
+        robot1.augmenter_vg(1)
+        
 
     # Mise à jour des coordonnées du robot sur le canevas
     dessineRobot(cnv,robot1)
