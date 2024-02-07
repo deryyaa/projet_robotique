@@ -4,6 +4,8 @@ from futurama.dexter.robot import Robot
 from futurama.univers.monde import Monde
 from futurama.univers.obstacle import Obstacle
 
+#python3 -m unittest test/test_monde.py -v
+
 class Test_Monde(unittest.TestCase):
     def setUp(self):
         self.new_monde=Monde(20,20)
