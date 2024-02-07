@@ -35,15 +35,20 @@ def dessineRobot(canvas,robot):
     canvas.delete("rectangle")
     cos_robot=math.cos(math.radians(robot.dir))
     sin_robot=math.sin(math.radians(robot.dir))
-    canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot, 
-                          robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
-                          robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
-                          robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                          robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+    canvas.create_polygon(robot.x+robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
+                          robot.x-robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
+                          robot.y-robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
+                          robot.x-robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
+                          robot.y-robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
+                          robot.x+robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
                           fill="blue",tags="rectangle")
+    canvas.create_line(robot.x+robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
+                          robot.x+robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
+                          robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
+                          fill="red",tags="rectangle")
 dessineRobot(cnv,robot1)
 
 
@@ -91,6 +96,5 @@ def move(event):
 
 # Association de la fonction de mouvement à l'événement de pression de touche
 fenetre.bind('<KeyPress>', move)
-
 # Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
