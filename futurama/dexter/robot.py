@@ -2,6 +2,7 @@ import sys
 import math
 import random
 import time 
+from futurama.univers.monde import Monde
 
 #mettre monde dans self
 
