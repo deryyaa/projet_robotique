@@ -2,7 +2,8 @@ import sys
 import math
 import random
 import time 
-import unittest
+
+#mettre monde dans self
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse=0, dir=0):
@@ -40,8 +41,6 @@ class Robot:
         """ Tourne le robot vers la gauche """
         self.dir = (self.dir + angle) % 360
 
-    
-    
     def vitesse_discrete(self,distance,temps,monde):
         """Déplacer le robot avec une distance dans le monde pendant un temps """
         print("le robot commence a se deplacer.")

@@ -1,8 +1,10 @@
 import unittest
 import math
-from ..projet.robot.robot import Robot
-from ..projet.univers.monde import Monde
+from futurama.dexter.robot import Robot
+from futurama.univers.monde import Monde
+
 #python3 -m unittest test/test_robot.py -v
+
 class Test_Robot(unittest.TestCase):
     def setUp(self):
         self.new_robot=Robot(1,2,3,4,5,6)

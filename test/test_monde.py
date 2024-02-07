@@ -1,8 +1,8 @@
 import unittest
 import math
-from ..projet.robot.robot import Robot
-from ..projet.univers.monde import Monde
-from ..projet.univers.obstacle import Obstacle
+from futurama.dexter.robot import Robot
+from futurama.univers.monde import Monde
+from futurama.univers.obstacle import Obstacle
 
 class Test_Monde(unittest.TestCase):
     def setUp(self):

@@ -1,8 +1,7 @@
-import unittest
 from tkinter import *
-from projet.robot.robot import Robot
-from projet.univers.monde import Monde
-from projet.univers.obstacle import Obstacle
+from futurama.dexter.robot import Robot
+from futurama.univers.monde import Monde
+from futurama.univers.obstacle import Obstacle
 import math
 
 # Création du monde

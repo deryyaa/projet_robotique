@@ -1,5 +1,4 @@
 import math
-import unittest
 
 class Obstacle: 
     """ Classe pour représenter un obstacle dans l'environnement.

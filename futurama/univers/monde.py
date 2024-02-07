@@ -1,7 +1,6 @@
-import unittest
-from projet.robot.robot import Robot
-from projet.univers.obstacle import Obstacle
-from projet.utilitaire.utilitaire import collision_rect
+from futurama.dexter.robot import Robot
+from futurama.univers.obstacle import Obstacle
+from utilitaire import collision_rect
 
 class Monde:
     def __init__(self, ligne, colonne):
@@ -10,29 +9,6 @@ class Monde:
         self.colonne = colonne
         self.robot = None
         self.obstacles = [] #création de la liste d'obstacle
-    
-    def affiche(self):
-        """fonction qui permet d'afficher le monde dans le terminal"""
-        a = "+" + "-" * self.colonne + "+" + "\n"
-        verification=False
-        for i in range(self.ligne):
-            a += "|"
-            for j in range(self.colonne): 
-                if self.robot is not None and int(self.robot.x) == i and int(self.robot.y) == j: #vérifie si il y a un robot ou pas 
-                    a += "X"
-                else:
-                    for d in self.obstacles: #parcours la liste d'obstcle pour tester leur coordonnées et les placées
-                        if int(d.x)==i and int(d.y)==j:
-                            verification=True
-                            a+="0"
-                    if verification:
-                        verification=False
-                    else:
-                        a += " "
-            a += "|\n"
-
-        a += "+" + "-" * self.colonne + "+" + "\n"
-        print(a)
     
     def setRobot(self, robot):
         """Initialise le robot dans le monde"""
