@@ -1,0 +1,25 @@
+COMPTE RENDU DU 07/02/24 8h45-12h30
+
+Objectifs : 
+  - resolver le probleme de modules et d'import 
+  - discussion sur la refactorisation du code 
+  - discussion des prochaines etapes de la modelisation du robot 
+
+Actions/Probleme : 
+  - Solution probleme module/import : seul le main doit etre executé et il doit etre a la racine (futurama) et non dans un repertoire et le programme qu'on lance (ici le main) 
+    ne doit pas appartenir aux modules. 
+    tout ce qui est dans futurama n'est pas fait pour etre excuté mais seulement importé a l'exterieur
+  - Reorganiser le trello : partie archive crée dans le trello
+  - Savoir justifier les choix de calcul dans les fonctions (ex : deplacement du robot..) 
+  - tous les membres du groupe doivent avancer dans le meme sens
+  - processus d’interaction entre nous et l’interface/robot ===inutile 
+
+Pour semaine pro : 
+  - nettoyage et correction du code : code non utilisable a supprimer, certaines fontions a reajuster  
+  - faire la documentation des fonctions 
+  - faire les tests unitaires des fonctions 
+  - la physique correcte :pouvoir donner une vitesse à chaque roue et avancer en fonction de cette vitesse dans la direction qu’on lui donne
+  - implementer une ia (controleur) avec des ordres simple : aller tt droit ou tracer un carré 
+  - capteurs de distance 
+
+FUTURAMA TEAM 7
