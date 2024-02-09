@@ -92,6 +92,29 @@ class Robot:
             
         print("fin de deplacement")
 
+    def distance_points(p1, p2):
+    """Calcule la distance euclidienne entre deux points"""
+    return ((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)**0.5
+
+"""PAS FINIT """
+position_robot = [self.x, self.y]  # position initiale du robot
+position_obstacle = [obstacle.x, obstacle.y]  # position de l'obstacle 
+vecteur_d = [1, 1]  # vecteur de deplacement 
+distance_parcourue = 0  # distance parcourue par le robot
+
+while True:
+    # mise à jour de la position du robot selon le vecteur de déplacement
+    position_robot[0] += vecteur_d[0]
+    position_robot[1] += vecteur_d[1]
+    
+    distance_actuelle = distance_points(position_robot, position_obstacle) # calcul distance entre le robot et l'obstacle
+    print(f"Position actuelle du robot : {position_robot}, Distance jusqu'à l'obstacle : {distance_actuelle}")
+    
+    # Vérification si le robot est suffisamment proche de l'obstacle
+    if distance_actuelle < 1:
+        print(f"Collision : Obstacle detecté à une distance de {distance_actuelle}")
+        break
+
 
                 
 
