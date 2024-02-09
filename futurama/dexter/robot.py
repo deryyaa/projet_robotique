@@ -110,7 +110,7 @@ class CapteurDistance:
             capteur = (capteur[0] + self.direction[0], capteur[1] + self.direction[1])
             distanceP_capteur += 1
 
-            distance_actuelle = distance_points([self.robot.x, self.robot.y], position_obstacle) # calcul distance entre le robot et l'obstacle
+            distance_actuelle = self.distance_points([self.robot.x, self.robot.y], [self.obstacle.x,self.obstacle.y]) # calcul distance entre le robot et l'obstacle
             print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actuelle}")
 
             # Vérification si le robot est proche de l'obstacle
