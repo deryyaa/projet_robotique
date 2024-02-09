@@ -43,10 +43,7 @@ class Robot:
 
     def tourner_droite(self):
         """ Tourne le robot vers la droite """
-        self.vd=-self.vitesse_max
-        self.vg=self.vitesse_max
-
-    def tourner_gauche(self):
+        self.vd=-self.vitesse_maxself.robot.x,
         """ Tourne le robot vers la gauche """
         self.vd=self.vitesse_max
         self.vg=-self.vitesse_max

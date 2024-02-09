@@ -20,9 +20,9 @@ class Monde:
 
     def peut_avancer(self, dx, dy, robot):
         """ Vérifie si le robot peut avancer sans dépasser les limites du monde """
-        new_x = robot.x + dx
+        new_x =robot.x + dx
         new_y = robot.y + dy
-        if 0 <= new_x-robot.longueur/2 and new_x-robot.longueur/2 < self.ligne and 0 <= new_y-robot.longueur/2 and new_y+(robot.longueur)/2 < self.colonne:  
+        if 0 < new_x-robot.longueur/2 and new_x+robot.longueur/2 < self.ligne and 0 < new_y-robot.largeur/2 and new_y+(robot.largeur)/2 < self.colonne:  
             return True
         return False
 
