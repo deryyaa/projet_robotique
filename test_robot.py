@@ -38,21 +38,25 @@ class Test_Robot(unittest.TestCase):
         self.assertEqual(self.new_robot.vd,-5)
         self.assertEqual(self.new_robot.vg,-5)
 
-    def test_addToVd(self):
-        self.new_robot.addToVd(2)
+    def test_augmenter_vd(self):
+        self.new_robot.augmenter_vd(2)
         self.assertEqual(self.new_robot.vd,2)
-        self.new_robot.addToVd(10)
+        self.new_robot.augmenter_vd(10)
         self.assertEqual(self.new_robot.vd,5)
-        self.new_robot.addToVd(-1)
+        self.new_robot.augmenter_vd(-1)
         self.assertEqual(self.new_robot.vd,4)
     
-    def test_addToVg(self):
-        self.new_robot.addToVg(-1)
+    def test_augmenter_vg(self):
+        self.new_robot.augmenter_vg(-1)
         self.assertEqual(self.new_robot.vg,-1)
-        self.new_robot.addToVg(2)
+        self.new_robot.augmenter_vg(2)
         self.assertEqual(self.new_robot.vg,1)
-        self.new_robot.addToVg(10)
+        self.new_robot.augmenter_vg(10)
         self.assertEqual(self.new_robot.vg,5)
    
 if __name__ =='__main__':
     unittest.main()
+
+
+
+
