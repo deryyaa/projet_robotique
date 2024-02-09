@@ -15,7 +15,6 @@ class Test_Monde(unittest.TestCase):
     def test_peut_avancer(self):
         self.assertTrue(self.monde.peut_avancer(1,1,self.robot))
         self.robot.avancer_(8,self.monde)
-        print(self.robot.x,self.robot.y, self.monde.peut_avancer(1,1,self.robot))
         self.assertFalse(self.monde.peut_avancer(1,1,self.robot))
 
 
