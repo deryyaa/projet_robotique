@@ -2,9 +2,11 @@ import sys
 import math
 import random
 import time 
+from futurama.univers.obstacle import Obstacle
+from utilitaire import distance_points
 
 class Robot:
-    def __init__(self, x, y, longueur, largeur, vitesse_max, dir=0):
+    def __init__(self, x, y, longueur, largeur, vitesse_max, direction, dir=0):
         """Initialise un objet Robot avec les paramètres spécifiés
         x (float): La coordonnée x initiale du robot
         y (float): La coordonnée y initiale du robot
@@ -23,6 +25,7 @@ class Robot:
         self.dir = dir % 360 # angle en degré
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
+        self.direction= direction
 
     def avancer_(self, distance, monde):
         """ Avance le robot dans sa direction actuelle """
@@ -89,26 +92,16 @@ class Robot:
             
         print("fin de deplacement")
 
-        def distance_points(p1, p2):
-                """Calcule la distance euclidienne entre deux points"""
-        return ((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)**0.5
     
-        def distance(self):
-            capteur = [self.robot.x, self.robot.y] # initialise le capteur de distance à la position du robot 
-            distanceP_capteur = 0 # initialise la distance parcourue par le capteur à 0
+    def capteur_distance(self, Obstacle):
+        while True :
+            distance_actuelle = distance_points([self.robot.x, self.robot.y], [self.obstacle.x,self.obstacle.y]) # calcul distance entre le robot et l'obstacle
+            print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actuelle}")
 
-            while distanceP_capteur < self.distance_max:
-                # capteur qu'on deplace dans la direction specifiée (self.direction)
-                capteur = (capteur[0] + self.direction[0], capteur[1] + self.direction[1])
-                distanceP_capteur += 1
-
-                distance_actuelle = self.distance_points([self.robot.x, self.robot.y], [self.obstacle.x,self.obstacle.y]) # calcul distance entre le robot et l'obstacle
-                print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actuelle}")
-
-                # Vérification si le robot est proche de l'obstacle
-                if distance_actuelle < 1:
-                    print(f"Collision : Obstacle detecté à une distance de {distance_actuelle}")
-                    break
+            # Vérification si le robot est proche de l'obstacle
+            if distance_actuelle < 1:
+                print(f"Collision : Obstacle detecté à une distance de {distance_actuelle}")
+                break
 
 
 
