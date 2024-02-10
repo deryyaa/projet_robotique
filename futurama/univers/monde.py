@@ -39,6 +39,12 @@ class Monde:
                 print("le robot vient de percuter le mur")
                 break 
                 
+    def distance_obstacle_proche(self, robot):
+        """Retourne la distance du plus proche obstacle depuis le robot"""
+        return min(
+            ((obstacle.x - robot.x)**2 + (obstacle.y - robot.y)**2)**0.5
+            for obstacle in self.obstacles
+        )
     
     
   
