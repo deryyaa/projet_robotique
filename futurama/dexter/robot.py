@@ -2,8 +2,6 @@ import sys
 import math
 import random
 import time 
-from futurama.univers.obstacle import Obstacle
-from utilitaire import distance_points
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse_max, dir=0):
