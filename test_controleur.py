@@ -12,12 +12,17 @@ class Test_Monde(unittest.TestCase):
 
     def test_avancer(self):
         self.controleur.avancer(distance=50)
+        self.assertEqual(self.robot.x,50)
+        self.assertEqual(self.robot.y,50)
 
     def test_augmenter_vitesse_gauche(self):
-         self.controleur.augmenter_vitesse_gauche(n=5)
+        self.controleur.augmenter_vitesse_gauche(n=5)
+        self.assertEqual(self.robot.augmenter_vg,5)
+
 
     def test_deplacer(self):
         self.controleur.deplacer(distance=20, temps=5)
+        self.assertEqual()
 
 
 if __name__ =='__main__':
