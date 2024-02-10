@@ -16,7 +16,7 @@ class Robot:
         dir (float, facultatif): La direction initiale du robot en degrés. Par défaut, 0 degré
         """
         self.vitesse_max = vitesse_max
-        self.taille_roue = 10
+        self.taille_roue = 3
         self.vg=0 # Vitesse de la roue gauche
         self.vd=0 # Vitesse de la roue droite
         self.nom="dexter"

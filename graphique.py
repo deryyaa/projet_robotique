@@ -73,17 +73,36 @@ curseur2.pack(side="left")
 curseur3 = Scale(fenetre, orient = "vertical", label="vitesse droite",command=set_speed_droite, from_=50, to=-50)
 curseur3.pack(side="left")
 
-def move():
+
+def move(event):
     #global robot1,monde,vitesse,temps
-    debut = time.time()
-    while time.time()-debut<temps: 
-        robot1.mouvement(0.1)
-        # Mise à jour des coordonnées du robot sur le canevas
-        dessineRobot(cnv,robot1)
-        fenetre.update()
-        time.sleep(0.1)
+    key = event.keysym
+    if key =='c':
+        for i in range(4):
+            robot1.vg=robot1.vitesse_max
+            robot1.vd=robot1.vitesse_max
+            for i in range(10):
+                robot1.mouvement(0.1)
+                dessineRobot(cnv,robot1)
+                fenetre.update()
+                time.sleep(0.1)
+            robot1.vg=15
+            robot1.vd=-15
+            for i in range(30):
+                robot1.mouvement(0.1)
+                dessineRobot(cnv,robot1)
+                fenetre.update()
+                time.sleep(0.1)
+    if key=='n':
+        debut = time.time()
+        while time.time()-debut<temps: 
+            robot1.mouvement(0.1)
+            # Mise à jour des coordonnées du robot sur le canevas
+            dessineRobot(cnv,robot1)
+            fenetre.update()
+            time.sleep(0.1)
 
-
+fenetre.bind('<KeyPress>', move)
 bouton= Button(fenetre,text="start",command=move)
 bouton.pack(padx=150,pady=150)
 
