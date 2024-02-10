@@ -92,14 +92,16 @@ class Robot:
         print("fin de deplacement")
 
     
-    def capteur_distance(self, Obstacle):
+    def capteur_distance(self, obstacles):
         while True :
-            distance_actuelle = distance_points([self.robot.x, self.robot.y], [self.obstacle.x,self.obstacle.y]) # calcul distance entre le robot et l'obstacle
-            print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actuelle}")
+            # calcul pour chaque obstacle la distance entre ce dernier et le robot et garde l'obstacle le plus proche
+            distance_actu = min( ((self.obstacle.x - self.robot.x)**2 + (self.obstacle.y - self.robot.y)**2)**0.5
+            for obstacle in self.obstacles
+            )
 
-            # Vérification si le robot est proche de l'obstacle
-            if distance_actuelle < 1:
-                print(f"Collision : Obstacle detecté à une distance de {distance_actuelle}")
+            print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actu}")
+            if distance_actu < 1:
+                print(f"Collision : Obstacle detecté à une distance de {distance_actu}")
                 break
 
 
