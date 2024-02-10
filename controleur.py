@@ -26,3 +26,5 @@ class Controleur:
     def deplacer(self, distance, temps):
         """Déplace le robot avec une distance pendant un temps spécifié"""
         self.robot.vitesse_discrete(distance, temps, monde)
+
+        
