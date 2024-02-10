@@ -57,17 +57,26 @@ vitesse = 5
 
 
 temps=1
+
+
 def set_time(t):
+    """Définit le temps global utilisé pour le mouvement du robot"""
     global temps
     temps = int(t)
+
 curseur1 = Scale(fenetre, orient = "vertical", label="temps",command=set_time, from_=120, to=0)
 curseur1.pack(side="left")
 
 vitesse=1
+
 def set_speed_gauche(v):
+    """Définit la vitesse de la roue gauche du robot"""
     robot1.vg=int(v)
+
 def set_speed_droite(v):
+    """Définit la vitesse de la roue droite du robot"""
     robot1.vd=int(v)
+    
 curseur2 = Scale(fenetre, orient = "vertical", label="vitesse gauche",command=set_speed_gauche, from_=50, to=-50)
 curseur2.pack(side="left")
 curseur3 = Scale(fenetre, orient = "vertical", label="vitesse droite",command=set_speed_droite, from_=50, to=-50)
@@ -75,6 +84,7 @@ curseur3.pack(side="left")
 
 
 def move(event):
+    """Déplace le robot selon les vitesses définies pendant le temps spécifié"""
     #global robot1,monde,vitesse,temps
     key = event.keysym
     if key =='c':

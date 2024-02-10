@@ -39,3 +39,5 @@ class Controleur:
             for i in range(30):
                 self.robot.mouvement(0.1)
             
+
+        
