@@ -2,8 +2,6 @@ import sys
 import math
 import random
 import time 
-from futurama.univers.obstacle import Obstacle
-from utilitaire import distance_points
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse_max, dir=0):
@@ -92,14 +90,13 @@ class Robot:
         print("fin de deplacement")
 
     
-    def capteur_distance(self, Obstacle):
+    def capteur_distance(self, monde):
         while True :
-            distance_actuelle = distance_points([self.robot.x, self.robot.y], [self.obstacle.x,self.obstacle.y]) # calcul distance entre le robot et l'obstacle
-            print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actuelle}")
-
-            # Vérification si le robot est proche de l'obstacle
-            if distance_actuelle < 1:
-                print(f"Collision : Obstacle detecté à une distance de {distance_actuelle}")
+            distance_actu = monde.distance_obstacle_proche(self.robot.x, self.robot.y)
+            
+            print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actu}")
+            if distance_actu < 1:
+                print(f"Collision : Obstacle detecté à une distance de {distance_actu}")
                 break
 
 
