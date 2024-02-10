@@ -9,7 +9,4 @@ def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonn
     return [True,False][x1 >= x2 + w2 or x1 + w1 <= x2 or y1 >= y2 + h2 or y1 + h1 <= y2]
 
 
-def distance_points(p1, p2):
-        """Calcule la distance euclidienne entre deux points"""
-        return ((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)**0.5
 
