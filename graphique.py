@@ -6,7 +6,7 @@ import math
 import time
 
 # Création du monde
-monde = Monde(400, 400)
+monde = Monde(500, 500)
 
 # Création de la fenêtre principale
 fenetre = Tk()
@@ -36,19 +36,19 @@ def dessineRobot(canvas,robot):
     canvas.delete("rectangle")
     cos_robot=math.cos(math.radians(robot.dir))
     sin_robot=math.sin(math.radians(robot.dir))
-    canvas.create_polygon(robot.x+robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
-                          robot.y+robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
-                          robot.x-robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
-                          robot.y-robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
-                          robot.x-robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
-                          robot.y-robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
-                          robot.x+robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
-                          robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
+    canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
+                          robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                          robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
+                          robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                          robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                          robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                          robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           fill="blue",tags="rectangle")
-    canvas.create_line(robot.x+robot.longueur/2*cos_robot-robot.largeur/2*sin_robot,
-                          robot.y+robot.longueur/2*sin_robot+robot.largeur/2*cos_robot,
-                          robot.x+robot.longueur/2*cos_robot+robot.largeur/2*sin_robot,
-                          robot.y+robot.longueur/2*sin_robot-robot.largeur/2*cos_robot,
+    canvas.create_line(robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                          robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                          robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           fill="red",tags="rectangle")
 dessineRobot(cnv,robot1)
 
@@ -60,25 +60,28 @@ temps=1
 def set_time(t):
     global temps
     temps = int(t)
-curseur1 = Scale(fenetre, orient = "vertical", label="temps",command=set_time, from_=1, to=100)
+curseur1 = Scale(fenetre, orient = "vertical", label="temps",command=set_time, from_=120, to=0)
 curseur1.pack(side="left")
 
 vitesse=1
-def set_speed(v):
-    global vitesse
-    vitesse = int(v)
-curseur2 = Scale(fenetre, orient = "vertical", label="vitesse",command=set_speed, from_=1, to=100)
+def set_speed_gauche(v):
+    robot1.vg=int(v)
+def set_speed_droite(v):
+    robot1.vd=int(v)
+curseur2 = Scale(fenetre, orient = "vertical", label="vitesse gauche",command=set_speed_gauche, from_=50, to=-50)
 curseur2.pack(side="left")
+curseur3 = Scale(fenetre, orient = "vertical", label="vitesse droite",command=set_speed_droite, from_=50, to=-50)
+curseur3.pack(side="left")
 
 def move():
-    global robot1,monde,vitesse,temps
+    #global robot1,monde,vitesse,temps
     debut = time.time()
     while time.time()-debut<temps: 
-        monde.avancer_robot(vitesse,robot1) 
+        robot1.mouvement(0.1)
         # Mise à jour des coordonnées du robot sur le canevas
         dessineRobot(cnv,robot1)
         fenetre.update()
-        time.sleep(1)
+        time.sleep(0.1)
 
 
 bouton= Button(fenetre,text="start",command=move)
