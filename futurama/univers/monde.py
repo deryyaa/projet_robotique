@@ -39,12 +39,11 @@ class Monde:
                 print("le robot vient de percuter le mur")
                 break 
                 
-    def distance_obstacle_proche(self, robot):
-        """Retourne la distance du plus proche obstacle depuis le robot"""
-        return min(
-            ((obstacle.x - robot.x)**2 + (obstacle.y - robot.y)**2)**0.5
-            for obstacle in self.obstacles
-        )
+    def detecter_collision(self, robot):
+        for i in self.obstacles:
+            if collision_rect([(i.x-i.longeur/2,i.y-i.largeur/2),(i.x+i.longeur/2,i.y+i.largeur/2)],[(robot.x-robot.longueur/2,robot.y-robot.largeur/2),(robot.x+robot.longueur/2,robot.y+robot.largeur/2)]):
+                return True
+        return False
     
     
   
