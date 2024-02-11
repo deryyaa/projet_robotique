@@ -89,16 +89,18 @@ class Robot:
             
         print("fin de deplacement")
 
-    
-    def capteur_distance(self, monde):
-        while True :
-            distance_actu = monde.distance_obstacle_proche(self.robot.x, self.robot.y)
-            
-            print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distance_actu}")
-            if distance_actu < 1:
-                print(f"Collision : Obstacle detecté à une distance de {distance_actu}")
-                break
+    #normalement avce self.direction = direction
+    def capteur_distance(self):
+        distanceP_capteur = 0
+        capteur_x, capteur_y = self.robot.x, self.robot.y
 
+        while not self.monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
+            distanceP_capteur+= 1
+            capteur_x += self.direction[0]
+            capteur_y += self.direction[1]
+
+        print(f"Obstacle détecté à : {distanceP_capteur}")
+        print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distanceP_capteur}")
 
 
 
