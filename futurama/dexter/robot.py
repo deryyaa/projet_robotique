@@ -4,7 +4,7 @@ import random
 import time 
 
 class Robot:
-    def __init__(self, x, y, longueur, largeur, vitesse_max, dir=0):
+    def __init__(self, x, y, longueur, largeur, vitesse_max, direction=[0,0],dir=0):
         """Initialise un objet Robot avec les paramètres spécifiés
         x (float): La coordonnée x initiale du robot
         y (float): La coordonnée y initiale du robot
@@ -23,6 +23,7 @@ class Robot:
         self.dir = dir % 360 # angle en degré
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
+        self.direction= direction
 
     def avancer_(self, distance, monde):
         """ Avance le robot dans sa direction actuelle """
@@ -89,7 +90,7 @@ class Robot:
             
         print("fin de deplacement")
 
-    #normalement avce self.direction = direction
+
     def capteur_distance(self):
         distanceP_capteur = 0
         capteur_x, capteur_y = self.robot.x, self.robot.y
