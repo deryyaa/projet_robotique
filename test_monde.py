@@ -24,9 +24,27 @@ class Test_Monde(unittest.TestCase):
          print(self.robot.x)
          print(self.obstacle.x)
          self.assertEqual(x,self.obstacle.x)
+
+    def test_detecter_collision(self):
+        monde=Monde(20,20)
+        obstacle1= Obstacle(10,17,5,5)
+        obstacle2= Obstacle(15,17,5,5)
+        robot=Robot(12,19,2,2,20)
+        monde.setObstacle(obstacle1)
+        monde.setObstacle(obstacle2)
+        self.assertTrue(monde.detecter_collision(robot))
+
+    def test_pas_de_collision(self):
+        monde= Monde(20,20)
+        robot= Robot(12,19,2,2,20)
+        self.assertFalse(monde.detecter_collision(robot))
+
+        obstacle3 = Obstacle(18,30,4,4)
+        obstacle4 = Obstacle(20,28,3,3)
+        monde.setObstacle(obstacle3)
+        monde.setObstacle(obstacle4)
+        self.assertFalse(monde.detecter_collision(robot))
          
-
-
 
 if __name__ =='__main__':
     unittest.main()
