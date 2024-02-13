@@ -40,6 +40,7 @@ class Monde:
                 break 
                 
     def detecter_collision(self, robot):
+        """Renvoie true s'il y a collision entre le robot et un des obstacles du monde, false sinon"""
         for i in self.obstacles:
             if collision_rect([(i.x-i.longeur/2,i.y-i.largeur/2),(i.x+i.longeur/2,i.y+i.largeur/2)],[(robot.x-robot.longueur/2,robot.y-robot.largeur/2),(robot.x+robot.longueur/2,robot.y+robot.largeur/2)]):
                 return True
