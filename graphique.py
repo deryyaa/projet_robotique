@@ -78,7 +78,10 @@ entre2.place(x=10,y=570)
 def set_speed_droite(v):
     """Définit la vitesse de la roue droite du robot"""
     robot1.vd=int(v)
-    
+
+texte2= Label(fenetre,text="Entrez une vitesse droite",background="white")
+texte2.place(x=10,y=600)
+   
 entre3 = Entry(fenetre,background="white")
 entre3.place(x=10,y=620)
 
