@@ -69,6 +69,9 @@ def set_speed_gauche(v):
     """Définit la vitesse de la roue gauche du robot"""
     robot1.vg=int(v)
 
+entre2 = Entry(fenetre,background="white")
+entre2.place(x=10,y=570)
+
 def set_speed_droite(v):
     """Définit la vitesse de la roue droite du robot"""
     robot1.vd=int(v)
