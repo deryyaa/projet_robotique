@@ -113,6 +113,13 @@ def move(event=None):
         fenetre.update()
         time.sleep(0.1)
 
+def run_functions():
+    set_time()
+    set_speed_gauche()
+    set_speed_droite()
+    move()
+
+
 fenetre.bind('<KeyPress>', move)
 bouton= Button(fenetre,text="start",command=move)
 bouton.pack(padx=50,pady=50)
