@@ -59,6 +59,8 @@ def set_time(t):
     temps = int(t)
 
 
+entre1 = Entry(fenetre,background="white")
+entre1.place(x=10,y=520)
 
 def set_speed_gauche(v):
     """Définit la vitesse de la roue gauche du robot"""
