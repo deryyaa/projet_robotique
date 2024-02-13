@@ -59,6 +59,9 @@ def set_time(t):
     temps = int(t)
 
 
+texte1= Label(fenetre,text="Entrez un temps(secondes)",background="white")
+texte1.place(x=10,y=500)
+
 entre1 = Entry(fenetre,background="white")
 entre1.place(x=10,y=520)
 
