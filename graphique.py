@@ -79,6 +79,8 @@ def set_speed_droite(v):
     """Définit la vitesse de la roue droite du robot"""
     robot1.vd=int(v)
     
+entre3 = Entry(fenetre,background="white")
+entre3.place(x=10,y=620)
 
 
 def move(event=None):
