@@ -53,11 +53,10 @@ def dessineRobot(canvas,robot):
 dessineRobot(cnv,robot1)
 
 
-def set_time(t):
+def set_time():
     """Définit le temps global utilisé pour le mouvement du robot"""
     global temps
-    temps = int(t)
-
+    temps = int(entre1.get())
 
 texte1= Label(fenetre,text="Entrez un temps(secondes)",background="white")
 texte1.place(x=10,y=500)
