@@ -74,12 +74,12 @@ texte2.place(x=10,y=550)
 entre2 = Entry(fenetre,background="white")
 entre2.place(x=10,y=570)
 
-def set_speed_droite(v):
+def set_speed_droite():
     """Définit la vitesse de la roue droite du robot"""
-    robot1.vd=int(v)
+    robot1.vd=int(entre3.get())
 
-texte2= Label(fenetre,text="Entrez une vitesse droite",background="white")
-texte2.place(x=10,y=600)
+texte3= Label(fenetre,text="Entrez une vitesse droite",background="white")
+texte3.place(x=10,y=600)
    
 entre3 = Entry(fenetre,background="white")
 entre3.place(x=10,y=620)
