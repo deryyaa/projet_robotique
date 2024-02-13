@@ -120,9 +120,9 @@ def run_functions():
     move()
 
 
-fenetre.bind('<KeyPress>', move)
-bouton= Button(fenetre,text="start",command=move)
-bouton.pack(padx=50,pady=50)
+bouton= Button(fenetre,text="start",command=run_functions)
+bouton.place(x=10,y=650)
+
 
 # Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
