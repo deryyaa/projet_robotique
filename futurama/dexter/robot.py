@@ -92,6 +92,7 @@ class Robot:
 
 
     def capteur_distance(self):
+        """Detecte et Mesure la distance entre le robot et les obstacles potentiels"""
         distanceP_capteur = 0 
         capteur_x, capteur_y = self.robot.x, self.robot.y # initialise la position du capteur à la position du robot 
 
