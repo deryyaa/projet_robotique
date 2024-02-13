@@ -64,9 +64,9 @@ texte1.place(x=10,y=500)
 entre1 = Entry(fenetre,background="white")
 entre1.place(x=10,y=520)
 
-def set_speed_gauche(v):
+def set_speed_gauche():
     """Définit la vitesse de la roue gauche du robot"""
-    robot1.vg=int(v)
+    robot1.vg=int(entre2.get())
 
 texte2= Label(fenetre,text="Entrez une vitesse gauche",background="white")
 texte2.place(x=10,y=550)
