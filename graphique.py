@@ -83,11 +83,11 @@ curseur3 = Scale(fenetre, orient = "vertical", label="vitesse droite",command=se
 curseur3.pack(side="left")
 
 
-def move(event):
+def move(event=None):
     """Déplace le robot selon les vitesses définies pendant le temps spécifié"""
-    #global robot1,monde,vitesse,temps
-    key = event.keysym
-    if key =='c':
+    global robot1,monde,vitesse,temps
+    a=0
+    if a == 1:
         for i in range(4):
             robot1.vg=robot1.vitesse_max
             robot1.vd=robot1.vitesse_max
@@ -103,18 +103,17 @@ def move(event):
                 dessineRobot(cnv,robot1)
                 fenetre.update()
                 time.sleep(0.1)
-    if key=='n':
-        debut = time.time()
-        while time.time()-debut<temps: 
-            robot1.mouvement(0.1)
-            # Mise à jour des coordonnées du robot sur le canevas
-            dessineRobot(cnv,robot1)
-            fenetre.update()
-            time.sleep(0.1)
+    debut = time.time()
+    while time.time()-debut<temps: 
+        robot1.mouvement(0.1)
+        # Mise à jour des coordonnées du robot sur le canevas
+        dessineRobot(cnv,robot1)
+        fenetre.update()
+        time.sleep(0.1)
 
 fenetre.bind('<KeyPress>', move)
 bouton= Button(fenetre,text="start",command=move)
-bouton.pack(padx=150,pady=150)
+bouton.pack(padx=50,pady=50)
 
 # Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
