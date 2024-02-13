@@ -13,22 +13,24 @@ class Robot:
         vitesse_max (float): La vitesse maximale du robot
         dir (float, facultatif): La direction initiale du robot en degrés. Par défaut, 0 degré
         """
+        self.direction=direction
+        self.d=largeur # distance entre les 2 roue
         self.vitesse_max = vitesse_max
-        self.taille_roue = 3
+        self.taille_roue = 8
         self.vg=0 # Vitesse de la roue gauche
         self.vd=0 # Vitesse de la roue droite
         self.nom="dexter"
         self.x = x
         self.y = y
-        self.dir = dir % 360 # angle en degré
+        self.dir = dir % (2*math.pi) # angle en radians
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
         self.direction= direction
 
     def avancer_(self, distance, monde):
         """ Avance le robot dans sa direction actuelle """
-        dx = distance * math.cos(math.radians(self.dir))
-        dy = distance * math.sin(math.radians(self.dir))
+        dx = distance * math.cos(self.dir)
+        dy = distance * math.sin(self.dir)
         if monde.peut_avancer(dx, dy,self):
             self.x += dx
 
@@ -69,12 +71,16 @@ class Robot:
         else:
             self.vd+=n
     
-    def mouvement(self, dt):
+    def mouvement(self,dt):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues"""
-        self.x += (self.taille_roue*(self.vg+self.vd)/2.0) * math.cos(math.radians(self.dir)) * dt
-        self.y -= (self.taille_roue*(self.vg+self.vd)/2.0) * math.sin(math.radians(self.dir)) * dt
-        self.dir += (self.vd - self.vg) * dt 
-    
+        self.x += (self.taille_roue*(self.vg+self.vd)/2.0) * math.cos(self.dir) * dt
+        self.y -= (self.taille_roue*(self.vg+self.vd)/2.0) * math.sin(self.dir) * dt
+        if(self.vg!=self.vd):
+            if(self.vg>self.vd):
+                self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
+            else:
+                self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
+                
     
     def vitesse_discrete(self,distance,temps,monde):
         """Déplacer le robot avec une distance dans le monde pendant un temps """
@@ -92,17 +98,15 @@ class Robot:
 
 
     def capteur_distance(self):
-        """Detecte et Mesure la distance entre le robot et les obstacles potentiels"""
-        distanceP_capteur = 0 
-        capteur_x, capteur_y = self.robot.x, self.robot.y # initialise la position du capteur à la position du robot 
+        distanceP_capteur = 0
+        capteur_x, capteur_y = self.robot.x, self.robot.y
 
-        while not self.monde.detecter_collision(capteur_x, capteur_y): # tant que le capteur ne rentre pas en collision avec un obstacle, on le fait avancer dans la direction du robot et on incremente sa distance parcourue
+        while not self.monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
             distanceP_capteur+= 1
             capteur_x += self.direction[0]
             capteur_y += self.direction[1]
 
-        # une fois sortie de la boucle 
-        print(f"Obstacle détecté à : {distanceP_capteur}") 
+        print(f"Obstacle détecté à : {distanceP_capteur}")
         print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distanceP_capteur}")
 
 

@@ -17,7 +17,7 @@ cnv = Canvas(fenetre, width=monde.colonne+20, height=monde.ligne, bg="ivory")
 cnv.pack()
 
 # Création du robot dans le monde
-robot1 = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
+robot1 = Robot(300, 200, 50, 35 , 50)  # Position du robot dans le monde
 
 #création de 2 obstacle 
 for i in range(2):
@@ -34,8 +34,8 @@ def dessineRobot(canvas,robot):
     robot: L'objet représentant le robot avec les attributs x, y, dir, largeur et longueur.
     """
     canvas.delete("rectangle")
-    cos_robot=math.cos(math.radians(robot.dir))
-    sin_robot=math.sin(math.radians(robot.dir))
+    cos_robot=math.cos(robot.dir)
+    sin_robot=math.sin(robot.dir)
     canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
                           robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
                           robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
