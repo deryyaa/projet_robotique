@@ -5,6 +5,10 @@ from futurama.univers.obstacle import Obstacle
 import math
 import time
 
+class Graphique:
+    def __init__(self):
+        pass
+
 # Création du monde
 DIMX=500
 DIMY=500
