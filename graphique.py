@@ -6,7 +6,9 @@ import math
 import time
 
 # Création du monde
-monde = Monde(500, 500)
+DIMX=500
+DIMY=500
+monde = Monde(DIMX, DIMY)
 
 #Declaration des FPS
 FPS=150
@@ -40,18 +42,18 @@ def dessineRobot(canvas,robot):
     cos_robot=math.cos(robot.dir)
     sin_robot=math.sin(robot.dir)
     canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
-                          robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                          DIMY-robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
                           robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                          DIMY-robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
                           robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           fill="blue",tags="rectangle")
     canvas.create_line(robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           fill="red",tags="rectangle")
 dessineRobot(cnv,robot1)
 

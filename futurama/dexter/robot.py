@@ -26,11 +26,12 @@ class Robot:
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
         self.direction= direction
+
     
     def mouvement(self,dt):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues"""
-        self.x += (self.taille_roue*(self.vg+self.vd)/2.0) * math.cos(self.dir) * dt
-        self.y -= (self.taille_roue*(self.vg+self.vd)/2.0) * math.sin(self.dir) * dt
+        self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
+        self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
         if(self.vg!=self.vd):
             if(self.vg==0):
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
