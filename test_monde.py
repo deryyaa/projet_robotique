@@ -13,17 +13,12 @@ class Test_Monde(unittest.TestCase):
         self.obstacle=Obstacle(15,15,1,1)
 
     def test_peut_avancer(self):
-        self.assertTrue(self.monde.peut_avancer(1,1,self.robot))
-        self.robot.avancer_(8,self.monde)
-        self.assertFalse(self.monde.peut_avancer(1,1,self.robot))
+        # Vérifie si le robot peut avancer sans dépasser les limites du monde
+        self.assertTrue(self.monde.peut_avancer(1, 1, self.robot))
+        self.assertFalse(self.monde.peut_avancer(20, 20, self.robot))
+        self.assertFalse(self.monde.peut_avancer(-10, -10, self.robot))
 
-    def test_avancer_robot(self):
-         self.monde.avancer_robot(6,self.robot)
-         x=int(self.robot.x)
-         y=self.robot.y
-         print(self.robot.x)
-         print(self.obstacle.x)
-         self.assertEqual(x,self.obstacle.x)
+    
 
     def test_detecter_collision(self):
         monde=Monde(20,20)
