@@ -26,57 +26,17 @@ class Robot:
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
         self.direction= direction
-
-    def avancer_(self, distance, monde):
-        """ Avance le robot dans sa direction actuelle """
-        dx = distance * math.cos(self.dir)
-        dy = distance * math.sin(self.dir)
-        if monde.peut_avancer(dx, dy,self):
-            self.x += dx
-
-    def avancer(self):
-        """ Avance le robot dans sa direction actuelle """
-        self.vd=self.vitesse_max
-        self.vg=self.vitesse_max
-        
-    def reculer(self):
-        """ Recule le robot dans sa direction opposée """
-        self.vd=-self.vitesse_max
-        self.vg=-self.vitesse_max
-
-    def tourner_droite(self):
-        """ Tourne le robot vers la droite """
-        self.vd=-self.vitesse_maxself.robot.x,
-        """ Tourne le robot vers la gauche """
-        self.vd=self.vitesse_max
-        self.vg=-self.vitesse_max
-        
-    def augmenter_vg(self,n):
-        """Augmente la vitesse de la roue gauche"""
-        if(n<0):
-            print("n doit être positif")
-            exit
-        if(self.vg+n>self.vitesse_max):
-            self.vg=self.vitesse_max
-        else:
-            self.vg+=n
-    
-    def augmenter_vd(self,n):
-        """Augmente la vitesse de la roue droite"""
-        if(n<0):
-            print("n doit être positif")
-            exit
-        if(self.vd+n>self.vitesse_max):
-            self.vd=self.vitesse_max
-        else:
-            self.vd+=n
     
     def mouvement(self,dt):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues"""
         self.x += (self.taille_roue*(self.vg+self.vd)/2.0) * math.cos(self.dir) * dt
         self.y -= (self.taille_roue*(self.vg+self.vd)/2.0) * math.sin(self.dir) * dt
         if(self.vg!=self.vd):
-            if(self.vg>self.vd):
+            if(self.vg==0):
+                self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
+            elif(self.vd==0):
+                self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
+            elif(self.vg>self.vd):
                 self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))

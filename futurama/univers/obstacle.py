@@ -14,7 +14,6 @@ class Obstacle:
         :param y:Coordonnée y de l'obstacle
         :param largeur: Dimension de l'obsatcle  
         :param longueur: Dimension de l'obsatcle """
-
         self.x=x
         self.y=y
         self.largeur=largeur
