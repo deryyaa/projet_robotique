@@ -8,13 +8,13 @@ class Obstacle:
     obstacle_crees = 0 
 
     # obstacle immobile
-    def __init__(self,x,y,largeur,longueur): 
+    def __init__(self,x,y,largeur,longueur,inclinaison): 
         """Initialise un nouvel obstacle.
         :param x: Coordonnée x de l'obstacle 
         :param y:Coordonnée y de l'obstacle
         :param largeur: Dimension de l'obsatcle  
         :param longueur: Dimension de l'obsatcle """
-
+        self.inclinaision=inclinaison
         self.x=x
         self.y=y
         self.largeur=largeur
