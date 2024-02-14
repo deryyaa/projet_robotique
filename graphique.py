@@ -8,6 +8,9 @@ import time
 # Création du monde
 monde = Monde(500, 500)
 
+#Declaration des FPS
+FPS=150
+
 # Création de la fenêtre principale
 fenetre = Tk()
 fenetre.title("Robot dans le monde")
@@ -87,31 +90,14 @@ entre3.place(x=10,y=620)
 
 def move(event=None):
     """Déplace le robot selon les vitesses définies pendant le temps spécifié"""
-    global robot1,monde,vitesse,temps
-    a=0
-    if a == 1:
-        for i in range(4):
-            robot1.vg=robot1.vitesse_max
-            robot1.vd=robot1.vitesse_max
-            for i in range(10):
-                robot1.mouvement(0.1)
-                dessineRobot(cnv,robot1)
-                fenetre.update()
-                time.sleep(0.1)
-            robot1.vg=15
-            robot1.vd=-15
-            for i in range(30):
-                robot1.mouvement(0.1)
-                dessineRobot(cnv,robot1)
-                fenetre.update()
-                time.sleep(0.1)
+    global robot1,temps
     debut = time.time()
     while time.time()-debut<temps: 
-        robot1.mouvement(0.1)
+        robot1.mouvement(1./FPS)
         # Mise à jour des coordonnées du robot sur le canevas
         dessineRobot(cnv,robot1)
         fenetre.update()
-        time.sleep(0.1)
+        time.sleep(1./FPS)
 
 def run_functions():
     set_time()
