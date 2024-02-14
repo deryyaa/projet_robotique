@@ -22,7 +22,7 @@ cnv = Canvas(fenetre, width=monde.colonne+20, height=monde.ligne, bg="ivory")
 cnv.pack()
 
 # Création du robot dans le monde
-robot1 = Robot(300, 200, 50, 35 , 50)  # Position du robot dans le monde
+robot1 = Robot(300, 200, 50, 30 , 50)  # Position du robot dans le monde
 
 #création de 2 obstacle 
 for i in range(2):
@@ -71,7 +71,7 @@ entre1.place(x=10,y=520)
 
 def set_speed_gauche():
     """Définit la vitesse de la roue gauche du robot"""
-    robot1.vg=int(entre2.get())
+    robot1.vg=float(entre2.get())
 
 texte2= Label(fenetre,text="Entrez une vitesse gauche",background="white")
 texte2.place(x=10,y=550)
@@ -81,7 +81,7 @@ entre2.place(x=10,y=570)
 
 def set_speed_droite():
     """Définit la vitesse de la roue droite du robot"""
-    robot1.vd=int(entre3.get())
+    robot1.vd=float(entre3.get())
 
 texte3= Label(fenetre,text="Entrez une vitesse droite",background="white")
 texte3.place(x=10,y=600)
