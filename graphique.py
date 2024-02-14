@@ -1,7 +1,7 @@
 from tkinter import *
-from futurama.dexter.robot import Robot
-from futurama.univers.monde import Monde
-from futurama.univers.obstacle import Obstacle
+from src.dexter.robot import Robot
+from src.univers.monde import Monde
+from src.univers.obstacle import Obstacle
 import math
 import time
 
@@ -99,7 +99,7 @@ def move(event=None):
     global robot1,temps
     debut = time.time()
     while time.time()-debut<temps: 
-        robot1.mouvement(1./FPS)
+        robot1.move(1./FPS)
         # Mise à jour des coordonnées du robot sur le canevas
         dessineRobot(cnv,robot1)
         fenetre.update()

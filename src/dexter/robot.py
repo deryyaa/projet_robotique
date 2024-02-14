@@ -28,7 +28,7 @@ class Robot:
         self.direction= direction
 
     
-    def mouvement(self,dt):
+    def move(self,dt):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues"""
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
         self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
@@ -43,9 +43,6 @@ class Robot:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
                 
     
-   
-
-
     def capteur_distance(self):
         distanceP_capteur = 0
         capteur_x, capteur_y = self.robot.x, self.robot.y

@@ -1,6 +1,6 @@
-from futurama.dexter.robot import Robot
-from futurama.univers.obstacle import Obstacle
-from utilitaire import collision_rect
+from src.dexter.robot import Robot
+from src.univers.obstacle import Obstacle
+from src.univers.utilitaire import collision_rect
 
 class Monde:
     def __init__(self, ligne, colonne):

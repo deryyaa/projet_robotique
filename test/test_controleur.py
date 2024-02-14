@@ -1,7 +1,9 @@
 import unittest
-from futurama.dexter.robot import Robot
-from futurama.univers.monde import Monde
+from src.dexter.robot import Robot
+from src.univers.monde import Monde
 from controleur import Controleur
+
+#python3 -m unittest test/test_controleur.py -v
 
 class Test_Monde(unittest.TestCase):
     def setUp(self):
