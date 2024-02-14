@@ -43,19 +43,7 @@ class Robot:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
                 
     
-    def vitesse_discrete(self,distance,temps,monde):
-        """Déplacer le robot avec une distance dans le monde pendant un temps """
-        print("le robot commence a se deplacer.")
-        debut = time.time()
-        vitesse = distance/temps #distance à parcourir sur une seconde
-        duree = temps/distance #temps en seconde à attendre entre chaque déplacement
-        while time.time()-debut < temps : 
-            if monde.peut_avancer(monde,self.x+vitesse ,self.y+vitesse):
-                self.avancer(vitesse,monde)
-                monde.affiche()
-            time.sleep(duree)
-            
-        print("fin de deplacement")
+   
 
 
     def capteur_distance(self):
