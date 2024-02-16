@@ -17,6 +17,6 @@ class Obstacle:
         self.x=x
         self.y=y
         self.largeur=largeur
-        self.longeur=longueur
+        self.longueur=longueur
         Obstacle.obstacle_crees += 1
 
