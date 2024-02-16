@@ -18,27 +18,21 @@ class Test_Monde(unittest.TestCase):
         self.assertFalse(self.monde.peut_avancer(20, 20, self.robot))
         self.assertFalse(self.monde.peut_avancer(-10, -10, self.robot))
 
-    
 
     def test_detecter_collision(self):
-        monde=Monde(20,20)
-        obstacle1= Obstacle(10,17,5,5)
-        obstacle2= Obstacle(15,17,5,5)
-        robot=Robot(12,19,2,2,20)
-        monde.setObstacle(obstacle1)
-        monde.setObstacle(obstacle2)
-        self.assertTrue(monde.detecter_collision(robot))
+        obstacle1= Obstacle(2,1,4,2)
+        obstacle2= Obstacle(6,3,3,2)
+        self.monde.setObstacle(obstacle1)
+        self.monde.setObstacle(obstacle2)
+        self.assertTrue(self.monde.detecter_collision(3,2))
 
     def test_pas_de_collision(self):
-        monde= Monde(20,20)
-        robot= Robot(12,19,2,2,20)
-        self.assertFalse(monde.detecter_collision(robot))
-
-        obstacle3 = Obstacle(18,30,4,4)
-        obstacle4 = Obstacle(20,28,3,3)
-        monde.setObstacle(obstacle3)
-        monde.setObstacle(obstacle4)
-        self.assertFalse(monde.detecter_collision(robot))
+        self.assertFalse(self.monde.detecter_collision(7,4))
+        obstacle3= Obstacle(2,1,4,2)
+        obstacle4= Obstacle(6,3,3,2)
+        self.monde.setObstacle(obstacle3)
+        self.monde.setObstacle(obstacle4)
+        self.assertFalse(self.monde.detecter_collision(7,4))
          
 
 if __name__ =='__main__':
