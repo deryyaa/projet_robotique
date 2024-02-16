@@ -42,11 +42,8 @@ class Monde:
     def detecter_collision(self,x,y):
         """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
         for obst in self.obstacles:
-            # Calcul coordonnées dimensions de l'obstacle
-            inf_droit_x = obst.x+obst.longueur
-            inf_droit_y = obst.y+obst.largeur
-
-            if (obst.x <= x <= inf_droit_x) and (obst.y <= y <= inf_droit_y): # Verifie si le point est entré en collision avec un obstacle
+            # Verifie si collision entre point et obstacle
+            if (x >= obst.x and x <= obst.x + obst.longueur and
+            y >= obst.y and y <= obst.y + obst.largeur): 
                 return True
         return False
-  
