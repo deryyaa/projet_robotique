@@ -29,7 +29,7 @@ class Test_Monde(unittest.TestCase):
     def test_pas_de_collision(self):
         self.assertFalse(self.monde.detecter_collision(7,4))
         obstacle3= Obstacle(2,1,4,2)
-        obstacle4= Obstacle(6,3,3,2)
+        obstacle4= Obstacle(3,3,3,2)
         self.monde.setObstacle(obstacle3)
         self.monde.setObstacle(obstacle4)
         self.assertFalse(self.monde.detecter_collision(7,4))
