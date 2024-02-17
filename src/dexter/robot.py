@@ -29,7 +29,9 @@ class Robot:
 
     
     def move(self,dt):
-        """Met à jour la position et la direction du véhicule en fonction des vitesses des roues"""
+        """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
+        dt : intervalle de temps de rafraichissment (fps)
+        """
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
         self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
         if(self.vg!=self.vd):
