@@ -1,5 +1,5 @@
-from futurama.dexter.robot import Robot
-from futurama.univers.monde import Monde
+from src.dexter.robot import Robot
+from src.univers.monde import Monde
 
 monde = Monde(400, 400)
 
@@ -33,11 +33,11 @@ class Controleur:
             self.robot.vg=self.robot.vitesse_max
             self.robot.vd=self.robot.vitesse_max
             for i in range(10):
-                self.robot.mouvement(0.1)
+                self.robot.move(0.1)
             self.robot.vg=15
             self.robot.vd=-15
             for i in range(30):
-                self.robot.mouvement(0.1)
+                self.robot.move(0.1)
             
 
         

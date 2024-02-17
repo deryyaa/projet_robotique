@@ -1,12 +1,21 @@
 from tkinter import *
-from futurama.dexter.robot import Robot
-from futurama.univers.monde import Monde
-from futurama.univers.obstacle import Obstacle
+from src.dexter.robot import Robot
+from src.univers.monde import Monde
+from src.univers.obstacle import Obstacle
 import math
 import time
 
+class Graphique:
+    def __init__(self):
+        pass
+
 # Création du monde
-monde = Monde(500, 500)
+DIMX=500
+DIMY=500
+monde = Monde(DIMX, DIMY)
+
+#Declaration des FPS
+FPS=150
 
 # Création de la fenêtre principale
 fenetre = Tk()
@@ -17,7 +26,7 @@ cnv = Canvas(fenetre, width=monde.colonne+20, height=monde.ligne, bg="ivory")
 cnv.pack()
 
 # Création du robot dans le monde
-robot1 = Robot(300, 200, 50, 35 , 50)  # Position du robot dans le monde
+robot1 = Robot(300, 200, 50, 30 , 50)  # Position du robot dans le monde
 
 #création de 2 obstacle 
 for i in range(2):
@@ -37,18 +46,18 @@ def dessineRobot(canvas,robot):
     cos_robot=math.cos(robot.dir)
     sin_robot=math.sin(robot.dir)
     canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
-                          robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                          DIMY-robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
                           robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                          DIMY-robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
                           robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           fill="blue",tags="rectangle")
     canvas.create_line(robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                          robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                          DIMY-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                           fill="red",tags="rectangle")
 dessineRobot(cnv,robot1)
 
@@ -66,7 +75,7 @@ entre1.place(x=10,y=520)
 
 def set_speed_gauche():
     """Définit la vitesse de la roue gauche du robot"""
-    robot1.vg=int(entre2.get())
+    robot1.vg=float(entre2.get())
 
 texte2= Label(fenetre,text="Entrez une vitesse gauche",background="white")
 texte2.place(x=10,y=550)
@@ -76,7 +85,7 @@ entre2.place(x=10,y=570)
 
 def set_speed_droite():
     """Définit la vitesse de la roue droite du robot"""
-    robot1.vd=int(entre3.get())
+    robot1.vd=float(entre3.get())
 
 texte3= Label(fenetre,text="Entrez une vitesse droite",background="white")
 texte3.place(x=10,y=600)
@@ -87,31 +96,14 @@ entre3.place(x=10,y=620)
 
 def move(event=None):
     """Déplace le robot selon les vitesses définies pendant le temps spécifié"""
-    global robot1,monde,vitesse,temps
-    a=0
-    if a == 1:
-        for i in range(4):
-            robot1.vg=robot1.vitesse_max
-            robot1.vd=robot1.vitesse_max
-            for i in range(10):
-                robot1.mouvement(0.1)
-                dessineRobot(cnv,robot1)
-                fenetre.update()
-                time.sleep(0.1)
-            robot1.vg=15
-            robot1.vd=-15
-            for i in range(30):
-                robot1.mouvement(0.1)
-                dessineRobot(cnv,robot1)
-                fenetre.update()
-                time.sleep(0.1)
+    global robot1,temps
     debut = time.time()
     while time.time()-debut<temps: 
-        robot1.mouvement(0.1)
+        robot1.move(1./FPS)
         # Mise à jour des coordonnées du robot sur le canevas
         dessineRobot(cnv,robot1)
         fenetre.update()
-        time.sleep(0.1)
+        time.sleep(1./FPS)
 
 def run_functions():
     set_time()

@@ -1,6 +1,6 @@
-from futurama.dexter.robot import Robot
-from futurama.univers.obstacle import Obstacle
-from utilitaire import collision_rect
+from src.dexter.robot import Robot
+from src.univers.obstacle import Obstacle
+from src.univers.utilitaire import collision_rect
 
 class Monde:
     def __init__(self, ligne, colonne):
@@ -39,12 +39,11 @@ class Monde:
                 print("le robot vient de percuter le mur")
                 break 
                 
-    def detecter_collision(self, robot):
-        """Renvoie true s'il y a collision entre le robot et un des obstacles du monde, false sinon"""
-        for i in self.obstacles:
-            if collision_rect([(i.x-i.longeur/2,i.y-i.largeur/2),(i.x+i.longeur/2,i.y+i.largeur/2)],[(robot.x-robot.longueur/2,robot.y-robot.largeur/2),(robot.x+robot.longueur/2,robot.y+robot.largeur/2)]):
+    def detecter_collision(self,x,y):
+        """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
+        for obst in self.obstacles:
+            # Verifie si collision entre point et obstacle
+            if (x >= obst.x and x <= obst.x + obst.longueur and
+            y >= obst.y and y <= obst.y + obst.largeur): 
                 return True
         return False
-    
-    
-  

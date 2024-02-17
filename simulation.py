@@ -1,6 +1,6 @@
-from futurama.dexter.robot import Robot
-from futurama.univers.monde import Monde
-from futurama.univers.obstacle import Obstacle
+from src.dexter.robot import Robot
+from src.univers.monde import Monde
+from src.univers.obstacle import Obstacle
 import math
 import time
 
