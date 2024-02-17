@@ -2,6 +2,8 @@ from tkinter import *
 from src.dexter.robot import Robot
 from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
+from src.univers.controleur import TracerCarre, AvancerToutDroit
+
 import math
 import time
 
@@ -115,6 +117,21 @@ def run_functions():
 bouton= Button(fenetre,text="start",command=run_functions)
 bouton.place(x=10,y=650)
 
+
+# Création des instances des classes TracerCarre et AvancerToutDroit
+# Création des instances des classes TracerCarre et AvancerToutDroit
+avancer_tout_droit = AvancerToutDroit(robot1)  # Créez une instance de AvancerToutDroit en passant le robot1 comme argument
+tracer_carre = TracerCarre(robot1, avancer_tout_droit)  # Créez une instance de TracerCarre en passant le robot1 et avancer_tout_droit comme arguments
+
+# Définir les mouvements du robot
+angle = 100
+distance_avancer = 200
+
+# Tracer un carré
+tracer_carre.tracer_carre(angle)
+
+# Avancer tout droit
+avancer_tout_droit.avancer_tout_droit(distance_avancer)
 
 # Lancement de la boucle principale de la fenêtre
 fenetre.mainloop()
