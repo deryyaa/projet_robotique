@@ -1,0 +1,27 @@
+
+pour le 28/02 : 
+  - retravailler la physique du robot et fournir un document concernant sa demonstration
+
+  - reorganiser le github et le code : code obsolete a SUPPRIMER, trop de fichiers a la racine les mettre dans les repertoires 
+appropriés, fonction collision_rect du fichier utilitaire a mettre dans le fichier monde en dehors de la classe Monde 
+
+  - probleme fonction move dans robot : ne pas melanger les coordonnées de l'interface graphique avec la physique du robot. les coordonnées du robot 
+se comporte comme des coordonnees dans un plan standard, on fait les calculs en fonction de cela et ensuite on a l'interface qui fait l’affichage
+
+  - faire marcher la simulation sans l'interface graphique : actuellement c'est la fonction moov de l’interface graphique 
+qui fait bouger le robot : A CHANGER car pour pouvoir faire fonctionner la simulation sans l'interface graphique,
+il faut un autre fichier qui fasse bouger le robot. Il faut donc un fichier main dans lequel il y a les deux et qui appelle les fonctions necessaires.
+
+  - faire une fonction update pour chaque fichier (robot, controleur, monde) : l'update du controleur met des nouvelles vitesses pour les roues. 
+l’update du robot met a jour sa position, sa vitesse, ses vitesses de roue et son capteur. 
+l’update du monde met à jour sa détection de collision et interface graphique redessine tt ca avec ces nouvelles mises à jour
+
+  - creer un fichier qui permet de faire la mise à jour de l'ensemble fichiers en appelant leur fonction update a chaque pas de temps(tache precedente)
+
+  - controleur : faire des strategies d'actions elementaires pour le robot 
+
+  - capteur distance : modifier la fontion detection collision pour que la collision se fasse entre un point et un obstacle
+
+  - choisir pour le parametre direction de la classe robot entre une representation cartesienne ou polaire
+
+FUTURAMA TEAM 7
