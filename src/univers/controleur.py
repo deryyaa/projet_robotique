@@ -1,18 +1,24 @@
 import time
+class Controleur:
+    class AvancerToutDroit:
+        def __init__(self, robot):
+            self.robot = robot
 
-class AvancerToutDroit:
-    def __init__(self, robot):
-        self.robot = robot
+        def avancer_tout_droit(self, distance):
+            self.robot.vg = 10
+            self.robot.vd = 10
+            distance_parcouru = 0
+            while distance_parcouru<distance :
+                self.robot.move(0.1)
+                distance_parcouru+=1 #je rajoute + combien ?
 
-    def avancer_tout_droit(self, distance):
-        self.robot.move(10)
+    class TracerCarre:
+        def __init__(self, robot):
+            self.robot = robot
 
-class TracerCarre:
-    def __init__(self, robot, avancer_tout_droit):
-        self.robot = robot
-        self.avancer_tout_droit = avancer_tout_droit
+        def tracer_carre(self, distance):
 
-    def tracer_carre(self, angle):
-        for _ in range(4):
-            self.avancer_tout_droit.avancer_tout_droit(angle)
-            self.robot.move(90)
+            for _ in range(4):
+                Controleur.AvancerToutDroit.avancer_tout_droit(distance)
+                self.robot.vg = 10
+                self.robot.vd =-10
