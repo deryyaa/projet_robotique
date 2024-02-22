@@ -11,7 +11,19 @@ class Controleur:
             distance_parcouru = 0
             while distance_parcouru<distance :
                 self.robot.move(1./self.FPS)
-                distance_parcouru+=self.robot.vg*(1./self.FPS) #je rajoute + combien ?
+                distance_parcouru+=self.robot.vg*(1./self.FPS)
+
+    class Tourner:
+        def __init__(self, robot):
+            self.robot = robot
+
+        def tourner(self, degre):
+            self.robot.vg = 10
+            self.robot.vd = -10
+            distance_parcouru = 0
+            while distance_parcouru<degre :
+                self.robot.move(1./self.FPS)
+                distance_parcouru+=self.robot.vg*(1./self.FPS)
 
     class TracerCarre:
         def __init__(self, robot):
@@ -21,5 +33,6 @@ class Controleur:
 
             for _ in range(4):
                 Controleur.AvancerToutDroit.avancer_tout_droit(distance)
-                self.robot.vg = 10
-                self.robot.vd =-10
+                Controleur.Tourner.tourner()
+
+    
