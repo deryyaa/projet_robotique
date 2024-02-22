@@ -1,4 +1,6 @@
 import math
+import random
+
 
 class Obstacle: 
     """ Classe pour représenter un obstacle dans l'environnement.
@@ -20,3 +22,8 @@ class Obstacle:
         self.longueur=longueur
         Obstacle.obstacle_crees += 1
 
+    def getPosition(self):
+        """retourne la position d'un obstacle"""
+        return self.x, self.y
+    
+    
