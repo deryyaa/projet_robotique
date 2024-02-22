@@ -3,6 +3,8 @@ from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
 import math
 import time
+from src.univers.controleur import Controleur
+
 
 # Création du monde
 monde = Monde(500, 500)
@@ -14,9 +16,8 @@ monde.setRobot(robot)
 for i in range(2):
     monde.setObstacle(Obstacle(2+(i+1)*100, 40, 50, 50)) #creation de plusieurs obstacle pour crée une colision
 
-simu = True
-debut = time.time()
-fin = time.time()
+controleur=Controleur()
 
-def update(dt):
-    monde.avancer_robot(dt)
+
+def update(distance):
+    controleur.avancer_tout_droit(distance)
