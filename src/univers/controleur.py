@@ -1,16 +1,17 @@
 import time
 class Controleur:
     class AvancerToutDroit:
-        def __init__(self, robot):
+        def __init__(self, robot, FPS = 100):
             self.robot = robot
+            self.FPS = FPS
 
         def avancer_tout_droit(self, distance):
             self.robot.vg = 10
             self.robot.vd = 10
             distance_parcouru = 0
             while distance_parcouru<distance :
-                self.robot.move(0.1)
-                distance_parcouru+=self.robot.vg*0.1 #fps
+                self.robot.move(1./self.FPS)
+                distance_parcouru+=self.robot.vg*(1./self.FPS) #je rajoute + combien ?
 
     class TracerCarre:
         def __init__(self, robot):
