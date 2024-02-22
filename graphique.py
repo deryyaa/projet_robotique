@@ -8,24 +8,16 @@ import math
 import time
 
 class Graphique:
-    def __init__(self):
-        pass
-
-# Création du monde
-DIMX=500
-DIMY=500
-monde = Monde(DIMX, DIMY)
-
-#Declaration des FPS
-FPS=150
-
-# Création de la fenêtre principale
-fenetre = Tk()
-fenetre.title("Robot dans le monde")
-
-# Création du canevas avec les bonnes dimensions en fonction du monde
-cnv = Canvas(fenetre, width=monde.colonne+20, height=monde.ligne, bg="ivory")
-cnv.pack()
+    def __init__(self,monde, FPS=100):
+        self.monde=monde
+        self.FPS=FPS
+    def update(self):
+        # Création de la fenêtre principale
+        fenetre = Tk()
+        fenetre.title("Robot dans le monde")
+        # Création du canevas avec les bonnes dimensions en fonction du monde
+        cnv = Canvas(fenetre, width=self.monde.ligne+20, height=self.monde.colonne, bg="ivory")
+        cnv.pack()
 
 # Création du robot dans le monde
 robot1 = Robot(300, 200, 50, 30 , 50)  # Position du robot dans le monde
