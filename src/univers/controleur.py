@@ -25,6 +25,7 @@ class Controleur:
                 self.robot.move(1./self.FPS)
                 distance_parcouru+=self.robot.vg*(1./self.FPS)
 
+        
     class TracerCarre:
         def __init__(self, robot):
             self.robot = robot
