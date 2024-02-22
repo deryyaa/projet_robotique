@@ -11,6 +11,29 @@ class Graphique:
     def __init__(self,monde, FPS=100):
         self.monde=monde
         self.FPS=FPS
+    def dessineRobot(self,canvas):
+        """Dessine un robot sur le canvas avec les coordonnées et la direction spécifiées
+        canvas: Le canvas sur lequel le robot doit être dessiné
+        robot: L'objet représentant le robot avec les attributs x, y, dir, largeur et longueur.
+        """
+        robot=self.monde.robot
+        canvas.delete("rectangle")
+        cos_robot=math.cos(robot.dir)
+        sin_robot=math.sin(robot.dir)
+        canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                            robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                            robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            fill="blue",tags="rectangle")
+        canvas.create_line(robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            fill="red",tags="rectangle")
     def update(self):
         # Création de la fenêtre principale
         fenetre = Tk()
@@ -18,6 +41,7 @@ class Graphique:
         # Création du canevas avec les bonnes dimensions en fonction du monde
         cnv = Canvas(fenetre, width=self.monde.ligne+20, height=self.monde.colonne, bg="ivory")
         cnv.pack()
+        
 
 # Création du robot dans le monde
 robot1 = Robot(300, 200, 50, 30 , 50)  # Position du robot dans le monde
