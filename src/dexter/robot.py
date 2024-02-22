@@ -50,7 +50,7 @@ class Robot:
         distanceP_capteur = 0
         capteur_x, capteur_y = self.robot.x, self.robot.y
 
-        while not self.monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
+        while not detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
             distanceP_capteur+= 1
             capteur_x += self.direction[0]
             capteur_y += self.direction[1]
