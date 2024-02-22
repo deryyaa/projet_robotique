@@ -32,14 +32,12 @@ class Robot:
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
         dt : intervalle de temps de rafraichissment (fps)
         """
+        # Update de position
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
         self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
+        # Update de direction
         if(self.vg!=self.vd):
-            if(self.vg==0):
-                self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
-            elif(self.vd==0):
-                self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
-            elif(self.vg>self.vd):
+            if(math.abs(self.vg)>math.abs(self.vd)):
                 self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
