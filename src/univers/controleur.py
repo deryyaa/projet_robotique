@@ -12,6 +12,7 @@ class Controleur:
                 self.robot.move(0.1)
                 distance_parcouru+=1 #je rajoute + combien ?
 
+        
     class TracerCarre:
         def __init__(self, robot):
             self.robot = robot
