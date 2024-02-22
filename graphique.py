@@ -2,7 +2,7 @@ from tkinter import *
 from src.dexter.robot import Robot
 from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
-from src.univers.controleur import TracerCarre, AvancerToutDroit
+from src.univers.controleur import Controleur
 
 import math
 import time
@@ -43,7 +43,7 @@ class Graphique:
         cnv.pack()
         
 
-# Création du robot dans le monde
+# Création du robot dans le mondez
 robot1 = Robot(300, 200, 50, 30 , 50)  # Position du robot dans le monde
 
 #création de 2 obstacle 
@@ -116,11 +116,15 @@ def move(event=None):
     """Déplace le robot selon les vitesses définies pendant le temps spécifié"""
     global robot1,temps
     debut = time.time()
+    fin_update = time.time()
     while time.time()-debut<temps: 
-        robot1.move(1./FPS)
+        # robot1.move(1./FPS)
         # Mise à jour des coordonnées du robot sur le canevas
+        debut_update = time.time()
+        monde.avancer_robot(fin_update-debut_update)
         dessineRobot(cnv,robot1)
         fenetre.update()
+        fin_update = time.time()
         time.sleep(1./FPS)
 
 def run_functions():
@@ -136,7 +140,7 @@ bouton.place(x=10,y=650)
 
 # Création des instances des classes TracerCarre et AvancerToutDroit
 # Création des instances des classes TracerCarre et AvancerToutDroit
-avancer_tout_droit = AvancerToutDroit(robot1)  # Créez une instance de AvancerToutDroit en passant le robot1 comme argument
+#avancer_tout_droit = AvancerToutDroit(robot1)  # Créez une instance de AvancerToutDroit en passant le robot1 comme argument
 tracer_carre = TracerCarre(robot1, avancer_tout_droit)  # Créez une instance de TracerCarre en passant le robot1 et avancer_tout_droit comme arguments
 
 # Définir les mouvements du robot
@@ -144,7 +148,7 @@ angle = 100
 distance_avancer = 200
 
 # Tracer un carré
-tracer_carre.tracer_carre(angle)
+#tracer_carre.tracer_carre(angle)
 
 # Avancer tout droit
 avancer_tout_droit.avancer_tout_droit(distance_avancer)
