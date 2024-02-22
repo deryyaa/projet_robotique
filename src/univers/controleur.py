@@ -10,7 +10,7 @@ class Controleur:
             distance_parcouru = 0
             while distance_parcouru<distance :
                 self.robot.move(0.1)
-                distance_parcouru+=1 #je rajoute + combien ?
+                distance_parcouru+=self.robot.vg #je rajoute + combien ?
 
     class TracerCarre:
         def __init__(self, robot):
