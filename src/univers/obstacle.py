@@ -26,4 +26,8 @@ class Obstacle:
         """retourne la position d'un obstacle"""
         return self.x, self.y
     
-    
+        
+class Mur :
+     def __init__(self, x, y, largeur, longueur):
+        """Classe heritant de la classe obstacle pour representer un Mur"""
+        Obstacle.__init__(self,x,y,largeur,longueur)
