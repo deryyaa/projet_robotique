@@ -2,7 +2,7 @@ import sys
 import math
 import random
 import time 
-from src.univers.monde import detecter_collision
+#from src.univers.monde import Monde
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse_max, direction=[0,0],dir=0):
@@ -45,18 +45,18 @@ class Robot:
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
                 
-    
-    def capteur_distance(self):
-        distanceP_capteur = 0
-        capteur_x, capteur_y = self.robot.x, self.robot.y
+#    def capteur_distance(self):
+#        distanceP_capteur = 0
+#        capteur_x, capteur_y = self.robot.x, self.robot.y
+#
+#        while not detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
+#            distanceP_capteur+= 1
+#            capteur_x += self.direction[0]
+#            capteur_y += self.direction[1]
+#
+#        print(f"Obstacle détecté à : {distanceP_capteur}")
+#        print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distanceP_capteur}")
 
-        while not detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
-            distanceP_capteur+= 1
-            capteur_x += self.direction[0]
-            capteur_y += self.direction[1]
-
-        print(f"Obstacle détecté à : {distanceP_capteur}")
-        print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distanceP_capteur}")
 
 
 
