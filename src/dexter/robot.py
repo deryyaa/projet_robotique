@@ -5,7 +5,7 @@ import time
 from src.univers.monde import detecter_collision
 
 class Robot:
-    def __init__(self, x, y, longueur, largeur, vitesse_max, direction=[0,0],dir=0):
+    def __init__(self, x, y, longueur, largeur, vitesse_max,dir=0):
         """Initialise un objet Robot avec les paramètres spécifiés
         x (float): La coordonnée x initiale du robot
         y (float): La coordonnée y initiale du robot
@@ -26,7 +26,6 @@ class Robot:
         self.dir = dir % (2*math.pi) # angle en radians
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
-        self.direction= direction
 
     
     def move(self,dt):
