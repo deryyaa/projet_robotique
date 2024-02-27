@@ -21,13 +21,13 @@ class Controleur(Thread):
             if self.stop():
                 self.robot.vg=0
                 self.robot.vd=0
-                return 0
+                return
 
         def stop(self):
             return self.parcouru>self.distance
 
-    class Tourner:
-        def __init__(self, robot, distance, FPS = 100):
+    class TournerGauche:
+        def __init__(self, distance, robot, FPS = 100):
             self.robot = robot
             self.distance = distance
             self.FPS=FPS
@@ -39,8 +39,10 @@ class Controleur(Thread):
             self.robot.vg = 10
             self.robot.vd = -10
             self.parcouru += self.robot.vg*(1./self.FPS)
-            if self.stop(): return
-            #self.robot.move(1./self.FPS)
+            if self.stop():
+                self.robot.vg=0
+                self.robot.vd=0
+                return
             
             #if (self.robot.capteur_distance()<1):
       

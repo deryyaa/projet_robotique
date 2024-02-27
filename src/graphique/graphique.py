@@ -44,4 +44,16 @@ class Graphique(Thread):
             self.monde.setObstacle(Obstacle(2+(i+1)*100, 40, 50, 50)) # Creation de plusieurs obstacle
         for i in self.monde.obstacles:
             print(i.x,i.y)
-            self.cnv.create_rectangle(i.x-i.longeur/2,i.y-i.largeur/2,i.x+i.longeur/2,i.y+i.largeur/2,fill="grey") #affichage des 2 obstacles
+            self.cnv.create_rectangle(i.x-i.longueur/2,i.y-i.largeur/2,i.x+i.longueur/2,i.y+i.largeur/2,fill="grey") #affichage des 2 obstacles
+
+    
+    def dessineLimites(self):
+        #création un carré ou un rectangle qui crée les limites du monde
+        self.monde.setObstacle(Obstacle((5,5,1,600))) #limite à gauche
+        self.monde.setObstacle(Obstacle((5,600,1,600))) #limite à droite
+        self.monde.setObstacle(Obstacle((600,5,1,600))) #limite en haut
+        self.monde.setObstacle(Obstacle((600,600,1,600))) #limite en bas
+
+        for i in self.monde.obstacles:
+            print(i.x,i.y)
+            self.cnv.create_rectangle(i.x-i.longueur/2,i.y-i.largeur/2,i.x+i.longueur/2,i.y+i.largeur/2,fill="grey") #affichage des 2 obstacles
