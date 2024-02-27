@@ -1,4 +1,5 @@
 import time
+import math
 from threading import Thread
 class Controleur(Thread):
     def __init__(self,robot,FPS=100):
