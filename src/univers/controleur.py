@@ -55,6 +55,7 @@ class Controleur(Thread):
             self.parcouru = 0
             
         def step(self):
+            if self.stop(): return
             Controleur.AvancerToutDroit.step()
             Controleur.Tourner.step()
             
