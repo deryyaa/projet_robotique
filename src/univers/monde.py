@@ -9,14 +9,14 @@ class Monde(Thread):
         self.robot = None
         self.obstacles = [] #création de la liste d'obstacle
 
-    def detecter_collision(self,x,y):
-        """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
-        for obst in self.obstacles:
-            # Verifie si collision entre point et obstacle
-            if (x >= obst.x and x <= obst.x + obst.longueur and
-            y >= obst.y and y <= obst.y + obst.largeur): 
-                return True
-        return False
+    def detecter_collision(self):
+       """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
+       if self.robot == None : return 
+       for obst in self.obstacles:
+           # Verifie si collision entre point et obstacle
+           if collision_rect(self.robot.getRect(),obst.getRec()): 
+               return True
+       return False
     
     def update(self,robot):
         self.robot=robot

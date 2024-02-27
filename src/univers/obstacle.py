@@ -26,7 +26,11 @@ class Obstacle:
         """retourne la position d'un obstacle"""
         return self.x, self.y
     
-        
+    def getRect(self):
+       return [[self.x-self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y+self.longeur/2], [ self.x-self.largeur/2 ,self.y+self.longeur/2]]
+
+
+
 class Mur :
      def __init__(self, x, y, largeur, longueur):
         """Classe heritant de la classe obstacle pour representer un Mur"""
