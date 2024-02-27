@@ -49,10 +49,10 @@ class Graphique(Thread):
         self.monde.setObstacle(Obstacle((600,600,1,600))) #limite en bas
 
         for i in self.monde.obstacles:
-            print(i.x,i.y)
             self.cnv.create_rectangle(i.x-i.longeur/2,i.y-i.largeur/2,i.x+i.longeur/2,i.y+i.largeur/2,fill="grey") #affichage des limites
 
     def update(self):
         # Dessin du robot sur le canevas
         self.dessineRobot(self.cnv)
         self.dessineObstacle()
+        self.dessineLimites()
