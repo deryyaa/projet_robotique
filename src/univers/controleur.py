@@ -1,11 +1,16 @@
 import time
-class Controleur:
-    class AvancerToutDroit:
-        def __init__(self, robot, distance, FPS = 100):
-            self.robot = robot
+from threading import Thread
+class Controleur(Thread):
+    def __init__(self,robot,FPS=100):
+        self.robot = robot
+        self.FPS=FPS
+    class AvancerToutDroit():
+        def __init__(self, distance,robot,FPS=100):
             self.distance = distance
-            self.FPS = FPS
-
+            self.robot=robot
+            self.parcouru=0
+            self.FPS=FPS
+                        
         def start(self):
             self.parcouru = 0
 
@@ -49,4 +54,10 @@ class Controleur:
         def start(self):
             
             Controleur.AvancerToutDroit.avancer_tout_droit(dist=10)
+            
+    def step(self):
+        strategie = self.AvancerToutDroit(100,self.robot)
+        while not strategie.stop():
+            strategie.step()
+            time.sleep(1./100)
             

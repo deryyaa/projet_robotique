@@ -1,10 +1,12 @@
 from src.univers.obstacle import Obstacle
+from threading import Thread
 
-class Monde:
+class Monde(Thread):
     def __init__(self, ligne, colonne):
         """ constructeur """
         self.ligne = ligne  # initialisation des coordonnées
         self.colonne = colonne
+        self.robot = None
         self.obstacles = [] #création de la liste d'obstacle
 
     def detecter_collision(self,x,y):
@@ -16,7 +18,8 @@ class Monde:
                 return True
         return False
     
-        
+    def update(self,robot):
+        self.robot=robot
 
 
 def collision_rect(r1, r2):
