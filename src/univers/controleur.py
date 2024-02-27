@@ -40,7 +40,7 @@ class Controleur(Thread):
             self.robot.vd = -10
             self.parcouru += self.robot.vg*(1./self.FPS)
             if self.stop(): return
-            self.robot.move(1./self.FPS)
+            #self.robot.move(1./self.FPS)
             
             #if (self.robot.capteur_distance()<1):
       
