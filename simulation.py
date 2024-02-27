@@ -18,7 +18,6 @@ robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
 
 monde.robot=robot
 
-
 #Paramétrage graphique
 fenetre = Tk()
 fenetre.title("Robot dans le monde")
