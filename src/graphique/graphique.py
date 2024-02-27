@@ -41,12 +41,12 @@ class Graphique(Thread):
 
         m1=Obstacle(3,3,1,500) # mur en haut 
         m2=Obstacle(3,3,500,1) # mur gauche
-        #m3=Obstacle(3,3,500,1)
+        m3=Obstacle(500,500,500,3) # mur en bas
         m4=Obstacle(500,500,1,500) # mur droit 
 
         self.monde.obstacles.append(m1)
         self.monde.obstacles.append(m2)
-        #self.monde.obstacles.append(m3)
+        self.monde.obstacles.append(m3)
         self.monde.obstacles.append(m4)
 
         for i in self.monde.obstacles:
