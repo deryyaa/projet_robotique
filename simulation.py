@@ -39,7 +39,7 @@ def update():
 def run(FPS):
     strategie=controleur.AvancerToutDroit(100,robot)
     Thread(target=update).start()
-    strategie.start()
+    strategie   .start()
     while not strategie.stop():
         strategie.step()
         time.sleep(1./FPS)
