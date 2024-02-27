@@ -4,19 +4,16 @@ class Controleur(Thread):
     def __init__(self,robot,FPS=100):
         self.robot = robot
         self.FPS=FPS
+
     class AvancerToutDroit():
         def __init__(self, distance,robot,FPS=100):
             self.distance = distance
             self.robot=robot
-            self.parcouru=0
             self.FPS=FPS
                         
         def start(self):
             self.parcouru = 0
 
-        def stop(self):
-            return self.parcouru>self.distance
-        
         def step(self):
             self.robot.vg = 10
             self.robot.vd = 10
@@ -24,6 +21,8 @@ class Controleur(Thread):
             if self.stop(): return
             self.robot.move(1./self.FPS)
 
+        def stop(self):
+            return self.parcouru>self.distance
 
     class Tourner:
         def __init__(self, robot, distance, FPS = 100):
@@ -46,18 +45,16 @@ class Controleur(Thread):
         def stop(self):
             return self.parcouru>self.distance
 
-        
     class TracerCarre:
-        def __init__(self, robot):
+        def __init__(self, robot, distance, FPS = 100):
             self.robot = robot
+            self.distance = distance
+            self.FPS=FPS
 
         def start(self):
+            self.parcouru = 0
             
-            Controleur.AvancerToutDroit.avancer_tout_droit(dist=10)
-            
-    def step(self):
-        strategie = self.AvancerToutDroit(100,self.robot)
-        while not strategie.stop():
-            strategie.step()
-            time.sleep(1./100)
+        def step(self):
+            Controleur.AvancerToutDroit.step()
+            Controleur.Tourner.step()
             
