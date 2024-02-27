@@ -26,28 +26,15 @@ class Controleur(Thread):
         def stop(self):
             return self.parcouru>self.distance
 
-    class TournerGauche:
-        def __init__(self, distance, robot, FPS = 100):
-            self.robot = robot
-            self.distance = distance
-            self.FPS=FPS
-
-        def start(self):
-            self.parcouru = 0
-
-        def step(self):
-            self.robot.vg = 10
-            self.robot.vd = -10
-            self.parcouru += self.robot.vg*(1./self.FPS)
-            if self.stop():
-                self.robot.vg=0
-                self.robot.vd=0
-                return
+  
+    class Tourner:
+        def __init__(self, angle, robot, FPS = 100):
+                self.robot.x = robot.x
+                self.robot.y = robot.y
+                self.angle = angle
+                self.FPS=FPS
             
-            #if (self.robot.capteur_distance()<1):
-      
-        def stop(self):
-            return self.parcouru>self.distance
+        
 
     class TracerCarre:
         def __init__(self, robot, distance, FPS = 100):
