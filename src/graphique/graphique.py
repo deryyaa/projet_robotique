@@ -16,8 +16,8 @@ class Graphique(Thread):
         canvas: Le canvas sur lequel le robot doit être dessiné
         robot: L'objet représentant le robot avec les attributs x, y, dir, largeur et longueur.
         """
+        canvas.delete("rectangle")
         robot=self.monde.robot
-        #canvas.delete("rectangle")
         cos_robot=math.cos(robot.dir)
         sin_robot=math.sin(robot.dir)
         canvas.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,

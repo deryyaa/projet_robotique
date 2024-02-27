@@ -34,12 +34,19 @@ class Robot:
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
         self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
         if(self.vg!=self.vd):
-            if(math.abs(self.vg)>math.abs(self.vd)):
+            if(abs(self.vg)>abs(self.vd)):
                 self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
                 
-    
+    def update(self):
+        self.move(0.01)
+        
+    def getRect(self):
+       return [[self.x-self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y+self.longeur/2], [ self.x-self.largeur/2 ,self.y+self.longeur/2]]
+
+
+
     def capteur_distance(self):
         r = math.sqrt(self.robot.x**2+self.robot.y**2) # distance r qui va permettre d'obtenir les coordonnees cartesiennes a partir de la direction en radian
         direction=[0,0]
