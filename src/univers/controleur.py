@@ -34,8 +34,10 @@ class Controleur(Thread):
                 self.angle = angle
                 self.FPS=FPS
             
+        def start(self):
+            self.angletourner=1 
         
-
+       
     class TracerCarre:
         def __init__(self, robot, distance, FPS = 100):
             self.robot = robot
