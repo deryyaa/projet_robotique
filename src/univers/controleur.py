@@ -42,7 +42,8 @@ class Controleur(Thread):
             self.robot.y=self.robot.x*math.cos(self.angletourner)-self.robot.y*math.sin(self.angletourner)
             self.angleparcouru+=self.angletourner
 
-        
+        def stop(self):
+            self.angle<self.angleparcouru
 
     class TracerCarre:
         def __init__(self, robot, distance, FPS = 100):
