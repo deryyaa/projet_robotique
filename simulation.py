@@ -29,14 +29,20 @@ controleur=Controleur(robot)
 
 def update():
     while True:
+        robot.update()
         monde.update(robot)
         graph.update()
         time.sleep(1./FPS)
+        fenetre.update()
+
 
 def run(FPS):
-    Thread(target=controleur.step).start()
+    strategie=controleur.AvancerToutDroit(100,robot)
     Thread(target=update).start()
-    update()
-    controleur.step()
-    fenetre.mainloop()
-run(100)
+    strategie.start()
+    while not strategie.stop():
+        strategie.step()
+        time.sleep(1./FPS)
+
+Thread(target=run, args=(100,)).start()
+fenetre.mainloop()
