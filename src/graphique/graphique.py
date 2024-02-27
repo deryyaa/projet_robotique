@@ -36,7 +36,7 @@ class Graphique(Thread):
                             fill="red",tags="rectangle")
         
     def dessineObstacle (self):
-        o1=Obstacle(150,380,50,50)
+        o1=Obstacle(150,150,50,50)
         self.monde.obstacles.append(o1)
 
         for i in self.monde.obstacles:
