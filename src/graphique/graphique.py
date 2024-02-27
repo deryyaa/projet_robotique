@@ -39,23 +39,23 @@ class Graphique(Thread):
         o1=Obstacle(150,150,50,50)
         self.monde.obstacles.append(o1)
 
+        m1=Obstacle(3,3,1,500) # mur en haut 
+        m2=Obstacle(3,3,500,1) # mur gauche
+        #m3=Obstacle(3,3,500,1)
+        m4=Obstacle(500,500,1,500) # mur droit 
+
+        self.monde.obstacles.append(m1)
+        self.monde.obstacles.append(m2)
+        #self.monde.obstacles.append(m3)
+        self.monde.obstacles.append(m4)
+
         for i in self.monde.obstacles:
             self.cnv.create_rectangle(i.x,i.y,i.longueur,i.largeur,fill="grey") #affichage des obstacles
 
-    #def dessineLimites(self):
-        #création un carré ou un rectangle qui crée les limites du monde
-        #self.monde.setObstacle(Obstacle((5,5,1,600))) #limite à gauche
-        #self.monde.setObstacle(Obstacle((5,600,1,600))) #limite à droite
-        #self.monde.setObstacle(Obstacle((600,5,1,600))) #limite en haut
-        #self.monde.setObstacle(Obstacle((600,600,1,600))) #limite en bas
-
-        #for i in self.monde.obstacles:
-            #self.cnv.create_rectangle(i.x-i.longeur/2,i.y-i.largeur/2,i.x+i.longeur/2,i.y+i.largeur/2,fill="grey") #affichage des limites
 
     def update(self):
         # Dessin du robot sur le canevas
         self.dessineRobot(self.cnv)
         self.dessineObstacle()
-        #self.dessineLimites()
 
         
