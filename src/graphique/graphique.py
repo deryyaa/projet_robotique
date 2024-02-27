@@ -36,9 +36,14 @@ class Graphique(Thread):
                             fill="red",tags="rectangle")
         
     def dessineObstacle (self):
+        """
+        Dessine les obstacles dans la simulation.
+        """
+        #créer un obstacle et ajout à la liste d'obstacle
         o1=Obstacle(150,150,50,50)
         self.monde.obstacles.append(o1)
 
+        #créer les limites du monde et ajout à la liste d'obstacle
         m1=Obstacle(3,3,1,500) # mur en haut 
         m2=Obstacle(3,3,500,1) # mur gauche
         m3=Obstacle(500,500,500,3) # mur en bas
@@ -49,6 +54,7 @@ class Graphique(Thread):
         self.monde.obstacles.append(m3)
         self.monde.obstacles.append(m4)
 
+        #affichage des obstacles
         for i in self.monde.obstacles:
             self.cnv.create_rectangle(i.x,i.y,i.longueur,i.largeur,fill="grey") #affichage des obstacles
 
