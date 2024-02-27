@@ -36,10 +36,11 @@ class Graphique(Thread):
                             fill="red",tags="rectangle")
         
     def dessineObstacle (self):
-        #création de 1 obstacle 
-        #self.monde.obstacle=(Obstacle(200,380,50,50)) # Creation de plusieurs obstacle
-        #for i in self.monde.obstacles:
-        self.cnv.create_rectangle(200,380,50,50,fill="grey") #affichage des obstacles
+        o1=Obstacle(150,380,50,50)
+        self.monde.obstacles.append(o1)
+
+        for i in self.monde.obstacles:
+            self.cnv.create_rectangle(i.x,i.y,i.longueur,i.largeur,fill="grey") #affichage des obstacles
 
     #def dessineLimites(self):
         #création un carré ou un rectangle qui crée les limites du monde
