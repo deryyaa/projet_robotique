@@ -55,3 +55,4 @@ class Robot:
 
         print(f"Obstacle détecté à : {distanceP_capteur}")
         print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distanceP_capteur}")
+        return distanceP_capteur
