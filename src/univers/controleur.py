@@ -26,7 +26,7 @@ class Controleur(Thread):
                 return
 
         def stop(self):
-            return self.parcouru>self.distance
+            return self.parcouru>=self.distance
 
   
     class Tourner:
@@ -44,23 +44,29 @@ class Controleur(Thread):
             
         def start(self):
             """Commence la rotation du robot en tournant avec un angle"""
-            self.angletourner=1 #l'angle à chaque step
             self.angleparcouru=0
         
         def step(self):
             """
             Fais une étape de rotation.
             """
-            #calcul les nouvelles coordonnées du robot après une rotation
+            if(self.angle>0):
+                self.robot.vg=-10
+                self.robot.vd=10
+            else:
+                self.robot.vg=10
+                self.robot.vd=-10
+            self.angleparcouru+=self.robot.vg*(1./self.FPS)/(self.robot.d/2)
+            if self.stop() or self.robot.crash:
+                self.robot.vg=0
+                self.robot.vd=0
+                return
             
-            
-            self.angleparcouru+=self.angletourner  # met à jour de l'angle parcouru
-
         def stop(self):
             """
             Arrête de faire la rotation lorsque l'angle parcouru dépasse l'angle à tourner.
             """
-            self.angle<self.angleparcouru
+            return abs(self.angle)<abs(self.angleparcouru)
 
     class TracerCarre:
         def __init__(self, robot, cote, FPS = 100):
