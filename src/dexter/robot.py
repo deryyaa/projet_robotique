@@ -15,6 +15,7 @@ class Robot:
         dir (float, facultatif): La direction initiale du robot en degrés. Par défaut, 0 degré
         """
         self.d=largeur # distance entre les 2 roue
+        self.crash=False
         self.vitesse_max = vitesse_max
         self.taille_roue = 8
         self.vg=0 # Vitesse de la roue gauche
@@ -43,7 +44,7 @@ class Robot:
         self.move(0.01)
         
     def getRect(self):
-       return [[self.x-self.largeur/2 ,self.y-self.longueur/2], [self.x+self.largeur/2 ,self.y-self.longueur/2], [self.x+self.largeur/2 ,self.y+self.longueur/2], [ self.x-self.largeur/2 ,self.y+self.longueur/2]]
+       return [[self.x-self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y+self.largeur/2], [ self.x-self.longueur/2 ,self.y+self.largeur/2]]
 
 
 

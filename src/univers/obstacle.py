@@ -28,8 +28,7 @@ class Obstacle:
     
     def getRect(self):
        """Renvoie sous forme de tableau les coordonnées du rectangle"""
-       return [[self.x-self.largeur/2 ,self.y-self.longueur/2], [self.x+self.largeur/2 ,self.y-self.longueur/2], [self.x+self.largeur/2 ,self.y+self.longueur/2], [ self.x-self.largeur/2 ,self.y+self.longueur/2]]
-
+       return [[self.x-self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y+self.largeur/2], [ self.x-self.longueur/2 ,self.y+self.largeur/2]]
     
 
 

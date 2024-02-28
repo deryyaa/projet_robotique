@@ -20,7 +20,7 @@ class Controleur(Thread):
             self.robot.vg = 10
             self.robot.vd = 10
             self.parcouru += abs(self.robot.vg*(1./self.FPS))
-            if self.stop():
+            if self.stop() or self.robot.crash:
                 self.robot.vg=0
                 self.robot.vd=0
                 return
@@ -39,22 +39,20 @@ class Controleur(Thread):
             """
             # Initialisation des attributs avec les valeurs fournies
             self.robot=robot
-            self.robot.x = robot.x
-            self.robot.y = robot.y
             self.angle = angle
             self.FPS=FPS
             
         def start(self):
             """Commence la rotation du robot en tournant avec un angle"""
-            self.angletourner=1 #l'angle tourne de 1 à chaque step
+            self.angletourner=1 #l'angle à chaque step
+            self.angleparcouru=0
         
         def step(self):
             """
             Fais une étape de rotation.
             """
             #calcul les nouvelles coordonnées du robot après une rotation
-            self.robot.x=self.robot.x*math.cos(self.angletourner)-self.robot.y*math.sin(self.angletourner)
-            self.robot.y=self.robot.x*math.cos(self.angletourner)-self.robot.y*math.sin(self.angletourner)
+            
             
             self.angleparcouru+=self.angletourner  # met à jour de l'angle parcouru
 
