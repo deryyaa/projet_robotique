@@ -41,7 +41,6 @@ class Robot:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
                 
     def update(self):
-        print(self.dir)
         self.move(0.01)
         
     def getRect(self):

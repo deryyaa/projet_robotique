@@ -2,21 +2,22 @@ from src.dexter.robot import Robot
 from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
 from src.graphique.graphique import Graphique
-from src.univers.controleur import Controleur
+from src.univers.controleur import *
 import math
 import time
-from threading import Thread
+import threading
 from tkinter import *
 
 FPS=100
 
-# Création du monde
-monde = Monde(500, 500)
-
-# Création du robot dans le monde
+#Création de robot
 robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
 
-monde.robot=robot
+# Création du monde
+monde = Monde(500, 500,robot)
+
+
+
 
 #Paramétrage graphique
 fenetre = Tk()
@@ -25,25 +26,37 @@ cnv = Canvas(fenetre, width=monde.ligne, height=monde.colonne, bg="ivory")
 cnv.pack()
 graph=Graphique(monde,cnv)
 
-controleur=Controleur(robot)
+
+lock=threading.Lock()
+
 
 def update():
     while True:
         robot.update()
-        monde.update(robot)
+        monde.update()
         graph.update()
         time.sleep(1./FPS)
         fenetre.update()
 
 
-def run(FPS):
+def runAvancer(FPS):
     graph.dessineObstacle()
-    strategie=controleur.Tourner(math.pi,robot)
-    Thread(target=update).start()
+    strategie=AvancerToutDroit(100,robot)
+    threading.Thread(target=update).start()
     strategie.start()
     while not strategie.stop():
         strategie.step()
         time.sleep(1./FPS)
 
-Thread(target=run, args=(100,)).start()
+def runTourner(FPS):
+    graph.dessineObstacle()
+    strategie=Tourner(math.pi,robot)
+    threading.Thread(target=update).start()
+    strategie.start()
+    while not strategie.stop():
+        strategie.step()
+        time.sleep(1./FPS)
+
+threading.Thread(target=runAvancer, args=(100,)).start()
+#threading.Thread(target=runTourner, args=(100,)).start()
 fenetre.mainloop()
