@@ -39,20 +39,20 @@ class Graphique(Thread):
         """
         Dessine les obstacles dans la simulation.
         """
+        self.monde.creation_obstacle(380,200,50,50)
         #créer un obstacle et ajout à la liste d'obstacle
-        o1=Obstacle(380,200,50,50)
-        self.monde.obstacles.append(o1)
+        
 
         #créer les limites du monde et ajout à la liste d'obstacle
-        m1=Obstacle(250,1,1,500) # mur du bas 
-        m2=Obstacle(1,250,500,1) # mur du gauche
-        m3=Obstacle(250,499,1,500) # mur du haut
-        m4=Obstacle(500,250,500,1) # mur du droit 
+        self.monde.creation_obstacle(250,1,1,500) # mur du bas 
+        self.monde.creation_obstacle(1,250,500,1) # mur du gauche
+        self.monde.creation_obstacle(250,499,1,500) # mur du haut
+        self.monde.creation_obstacle(500,250,500,1) # mur du droit 
 
-        self.monde.obstacles.append(m1)
-        self.monde.obstacles.append(m2)
-        self.monde.obstacles.append(m3)
-        self.monde.obstacles.append(m4)
+        #self.monde.obstacles.append(m1)
+        #self.monde.obstacles.append(m2)
+        #self.monde.obstacles.append(m3)
+        #self.monde.obstacles.append(m4)
 
         #affichage des obstacles
         for i in self.monde.obstacles:

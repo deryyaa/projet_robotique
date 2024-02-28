@@ -18,6 +18,10 @@ class Monde(Thread):
                 return True
         return False
     
+    def creation_obstacle(self,x,y,longeur,largeur):
+        """rajoute un obstacle a la liste"""
+        o1=Obstacle(x,y,longeur,largeur)
+        self.obstacles.append(o1)
 
 
     def update(self):
