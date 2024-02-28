@@ -5,7 +5,6 @@ from src.controleur.strategie import *
 import math
 import time
 import threading
-from tkinter import *
 
 FPS=100
 
