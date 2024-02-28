@@ -28,6 +28,7 @@ class Monde(Thread):
                 self.robot.vd=0
 
         self.robot.move(0.01)
+        print(self.robot.x,self.robot.y)
 
 
 def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonnées de mon rectangle (obstacle et robot)
