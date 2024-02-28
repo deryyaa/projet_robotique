@@ -1,6 +1,6 @@
 import unittest
 import math
-from src.dexter.robot import Robot
+from src.univers.robot import Robot
 from src.univers.monde import Monde
 
 #python3 -m unittest test/test_robot.py -v

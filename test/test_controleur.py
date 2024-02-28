@@ -1,7 +1,7 @@
 import unittest
-from src.dexter.robot import Robot
+from src.univers.robot import Robot
 from src.univers.monde import Monde
-from src.univers.controleur import Controleur
+from src.controleur.strategie import Controleur
 
 #python3 -m unittest test/test_controleur.py -v
 

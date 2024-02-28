@@ -1,8 +1,8 @@
-from src.dexter.robot import Robot
+from src.univers.robot import Robot
 from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
 from src.graphique.graphique import Graphique
-from src.univers.controleur import *
+from src.controleur.strategie import *
 import math
 import time
 import threading
