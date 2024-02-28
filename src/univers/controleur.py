@@ -1,6 +1,7 @@
 import time
 import math
 from threading import Thread
+
 class Controleur(Thread):
     def __init__(self,robot,FPS=100):
         self.robot = robot
@@ -32,12 +33,12 @@ class Controleur(Thread):
         def __init__(self, angle, robot, FPS = 100):
             """
             Fait tourner le robot sur lui même avec un angle.
-
             angle: angle de rotation (en radians).
             robot: robot à faire tourner.
             FPS: taux de rafraîchissement en FPS (par défaut: 100).
             """
             # Initialisation des attributs avec les valeurs fournies
+            self.robot=robot
             self.robot.x = robot.x
             self.robot.y = robot.y
             self.angle = angle
@@ -64,16 +65,21 @@ class Controleur(Thread):
             self.angle<self.angleparcouru
 
     class TracerCarre:
-        def __init__(self, robot, distance, FPS = 100):
+        def __init__(self, robot, cote, FPS = 100):
             self.robot = robot
-            self.distance = distance
+            self.cote = cote
             self.FPS=FPS
 
         def start(self):
-            self.parcouru = 0
+            self.traceCote = 0
             
         def step(self):
-            if self.stop(): return
-            Controleur.AvancerToutDroit.step()
-            Controleur.Tourner.step()
+            if self.stop():return
+            Controleur.AvancerToutDroit.step(self.cote,self.robot,self.FPS)
+            Controleur.Tourner.step(90*(math.pi/180),self.robot,self.FPS) # tourne en 90 degré
+            self.traceCote+=1
             
+        def stop(self):
+            if (self.traceCote>4):
+                return True
+
