@@ -32,7 +32,6 @@ lock=threading.Lock()
 
 def update():
     while True:
-        robot.update()
         monde.update()
         graph.update()
         time.sleep(1./FPS)

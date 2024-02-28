@@ -1,7 +1,6 @@
 import time
 import math
 from threading import Thread
-from src.dexter.robot import Robot
 
 class AvancerToutDroit():
     def __init__(self, distance,robot,FPS=100):
@@ -78,14 +77,24 @@ class TracerCarre:
     def step(self):
         avancer=AvancerToutDroit(self.cote,self.robot)
         tourner=Tourner(math.pi/2,self.robot)
-        avancer.start()
-        avancer.step()
-        tourner.start()
-        tourner.step()
-        if self.stop():
+        strat=[avancer,tourner]
+        i=0
+        tours=0
+        if strat[i].stop():
+            if i==1:
+                i=0
+            else:
+                i=1
+        elif self.stop():
+            self.robot.vg=0
+            self.robot.vd=0
             return
-        
-        self.traceCote+=1
+        else:
+            if tours==0:
+                strat[i].start()
+            strat[i].step()
+            
+            
         
     def stop(self):
         if (self.traceCote>4):
