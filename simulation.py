@@ -37,6 +37,7 @@ def update():
 
 
 def run(FPS):
+    graph.dessineObstacle()
     strategie=controleur.AvancerToutDroit(100,robot)
     Thread(target=update).start()
     strategie.start()

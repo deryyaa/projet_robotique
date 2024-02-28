@@ -62,6 +62,5 @@ class Graphique(Thread):
     def update(self):
         # Dessin du robot sur le canevas
         self.dessineRobot()
-        self.dessineObstacle()
 
         
