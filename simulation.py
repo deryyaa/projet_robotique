@@ -8,7 +8,7 @@ import time
 import threading
 from tkinter import *
 
-FPS=100
+FPS=500
 
 #Création de robot
 robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
@@ -44,6 +44,7 @@ def runAvancer(FPS):
     threading.Thread(target=update).start()
     strategie.start()
     while not strategie.stop():
+        graph.dessineTrait ()
         strategie.step()
         time.sleep(1./FPS)
 
@@ -53,6 +54,7 @@ def runTourner(FPS):
     threading.Thread(target=update).start()
     strategie.start()
     while not strategie.stop():
+        graph.dessineTrait ()
         strategie.step()
         time.sleep(1./FPS)
 
