@@ -63,4 +63,22 @@ class Graphique(Thread):
         # Dessin du robot sur le canevas
         self.dessineRobot()
 
-        
+    def dessineTrait (self):
+        robot=self.monde.robot
+        if not hasattr(self, 'prev_x') or not hasattr(self, 'prev_y'):
+            self.prev_x = None
+            self.prev_y = None
+
+        if self.prev_x is not None and self.prev_y is not None:
+            # Coordonnées du début et de la fin du trait
+            x1 = self.prev_x
+            y1 = self.monde.colonne - self.prev_y  # Inversion de l'axe y
+            x2 = robot.x
+            y2 = self.monde.colonne - robot.y  # Inversion de l'axe y
+
+            # Dessiner un trait avec une largeur de 5 pixels
+            self.cnv.create_line(x1, y1, x2, y2, width=5)
+
+        # Mettre à jour les coordonnées précédentes du robot
+        self.prev_x = robot.x
+        self.prev_y = robot.y
