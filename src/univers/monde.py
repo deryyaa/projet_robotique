@@ -13,8 +13,7 @@ class Monde(Thread):
         """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
         for obst in self.obstacles:
             # Verifie si collision entre point et obstacle
-            if (x >= obst.x and x <= obst.x + obst.longueur and
-            y >= obst.y and y <= obst.y + obst.largeur): 
+            if (x >= obst.x and x <= obst.x + obst.longueur and y <= obst.y and y <= obst.y + obst.largeur): 
                 return True
         return False
     
