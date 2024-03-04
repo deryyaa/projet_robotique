@@ -14,6 +14,7 @@ class Robot:
         vitesse_max (float): La vitesse maximale du robot
         dir (float, facultatif): La direction initiale du robot en degrés. Par défaut, 0 degré
         """
+        self.distanceParcouru=0
         self.d=largeur # distance entre les 2 roue
         self.crash=False
         self.vitesse_max = vitesse_max
@@ -32,6 +33,8 @@ class Robot:
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
         dt : intervalle de temps de rafraichissment (fps)
         """
+        x=self.x
+        y=self.y
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
         self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
         if(self.vg!=self.vd):
@@ -39,9 +42,11 @@ class Robot:
                 self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
-                
-    def update(self):
-        self.move(0.01)
+        self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
+        print(self.distanceParcouru)
+    
+    def getDistanceParcouru(self):
+        return self.distanceParcouru
         
     def getRect(self):
        return [[self.x-self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y+self.largeur/2], [ self.x-self.longueur/2 ,self.y+self.largeur/2]]

@@ -9,20 +9,20 @@ class AvancerToutDroit():
         self.FPS=FPS
                     
     def start(self):
-        self.parcouru = 0
+        self.robot.distanceParcouru=0
 
     def step(self):
         self.robot.vg = 10
         self.robot.vd = 10
-        self.parcouru += abs(self.robot.vg*(1./self.FPS))
-        #self.robot.update()
+        print("step")
         if self.stop() or self.robot.crash:
+            print("stop")
             self.robot.vg=0
             self.robot.vd=0
             return
 
     def stop(self):
-        return self.parcouru>self.distance
+        return self.robot.distanceParcouru>self.distance
 
 
 class Tourner:

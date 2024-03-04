@@ -40,11 +40,11 @@ def update():
 
 def runAvancer(FPS):
     graph.dessineObstacle()
-    strategie=AvancerToutDroit(100,robot)
+    strategie=AvancerToutDroit(5,robot)
     threading.Thread(target=update).start()
     strategie.start()
     while not strategie.stop():
-        graph.dessineTrait ()
+        #graph.dessineTrait ()
         strategie.step()
         time.sleep(1./FPS)
 
