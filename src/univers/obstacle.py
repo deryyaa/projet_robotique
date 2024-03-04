@@ -30,10 +30,3 @@ class Obstacle:
        """Renvoie sous forme de tableau les coordonnées du rectangle"""
        return [[self.x-self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y+self.largeur/2], [ self.x-self.longueur/2 ,self.y+self.largeur/2]]
     
-
-
-
-class Mur :
-     def __init__(self, x, y, largeur, longueur):
-        """Classe heritant de la classe obstacle pour representer un Mur"""
-        Obstacle.__init__(self,x,y,largeur,longueur)
