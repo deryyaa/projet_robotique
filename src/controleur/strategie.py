@@ -14,15 +14,15 @@ class AvancerToutDroit():
     def step(self):
         self.robot.vg = 10
         self.robot.vd = 10
-        print("step")
+        print(self.robot.getDistanceParcouru())
         if self.stop() or self.robot.crash:
             print("stop")
             self.robot.vg=0
             self.robot.vd=0
-            return
+            exit
 
     def stop(self):
-        return self.robot.distanceParcouru>self.distance
+        return self.robot.getDistanceParcouru()>self.distance
 
 
 class Tourner:

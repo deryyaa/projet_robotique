@@ -43,7 +43,6 @@ class Robot:
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
         self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
-        print(self.distanceParcouru)
     
     def getDistanceParcouru(self):
         return self.distanceParcouru
@@ -51,7 +50,7 @@ class Robot:
     def getRect(self):
        return [[self.x-self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y-self.largeur/2], [self.x+self.longueur/2 ,self.y+self.largeur/2], [ self.x-self.longueur/2 ,self.y+self.largeur/2]]
 
-    def getPosition():
+    def getPosition(self):
         return (self.x,self.y)
 
     def capteur_distance(self):

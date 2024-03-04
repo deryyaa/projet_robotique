@@ -43,9 +43,11 @@ def runAvancer(FPS):
     strategie=AvancerToutDroit(5,robot)
     threading.Thread(target=update).start()
     strategie.start()
-    while not strategie.stop():
+    while True:
         #graph.dessineTrait ()
         strategie.step()
+        if(strategie.stop()):
+            break
         time.sleep(1./FPS)
 
 def runTourner(FPS):
