@@ -30,6 +30,7 @@ class Monde(Thread):
                 self.robot.vg=0
                 self.robot.vd=0
         self.robot.move(0.01)
+        self.robot.capteur_distance(self)
         print(self.robot.x,self.robot.y)
         print(self.robot.distanceParcouru)
     
