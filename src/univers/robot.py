@@ -53,6 +53,11 @@ class Robot:
 
     def getPosition():
         return (self.x,self.y)
+    
+    def setVitesse(self,vg,vd):
+        self.vg=vg
+        self.vd=vd
+        
 
     def capteur_distance(self):
         r = math.sqrt(self.robot.x**2+self.robot.y**2) # distance r qui va permettre d'obtenir les coordonnees cartesiennes a partir de la direction en radian

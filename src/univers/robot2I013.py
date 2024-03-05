@@ -88,6 +88,11 @@ class Robot2IN013:
         self._gpg.set_motor_dps(port,dps)
         self._gpg.set_motor_limits(port,dps)
 
+    def setVitesse(self, vg,vd):
+        set_motor_dps(MOTOR_LETF,vg)
+        set_motor_dps(MOTOR_RIGHT,vd)
+
+
     def get_motor_position(self):
         """
         Lit les etats des moteurs en degre.
