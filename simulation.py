@@ -16,9 +16,6 @@ robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
 # Création du monde
 monde = Monde(500, 500,robot)
 
-
-
-
 #Paramétrage graphique
 fenetre = Tk()
 fenetre.title("Robot dans le monde")
@@ -34,6 +31,7 @@ def update():
     while True:
         monde.update()
         graph.update()
+        robot.update()
         time.sleep(1./FPS)
         fenetre.update()
 
@@ -44,7 +42,7 @@ def runAvancer(FPS):
     threading.Thread(target=update).start()
     strategie.start()
     while not strategie.stop():
-        #graph.dessineTrait ()
+        #graph.dessineTrait()
         strategie.step()
         time.sleep(1./FPS)
 
@@ -54,7 +52,7 @@ def runTourner(FPS):
     threading.Thread(target=update).start()
     strategie.start()
     while not strategie.stop():
-        graph.dessineTrait ()
+        graph.dessineTrait()
         strategie.step()
         time.sleep(1./FPS)
 
