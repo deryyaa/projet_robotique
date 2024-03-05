@@ -15,12 +15,11 @@ class AvancerToutDroit():
     def step(self):
         self.robot.vg = 10
         self.robot.vd = 10
-        print("step")
         if self.stop() or self.robot.crash:
             print("stop")
             self.robot.vg=0
             self.robot.vd=0
-            return
+            exit
 
     def stop(self):
         return self.robot.distanceParcouru>self.distance
@@ -41,7 +40,7 @@ class Tourner:
         
     def start(self):
         """Commence la rotation du robot en tournant avec un angle"""
-        self.angleparcouru=0
+        self.angleArrive=self.robot.dir+self.angle
     
     def step(self):
         """
@@ -53,8 +52,6 @@ class Tourner:
         else:
             self.robot.vg=10
             self.robot.vd=-10
-        self.angleparcouru+=self.robot.vg*(1./self.FPS)/(self.robot.d/2)
-        self.robot.update()
         if self.stop() or self.robot.crash:
             self.robot.vg=0
             self.robot.vd=0
@@ -64,7 +61,10 @@ class Tourner:
         """
         Arrête de faire la rotation lorsque l'angle parcouru dépasse l'angle à tourner.
         """
-        return abs(self.angle)<abs(self.angleparcouru)
+        if self.angle<0:
+            return self.robot.dir<self.angleArrive
+        else:
+            return self.robot.dir>self.angleArrive
 
 class TracerCarre:
     def __init__(self,cote, robot, FPS = 100):
@@ -74,30 +74,31 @@ class TracerCarre:
 
     def start(self):
         self.traceCote = 0
+        self.avancer=AvancerToutDroit(self.cote,self.robot)
+        self.tourner=Tourner(math.pi/2,self.robot)
+        self.strat=[self.avancer,self.tourner]
+        self.strat[0].start()
+        self.i=0
+        self.tours=0
         
     def step(self):
-        avancer=AvancerToutDroit(self.cote,self.robot)
-        tourner=Tourner(math.pi/2,self.robot)
-        strat=[avancer,tourner]
-        i=0
-        tours=0
-        if strat[i].stop():
-            if i==1:
-                i=0
+        if self.strat[self.i].stop():
+            if self.i==1:
+                self.i=0
+                self.tours=0
             else:
-                i=1
-        elif self.stop():
+                self.i=1
+                self.tours=0
+                self.traceCote+=1
+        if self.tours==0:
+            self.strat[self.i].start()
+        self.strat[self.i].step()
+        self.tours+=1
+        if self.stop():
             self.robot.vg=0
             self.robot.vd=0
             return
-        else:
-            if tours==0:
-                strat[i].start()
-            strat[i].step()
-            
-            
-        
+               
     def stop(self):
-        if (self.traceCote>4):
-            return True
+        return self.traceCote==4
 

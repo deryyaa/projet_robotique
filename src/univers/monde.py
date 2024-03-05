@@ -13,7 +13,7 @@ class Monde(Thread):
         """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
         for obst in self.obstacles:
             # Verifie si collision entre point et obstacle
-            if (x >= obst.x and x <= obst.x + obst.longueur and y <= obst.y and y <= obst.y + obst.largeur): 
+            if (x <= obst.x and x <= obst.x + obst.longueur and y <= obst.y and y <= obst.y + obst.largeur): 
                 return True
         return False
     
@@ -21,7 +21,7 @@ class Monde(Thread):
         """rajoute un obstacle a la liste"""
         o1=Obstacle(x,y,longeur,largeur)
         self.obstacles.append(o1)
-
+        
 
     def update(self):
         for obs in self.obstacles:
@@ -29,10 +29,13 @@ class Monde(Thread):
                 self.robot.crash=True
                 self.robot.vg=0
                 self.robot.vd=0
-
         self.robot.move(0.01)
+        self.robot.capteur_distance(self)
         print(self.robot.x,self.robot.y)
         print(self.robot.distanceParcouru)
+    
+    
+        
 
 
 def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonnées de mon rectangle (obstacle et robot)
@@ -43,3 +46,4 @@ def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonn
     # Vérification de la superposition des rectangles
     # La superposition est vérifiée en négatif, donc si l'une des conditions est vraie, la superposition n'a pas lieu.
     return not(x1 >= x2 + w2 or x1 + w1 <= x2 or y1 >= y2 + h2 or y1 + h1 <= y2)
+
