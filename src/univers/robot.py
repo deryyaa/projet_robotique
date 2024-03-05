@@ -54,26 +54,19 @@ class Robot:
     def getPosition(self):
         return (self.x,self.y)
 
-    def capteur_distance(self,monde):
-        r = math.sqrt(self.x**2+self.y**2) # distance r qui va permettre d'obtenir les coordonnees cartesiennes a partir de la direction en radian
+    def capteur_distance(self):
+        r = math.sqrt(self.robot.x**2+self.robot.y**2) # distance r qui va permettre d'obtenir les coordonnees cartesiennes a partir de la direction en radian
         direction=[0,0]
         direction[0]= r*math.cos(self.dir)
         direction[1]= r*math.sin(self.dir)
         distanceP_capteur = 0
-        capteur_x = self.x
-        capteur_y = self.y
-        print("monde, x et y",Monde,capteur_x,capteur_y)
-        print("monde obst", Monde.obstacles)
-        while not monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
+        capteur_x, capteur_y = self.robot.x, self.robot.y
+
+        while not Monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
             distanceP_capteur+= 1
             capteur_x += direction[0]
             capteur_y += direction[1]
-        #print("Obstacle détecté à", distanceP_capteur)
-        #print("Position actuelle du robot", self.robot.x, self.robot.y, "Distance jusqu'à l'obstacle :", distanceP_capteur)
+
+        print(f"Obstacle détecté à : {distanceP_capteur}")
+        print(f"Position actuelle du robot : {[self.robot.x, self.robot.y]}, Distance jusqu'à l'obstacle : {distanceP_capteur}")
         return distanceP_capteur
-    
-
-        
-
-
-    

@@ -8,13 +8,22 @@ import time
 import threading
 from tkinter import *
 
-FPS=500
+FPS=100
 
 #Création de robot
 robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
 
 # Création du monde
 monde = Monde(500, 500,robot)
+
+#Création d'obstacle
+monde.creation_obstacle(380,200,50,50)
+monde.creation_obstacle(250,1,1,500) # mur du bas 
+monde.creation_obstacle(1,250,500,1) # mur du gauche
+monde.creation_obstacle(250,499,1,500) # mur du haut
+monde.creation_obstacle(500,250,500,1) # mur du droit 
+
+
 
 #Paramétrage graphique
 fenetre = Tk()
@@ -31,19 +40,20 @@ def update():
     while True:
         monde.update()
         graph.update()
-        robot.update()
+        graph.dessineTrait()
         time.sleep(1./FPS)
         fenetre.update()
 
 
 def runAvancer(FPS):
     graph.dessineObstacle()
-    strategie=AvancerToutDroit(5,robot)
+    strategie=AvancerToutDroit(50,robot)
     threading.Thread(target=update).start()
     strategie.start()
-    while not strategie.stop():
-        #graph.dessineTrait()
+    while True:
         strategie.step()
+        if(strategie.stop() or robot.crash):
+            break
         time.sleep(1./FPS)
 
 def runTourner(FPS):
@@ -52,10 +62,14 @@ def runTourner(FPS):
     threading.Thread(target=update).start()
     strategie.start()
     while not strategie.stop():
-        graph.dessineTrait()
+        graph.dessineTrait ()
         strategie.step()
+        if(strategie.stop() or robot.crash):
+            break
         time.sleep(1./FPS)
 
-threading.Thread(target=runAvancer, args=(100,)).start()
+#threading.Thread(target=runAvancer, args=(100,)).start()
 #threading.Thread(target=runTourner, args=(100,)).start()
+threading.Thread(target=runTracerCarre, args=(100,)).start()
+
 fenetre.mainloop()

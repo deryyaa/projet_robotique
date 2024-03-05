@@ -17,6 +17,7 @@ class Graphique(Thread):
         robot: L'objet représentant le robot avec les attributs x, y, dir, largeur et longueur.
         """
         self.cnv.delete("rectangle")
+        self.cnv.delete("head")
         robot=self.monde.robot
         cos_robot=math.cos(robot.dir)
         sin_robot=math.sin(robot.dir)
@@ -33,18 +34,12 @@ class Graphique(Thread):
                             self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                             robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
                             self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                            fill="red",tags="rectangle")
+                            fill="red",tags="head")
         
     def dessineObstacle (self):
         """
        Ajout obstacles dans la simulation.
         """
-        self.monde.creation_obstacle(380,200,50,50)
-        self.monde.creation_obstacle(250,1,1,500) # mur du bas 
-        self.monde.creation_obstacle(1,250,500,1) # mur du gauche
-        self.monde.creation_obstacle(250,499,1,500) # mur du haut
-        self.monde.creation_obstacle(500,250,500,1) # mur du droit 
-
         for i in self.monde.obstacles:
             self.cnv.create_rectangle(i.x-i.longueur/2,self.monde.colonne-i.y-i.largeur/2,i.x+i.longueur/2,self.monde.colonne-i.y+i.largeur/2,fill="grey") #affichage des obstacles
 
@@ -67,7 +62,7 @@ class Graphique(Thread):
             y2 = self.monde.colonne - robot.y  # Inversion de l'axe y
 
             # Dessiner un trait avec une largeur de 5 pixels
-            self.cnv.create_line(x1, y1, x2, y2, width=5)
+            self.cnv.create_line(x1, y1, x2, y2, width=2)
 
         # Mettre à jour les coordonnées précédentes du robot
         self.prev_x = robot.x
