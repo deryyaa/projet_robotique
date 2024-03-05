@@ -34,19 +34,19 @@ def update():
     while True:
         monde.update()
         graph.update()
+        graph.dessineTrait()
         time.sleep(1./FPS)
         fenetre.update()
 
 
 def runAvancer(FPS):
     graph.dessineObstacle()
-    strategie=AvancerToutDroit(5,robot)
+    strategie=AvancerToutDroit(50,robot)
     threading.Thread(target=update).start()
     strategie.start()
     while True:
-        #graph.dessineTrait ()
         strategie.step()
-        if(strategie.stop()):
+        if(strategie.stop() or robot.crash):
             break
         time.sleep(1./FPS)
 
@@ -55,11 +55,25 @@ def runTourner(FPS):
     strategie=Tourner(math.pi,robot)
     threading.Thread(target=update).start()
     strategie.start()
-    while not strategie.stop():
-        graph.dessineTrait ()
+    while True:
         strategie.step()
+        if(strategie.stop() or robot.crash):
+            break
         time.sleep(1./FPS)
 
-threading.Thread(target=runAvancer, args=(100,)).start()
+def runTracerCarre(FPS):
+    graph.dessineObstacle()
+    strategie=TracerCarre(20,robot)
+    threading.Thread(target=update).start()
+    strategie.start()
+    while True:
+        strategie.step()
+        if(strategie.stop() or robot.crash):
+            break
+        time.sleep(1./FPS)
+
+#threading.Thread(target=runAvancer, args=(100,)).start()
 #threading.Thread(target=runTourner, args=(100,)).start()
+#threading.Thread(target=runTracerCarre, args=(100,)).start()
+
 fenetre.mainloop()
