@@ -40,12 +40,6 @@ class Graphique(Thread):
         """
        Ajout obstacles dans la simulation.
         """
-        self.monde.creation_obstacle(380,200,50,50)
-        self.monde.creation_obstacle(250,1,1,500) # mur du bas 
-        self.monde.creation_obstacle(1,250,500,1) # mur du gauche
-        self.monde.creation_obstacle(250,499,1,500) # mur du haut
-        self.monde.creation_obstacle(500,250,500,1) # mur du droit 
-
         for i in self.monde.obstacles:
             self.cnv.create_rectangle(i.x-i.longueur/2,self.monde.colonne-i.y-i.largeur/2,i.x+i.longueur/2,self.monde.colonne-i.y+i.largeur/2,fill="grey") #affichage des obstacles
 

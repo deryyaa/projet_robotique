@@ -97,9 +97,7 @@ class TracerCarre:
             self.robot.vg=0
             self.robot.vd=0
             return
-            
-            
-        
+               
     def stop(self):
         return self.traceCote==4
 
