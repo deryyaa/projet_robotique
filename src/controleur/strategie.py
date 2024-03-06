@@ -2,6 +2,7 @@ import time
 import math
 from threading import Thread
 
+
 class AvancerToutDroit():
     def __init__(self, distance,robot,FPS=100):
         self.distance = distance

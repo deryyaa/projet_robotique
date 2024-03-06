@@ -53,6 +53,11 @@ class Robot:
 
     def getPosition(self):
         return (self.x,self.y)
+    
+    def setVitesse(self,vg,vd):
+        self.vg=vg
+        self.vd=vd
+        
 
     def capteur_distance(self,monde):
         distanceP_capteur = 0
