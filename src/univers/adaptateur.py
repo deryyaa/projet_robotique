@@ -1,7 +1,8 @@
-from robot2I013 import Robot2IN013
+from robotFake import Robot2IN013
+import math
 
 class Robot2I013Adaptateur():
-    def __init__(robot):
+    def __init__(self,robot):
         self.robot=robot
         self.x=0
         self.y=0
@@ -29,7 +30,7 @@ class Robot2I013Adaptateur():
         self.vd=vd
         self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
 
-    def getPosition():
+    def getPosition(self):
         return (self.x,self.y)
     
     def getDistanceParcouru(self):
