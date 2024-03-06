@@ -11,7 +11,7 @@ from tkinter import *
 FPS=100
 
 #Création de robot
-robot = Robot(100, 200, 20, 15 , 10)  # Position du robot dans le monde
+robot = Robot(340, 200, 20, 15 , 10)  # Position du robot dans le monde
 
 # Création du monde
 monde = Monde(500, 500, robot)
@@ -30,6 +30,7 @@ def update():
     while True:
         monde.update()
         graph.update()
+        robot.capteur_distance(monde)
         time.sleep(1./FPS)
 
 
