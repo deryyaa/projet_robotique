@@ -1,5 +1,13 @@
 from robot2I013 import Robot2IN013
 
-class Robot2I013Adaptateur(Robot2IN013):
-    def __init__(self,nb_img=10,fps=25,resolution=None,servoPort = "SERVO1",motionPort="AD1"):
-        Robot2IN013.__init__(self,nb_img,fps,resolution,servoPort,motionPort)
+class Robot2I013Adaptateur():
+    def __init__(robot):
+        self.robot=robot
+
+    
+    def setVitesse(self, vg,vd):
+        self.robot.set_motor_dps(self.robot.MOTOR_LETF,vg)
+        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
+
+    def getPosition():
+        return self.robot.get_motor_position()
