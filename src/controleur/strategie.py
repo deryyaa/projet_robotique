@@ -13,8 +13,7 @@ class AvancerToutDroit():
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.vg = 10
-        self.robot.vd = 10
+        self.robot.setVitesse(10,10)
         if self.stop() or self.robot.crash:
             print("stop")
             self.robot.vg=0
@@ -46,14 +45,11 @@ class Tourner:
         Fais une étape de rotation.
         """
         if(self.angle>0):
-            self.robot.vg=-10
-            self.robot.vd=10
+            self.robot.setVitesse(-10,10)
         else:
-            self.robot.vg=10
-            self.robot.vd=-10
+            self.robot.setVitesse(10,-10)
         if self.stop() or self.robot.crash:
-            self.robot.vg=0
-            self.robot.vd=0
+            self.robot.setVitesse(0,0)
         
     def stop(self):
         """
@@ -93,8 +89,7 @@ class TracerCarre:
         self.strat[self.i].step()
         self.tours+=1
         if self.stop():
-            self.robot.vg=0
-            self.robot.vd=0
+            self.robot.setVitesse(0,0)
                
     def stop(self):
         return self.traceCote==4
