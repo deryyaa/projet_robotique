@@ -15,7 +15,7 @@ class Monde(threading.Thread):
             conditionX=x-self.robot.longueur/2 >= (obst.x- obst.longueur/2) and self.robot.longueur/2+x <= (obst.x + obst.longueur/2)
             conditionY=y-self.robot.largeur/2 >= (obst.y-obst.largeur/2) and y+self.robot.largeur/2 <= (obst.y + obst.largeur/2)
             conditionLimiteX = x-self.robot.longueur/2 < 1 or x + self.robot.longueur/2 > self.colonne-1
-            conditionLimiteY = y - self.robot.largeur/2 < 1 or y+ self.robot.largeur/2 > self.ligne-1
+            conditionLimiteY = y - self.robot.largeur/2 < 2 or y+ self.robot.largeur/2 > self.ligne-2
             # Verifie si collision entre point et obstacle
             if ((conditionX and conditionY) or (conditionLimiteX or conditionLimiteY)):
                 return True

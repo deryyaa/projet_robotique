@@ -11,7 +11,7 @@ from tkinter import *
 FPS=100
 
 #Création de robot
-robot = Robot(480, 300, 20, 15 , 10)  # Position du robot dans le monde
+robot = Robot(480, 480, 20, 15 , 10 , math.pi/2)  # Position du robot dans le monde
 
 # Création du monde
 monde = Monde(500, 500, robot)
