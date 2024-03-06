@@ -4,9 +4,10 @@ from threading import Thread
 
 
 class AvancerToutDroit():
-    def __init__(self, distance,robot,FPS=100):
+    def __init__(self, distance,robot, monde, FPS=100):
         self.distance = distance
         self.robot=robot
+        self.monde=monde
         self.FPS=FPS
                     
     def start(self):
@@ -15,12 +16,11 @@ class AvancerToutDroit():
     def step(self):
         self.robot.setVitesse(10,10)
         if self.stop() or self.robot.crash:
-            print("stop")
             self.robot.vg=0
             self.robot.vd=0
 
     def stop(self):
-        return self.robot.distanceParcouru>self.distance
+        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<7))
 
 
 class Tourner:
