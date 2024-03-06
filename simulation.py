@@ -15,14 +15,7 @@ robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
 
 # Création du monde
 monde = Monde(500, 500,robot)
-
-#Création d'obstacle
-monde.creation_obstacle(380,200,50,50)
-monde.creation_obstacle(250,1,1,500) # mur du bas 
-monde.creation_obstacle(1,250,500,1) # mur du gauche
-monde.creation_obstacle(250,499,1,500) # mur du haut
-monde.creation_obstacle(500,250,500,1) # mur du droit 
-
+monde.place_obstacle()
 
 
 #Paramétrage graphique
