@@ -26,10 +26,6 @@ cnv = Canvas(fenetre, width=monde.ligne, height=monde.colonne, bg="ivory")
 cnv.pack()
 graph=Graphique(monde,cnv,fenetre)
 
-
-lock=threading.Lock()
-
-
 def update():
     while True:
         monde.update()
