@@ -1,7 +1,7 @@
 from src.univers.obstacle import Obstacle
-from threading import Thread
+import threading
 
-class Monde(Thread):
+class Monde(threading.Thread):
     def __init__(self, ligne, colonne, robot=None):
         """ constructeur """
         self.ligne = ligne  # initialisation des coordonnées
@@ -11,10 +11,11 @@ class Monde(Thread):
 
     def detecter_collision(self,x,y):
         """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
-        for obst in self.obstacles:
-            # Verifie si collision entre point et obstacle
-            if (x <= obst.x and x <= obst.x + obst.longueur and y <= obst.y and y <= obst.y + obst.largeur): 
-                return True
+        #for obst in self.obstacles:
+        obst=self.obstacles[0]
+        # Verifie si collision entre point et obstacle
+        if (x+self.robot.longueur/2 >= (obst.x- obst.longueur/2) and self.robot.longueur/2+x <= (obst.x + obst.longueur/2) and y+self.robot.largeur/2 >= (obst.y-obst.largeur/2) and y+self.robot.largeur/2 <= (obst.y + obst.largeur/2)):
+            return True
         return False
     
     def creation_obstacle(self,x,y,longeur,largeur):
@@ -22,7 +23,14 @@ class Monde(Thread):
         o1=Obstacle(x,y,longeur,largeur)
         self.obstacles.append(o1)
         
-
+    def place_obstacle(self):
+        """Place les obstacles dans le monde"""
+        self.creation_obstacle(380,200,50,50) #obstacle
+        self.creation_obstacle(250,1,1,500) # mur du bas 
+        self.creation_obstacle(1,250,500,1) # mur du gauche
+        self.creation_obstacle(250,499,1,500) # mur du haut
+        self.creation_obstacle(500,250,500,1) # mur du droit 
+        
     def update(self):
         for obs in self.obstacles:
             if collision_rect(self.robot.getRect(),obs.getRect()):
@@ -30,9 +38,7 @@ class Monde(Thread):
                 self.robot.vg=0
                 self.robot.vd=0
         self.robot.move(0.01)
-        self.robot.capteur_distance(self)
-        print(self.robot.x,self.robot.y)
-        print(self.robot.distanceParcouru)
+        #threading.Thread(target=self.robot.capteur_distance,args=(self,)).start()
     
     
         

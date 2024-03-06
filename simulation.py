@@ -11,17 +11,11 @@ from tkinter import *
 FPS=100
 
 #Création de robot
-robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
+robot = Robot(340, 200, 20, 15 , 10)  # Position du robot dans le monde
 
 # Création du monde
-monde = Monde(500, 500,robot)
-
-#Création d'obstacle
-monde.creation_obstacle(380,200,50,50)
-monde.creation_obstacle(250,1,1,500) # mur du bas 
-monde.creation_obstacle(1,250,500,1) # mur du gauche
-monde.creation_obstacle(250,499,1,500) # mur du haut
-monde.creation_obstacle(500,250,500,1) # mur du droit 
+monde = Monde(500, 500, robot)
+monde.place_obstacle()
 
 
 
@@ -30,56 +24,28 @@ fenetre = Tk()
 fenetre.title("Robot dans le monde")
 cnv = Canvas(fenetre, width=monde.ligne, height=monde.colonne, bg="ivory")
 cnv.pack()
-graph=Graphique(monde,cnv)
-
-
-lock=threading.Lock()
-
+graph=Graphique(monde,cnv,fenetre)
 
 def update():
     while True:
         monde.update()
         graph.update()
-        graph.dessineTrait()
+        robot.capteur_distance(monde)
         time.sleep(1./FPS)
-        fenetre.update()
 
 
-def runAvancer(FPS):
+def run(strat,FPS):
     graph.dessineObstacle()
-    strategie=AvancerToutDroit(50,robot)
     threading.Thread(target=update).start()
-    strategie.start()
+    strat.start()
     while True:
-        strategie.step()
-        if(strategie.stop() or robot.crash):
+        strat.step()
+        if(strat.stop() or robot.crash):
             break
         time.sleep(1./FPS)
 
-def runTourner(FPS):
-    graph.dessineObstacle()
-    strategie=Tourner(math.pi,robot)
-    threading.Thread(target=update).start()
-    strategie.start()
-    while True:
-        strategie.step()
-        if(strategie.stop() or robot.crash):
-            break
-        time.sleep(1./FPS)
-
-def runTracerCarre(FPS):
-    graph.dessineObstacle()
-    strategie=TracerCarre(20,robot)
-    threading.Thread(target=update).start()
-    strategie.start()
-    while True:
-        strategie.step()
-        if(strategie.stop() or robot.crash):
-            break
-        time.sleep(1./FPS)
-
-threading.Thread(target=runAvancer, args=(100,)).start()
-#threading.Thread(target=runTourner, args=(100,)).start()
-#threading.Thread(target=runTracerCarre, args=(100,)).start()
+threading.Thread(target=run, args=(TracerCarre(50,robot),100,)).start()
+#threading.Thread(target=run, args=(AvancerToutDroit(50,robot),100,)).start()
+#threading.Thread(target=run, args=(Tourner(50,robot),100,)).start()
 
 fenetre.mainloop()
