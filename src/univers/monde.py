@@ -1,7 +1,7 @@
 from src.univers.obstacle import Obstacle
-from threading import Thread
+import threading
 
-class Monde(Thread):
+class Monde(threading.Thread):
     def __init__(self, ligne, colonne, robot=None):
         """ constructeur """
         self.ligne = ligne  # initialisation des coordonnées
@@ -13,7 +13,7 @@ class Monde(Thread):
         """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
         for obst in self.obstacles:
             # Verifie si collision entre point et obstacle
-            if (x <= obst.x and x <= obst.x + obst.longueur and y <= obst.y and y <= obst.y + obst.largeur): 
+            if (x >= obst.x and x <= obst.x + obst.longueur and y >= obst.y and y <= obst.y + obst.largeur): 
                 return True
         return False
     
@@ -30,9 +30,7 @@ class Monde(Thread):
                 self.robot.vg=0
                 self.robot.vd=0
         self.robot.move(0.01)
-        self.robot.capteur_distance(self)
-        print(self.robot.x,self.robot.y)
-        print(self.robot.distanceParcouru)
+        threading.Thread(target=self.robot.capteur_distance,args=(self.robot,self,)).start()
     
     
         
