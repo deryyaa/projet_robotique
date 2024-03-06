@@ -7,9 +7,9 @@ import time
 from threading import Thread
 
 class Graphique(Thread):
-    def __init__(self,monde,canvas, FPS=100):
+    def __init__(self,monde,canvas,fenetre):
         self.monde=monde
-        self.FPS=FPS
+        self.fenetre=fenetre
         self.cnv=canvas
     def dessineRobot(self):
         """Dessine un robot sur le canvas avec les coordonnées et la direction spécifiées
@@ -47,6 +47,8 @@ class Graphique(Thread):
     def update(self):
         # Dessin du robot sur le canevas
         self.dessineRobot()
+        self.dessineTrait()
+        self.fenetre.update()
 
     def dessineTrait (self):
         robot=self.monde.robot

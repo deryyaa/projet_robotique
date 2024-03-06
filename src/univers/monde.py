@@ -30,7 +30,7 @@ class Monde(threading.Thread):
                 self.robot.vg=0
                 self.robot.vd=0
         self.robot.move(0.01)
-        threading.Thread(target=self.robot.capteur_distance,args=(self.robot,self,)).start()
+        #threading.Thread(target=self.robot.capteur_distance,args=(self,)).start()
     
     
         
