@@ -22,7 +22,14 @@ class Monde(threading.Thread):
         o1=Obstacle(x,y,longeur,largeur)
         self.obstacles.append(o1)
         
-
+    def place_obstacle(self):
+        """Place les obstacles dans le monde"""
+        self.creation_obstacle(380,200,50,50) #obstacle
+        self.creation_obstacle(250,1,1,500) # mur du bas 
+        self.creation_obstacle(1,250,500,1) # mur du gauche
+        self.creation_obstacle(250,499,1,500) # mur du haut
+        self.creation_obstacle(500,250,500,1) # mur du droit 
+        
     def update(self):
         for obs in self.obstacles:
             if collision_rect(self.robot.getRect(),obs.getRect()):
@@ -30,7 +37,11 @@ class Monde(threading.Thread):
                 self.robot.vg=0
                 self.robot.vd=0
         self.robot.move(0.01)
+<<<<<<< HEAD
         #threading.Thread(target=self.robot.capteur_distance,args=(self,)).start()
+=======
+        self.robot.capteur_distance(self)
+>>>>>>> 967adc9ac71d3e5ae6acfabcb9c453c8f350870f
     
     
         
