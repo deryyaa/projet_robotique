@@ -14,8 +14,15 @@ FPS=100
 robot = Robot(100, 200, 20, 15 , 10)  # Position du robot dans le monde
 
 # Création du monde
-monde = Monde(500, 500,robot)
-monde.place_obstacle()
+monde = Monde(500, 500, robot)
+
+#Création d'obstacle
+monde.creation_obstacle(380,200,50,50)
+monde.creation_obstacle(250,1,1,500) # mur du bas 
+monde.creation_obstacle(1,250,500,1) # mur du gauche
+monde.creation_obstacle(250,499,1,500) # mur du haut
+monde.creation_obstacle(500,250,500,1) # mur du droit 
+
 
 
 #Paramétrage graphique
@@ -24,10 +31,6 @@ fenetre.title("Robot dans le monde")
 cnv = Canvas(fenetre, width=monde.ligne, height=monde.colonne, bg="ivory")
 cnv.pack()
 graph=Graphique(monde,cnv,fenetre)
-
-
-lock=threading.Lock()
-
 
 def update():
     while True:
@@ -47,9 +50,8 @@ def run(strat,FPS):
             break
         time.sleep(1./FPS)
 
-#threading.Thread(target=run, args=(TracerCarre(50,robot),100,)).start()
+threading.Thread(target=run, args=(TracerCarre(50,robot),100,)).start()
 #threading.Thread(target=run, args=(AvancerToutDroit(50,robot),100,)).start()
 #threading.Thread(target=run, args=(Tourner(50,robot),100,)).start()
-
 
 fenetre.mainloop()
