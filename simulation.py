@@ -11,12 +11,11 @@ from tkinter import *
 FPS=100
 
 #Création de robot
-robot = Robot(300, 200, 20, 15 , 10 )  # Position du robot dans le monde
+robot = Robot.creation_robot() 
 
 # Création du monde
-monde = Monde(500, 500, robot)
+monde = Monde.creation_monde(robot)
 monde.place_obstacle()
-
 
 
 #Paramétrage graphique

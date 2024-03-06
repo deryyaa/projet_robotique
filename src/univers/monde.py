@@ -33,6 +33,12 @@ class Monde(threading.Thread):
         self.creation_obstacle(1,250,500,1) # mur du gauche
         self.creation_obstacle(250,499,1,500) # mur du haut
         self.creation_obstacle(500,250,500,1) # mur du droit 
+
+    def creation_monde(r1) :
+        """Creation d'un monde"""
+        monde = Monde(500, 500, r1)
+        return monde
+
         
     def update(self):
         for obs in self.obstacles:

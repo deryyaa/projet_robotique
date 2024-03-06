@@ -73,4 +73,9 @@ class Robot:
             
         print(f"Position actuelle du robot : {[self.x, self.y]}, Distance jusqu'a l'obstacle : {distanceP_capteur}")
         return distanceP_capteur
+    
+    def creation_robot():
+        """ Creation d'un robot"""
+        robot = Robot(300, 200, 20, 15 , 10)
+        return robot
         
