@@ -11,12 +11,15 @@ class Monde(threading.Thread):
 
     def detecter_collision(self,x,y):
         """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
-        #for obst in self.obstacles:
-        obst=self.obstacles[0]
-        # Verifie si collision entre point et obstacle
-        if (x+self.robot.longueur/2 >= (obst.x- obst.longueur/2) and self.robot.longueur/2+x <= (obst.x + obst.longueur/2) and y+self.robot.largeur/2 >= (obst.y-obst.largeur/2) and y+self.robot.largeur/2 <= (obst.y + obst.largeur/2)):
-            return True
-        return False
+        for obst in self.obstacles:
+            conditionX=x-self.robot.longueur/2 >= (obst.x- obst.longueur/2) and self.robot.longueur/2+x <= (obst.x + obst.longueur/2)
+            conditionY=y-self.robot.largeur/2 >= (obst.y-obst.largeur/2) and y+self.robot.largeur/2 <= (obst.y + obst.largeur/2)
+            conditionLimiteX = x-self.robot.longueur/2 < 1 or x + self.robot.longueur/2 > self.colonne-1
+            conditionLimiteY = y - self.robot.largeur/2 < 1 or y+ self.robot.largeur/2 > self.ligne-1
+            # Verifie si collision entre point et obstacle
+            if ((conditionX and conditionY) or (conditionLimiteX or conditionLimiteY)):
+                return True
+            return False
     
     def creation_obstacle(self,x,y,longeur,largeur):
         """rajoute un obstacle a la liste"""
