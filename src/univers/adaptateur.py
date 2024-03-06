@@ -5,6 +5,10 @@ class Robot2I013Adaptateur():
         self.robot=robot
         self.x=0
         self.y=0
+        self.vg=0
+        self.vd=0
+        self.dir=0
+        self.distanceParcouru=0
         
     def move(self,dt):
         x=self.x
@@ -20,10 +24,16 @@ class Robot2I013Adaptateur():
 
         
     def setVitesse(self, vg,vd):
-        self.vg=self.robot.set_motor_dps(self.robot.MOTOR_LETF,vg)
-        self.vd=self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
+        self.vg=vg
+        self.robot.set_motor_dps(self.robot.MOTOR_LETF,vg)
+        self.vd=vd
+        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
 
     def getPosition():
         return (self.x,self.y)
     
     def getDistanceParcouru(self):
+        return self.distanceParcouru
+
+    def capteur_distance(self,monde):
+        return self.robot.get_distance()
