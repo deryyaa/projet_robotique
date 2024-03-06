@@ -19,7 +19,6 @@ class AvancerToutDroit():
             print("stop")
             self.robot.vg=0
             self.robot.vd=0
-            exit
 
     def stop(self):
         return self.robot.distanceParcouru>self.distance
@@ -55,7 +54,6 @@ class Tourner:
         if self.stop() or self.robot.crash:
             self.robot.vg=0
             self.robot.vd=0
-            return
         
     def stop(self):
         """
@@ -97,7 +95,6 @@ class TracerCarre:
         if self.stop():
             self.robot.vg=0
             self.robot.vd=0
-            return
                
     def stop(self):
         return self.traceCote==4
