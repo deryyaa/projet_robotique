@@ -31,7 +31,6 @@ def update():
         monde.update()
         graph.update()
         time.sleep(1./FPS)
-        fenetre.update()
 
 
 def run(strat,FPS):
