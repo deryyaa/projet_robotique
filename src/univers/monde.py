@@ -17,7 +17,7 @@ class Monde(threading.Thread):
             conditionLimiteX = x-self.robot.longueur/2 < 1 or x + self.robot.longueur/2 > self.colonne-1
             conditionLimiteY = y - self.robot.largeur/2 < 2 or y+ self.robot.largeur/2 > self.ligne-2
             # Verifie si collision entre point et obstacle
-            if ((conditionX and conditionY) or (conditionLimiteX or conditionLimiteY)):
+            if (conditionX and conditionY) or (conditionLimiteX or conditionLimiteY):
                 return True
             return False
     
@@ -36,7 +36,7 @@ class Monde(threading.Thread):
         
     def update(self):
         for obs in self.obstacles:
-            if collision_rect(self.robot.getRect(),obs.getRect()):
+            if collision_rect(self.robot.getRect(),obs.getRect()) or (self.robot.capteur_distance(self)<7):
                 self.robot.crash=True
                 self.robot.vg=0
                 self.robot.vd=0

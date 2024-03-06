@@ -65,7 +65,7 @@ class Robot:
         capteur_y = self.y
 
         while not monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
-            distanceP_capteur+= 1
+            distanceP_capteur+= 0.1
             if distanceP_capteur>50:
                 print(f"Position actuelle du robot : {[self.x, self.y]}, Distance jusqu'a l'obstacle : {distanceP_capteur}")
                 return distanceP_capteur  
