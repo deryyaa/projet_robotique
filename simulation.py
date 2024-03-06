@@ -15,9 +15,9 @@ robot = Robot(100, 200, 20, 15 , 10)  # Position du robot dans le monde
 
 # Création du monde
 monde = Monde(500, 500, robot)
-
-#Création d'obstacle
 monde.place_obstacle()
+
+
 
 #Paramétrage graphique
 fenetre = Tk()
