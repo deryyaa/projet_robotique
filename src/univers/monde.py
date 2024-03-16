@@ -33,18 +33,21 @@ class Monde(threading.Thread):
         self.creation_obstacle(1,250,500,1) # mur du gauche
         self.creation_obstacle(250,499,1,500) # mur du haut
         self.creation_obstacle(500,250,500,1) # mur du droit 
+
+    def creation_monde(r1) :
+        """Creation d'un monde"""
+        monde = Monde(500, 500, r1)
+        return monde
+
         
     def update(self):
         for obs in self.obstacles:
-            if collision_rect(self.robot.getRect(),obs.getRect()) or (self.robot.capteur_distance(self)<7):
+            if collision_rect(self.robot.getRect(),obs.getRect()):
                 self.robot.crash=True
                 self.robot.vg=0
                 self.robot.vd=0
+                print("crash")
         self.robot.move(0.01)
-        #threading.Thread(target=self.robot.capteur_distance,args=(self,)).start()
-    
-    
-        
 
 
 def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonnées de mon rectangle (obstacle et robot)

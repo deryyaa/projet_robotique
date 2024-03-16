@@ -11,12 +11,11 @@ from tkinter import *
 FPS=100
 
 #Création de robot
-robot = Robot(300, 460, 20, 15 , 10 , math.pi/2)  # Position du robot dans le monde
+robot = Robot.creation_robot() 
 
 # Création du monde
-monde = Monde(500, 500, robot)
+monde = Monde.creation_monde(robot)
 monde.place_obstacle()
-
 
 
 #Paramétrage graphique
@@ -30,7 +29,6 @@ def update():
     while True:
         monde.update()
         graph.update()
-        robot.capteur_distance(monde)
         time.sleep(1./FPS)
 
 
@@ -45,7 +43,7 @@ def run(strat,FPS):
         time.sleep(1./FPS)
 
 #threading.Thread(target=run, args=(TracerCarre(50,robot),100,)).start()
-threading.Thread(target=run, args=(AvancerToutDroit(50,robot),100,)).start()
+threading.Thread(target=run, args=(AvancerToutDroit(50,robot,monde),100,)).start()
 #threading.Thread(target=run, args=(Tourner(50,robot),100,)).start()
 
 fenetre.mainloop()
