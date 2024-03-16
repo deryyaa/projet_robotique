@@ -3,7 +3,7 @@ import math
 from threading import Thread
 
 
-class AvancerToutDroit():
+class AvancerToutDroit:
     def __init__(self, distance,robot,FPS=100):
         self.distance = distance
         self.robot=robot
@@ -94,3 +94,21 @@ class TracerCarre:
     def stop(self):
         return self.traceCote==4
 
+class ListeStrat:
+
+    def __init__(self,liste):
+        self.liste=[AvancerToutDroit,Tourner,TracerCarre]
+        self.indice=0
+
+    def update(self):
+        self.liste[self.indice].update()
+        if (self.liste[self.indice].stop()):
+            self.indice += 1
+			
+    def stop(self):
+        if self.indice >= len(self.liste):
+            self.indice = 0
+            return True
+        return False
+
+        
