@@ -94,6 +94,7 @@ class TracerCarre:
     def stop(self):
         return self.traceCote==4
 
+
 class ListeStrat:
 
     def __init__(self,liste):
