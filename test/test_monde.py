@@ -33,7 +33,18 @@ class Test_Monde(unittest.TestCase):
     
     def test_detecter_collision(self):
         self.assertFalse(self.monde.detecter_collision(5, 5))
+    
+    def test_place_obstacle(self):
+        self.assertTrue(self.monde.detecter_collision(380, 200))  # Vérifiez l'obstacle à (380, 200)
+        self.assertTrue(self.monde.detecter_collision(250, 1))    # Vérifiez le mur du bas
+        self.assertTrue(self.monde.detecter_collision(1, 250))    # Vérifiez le mur de gauche
+        self.assertTrue(self.monde.detecter_collision(250, 499))  # Vérifiez le mur du haut
+        self.assertTrue(self.monde.detecter_collision(500, 250))  # Vérifiez le mur de droite
         
+    def test_creation_monde(self):
+        self.assertEqual(self.monde.ligne, 20)
+        self.assertEqual(self.monde.colonne, 20)
+        self.assertEqual(self.monde.robot, self.robot)
 
 if __name__ =='__main__':
     unittest.main()
