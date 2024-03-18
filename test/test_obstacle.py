@@ -1,6 +1,8 @@
 import unittest
 from src.univers.obstacle import Obstacle
 
+#python3 -m unittest test/test_monde.py -v
+
 class TestObstacle(unittest.TestCase):
     def setUp(self):
         self.obst = Obstacle(15, 15, 1, 1)
