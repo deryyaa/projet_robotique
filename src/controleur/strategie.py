@@ -16,11 +16,11 @@ class AvancerToutDroit:
     def step(self):
         self.robot.setVitesse(10,10)
         if self.stop() or self.robot.crash:
-            self.robot.setVitesse(0,0)
-            self.distance=0
+            self.robot.vg=0
+            self.robot.vd=0
 
     def stop(self):
-        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<5))
+        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<7))
 
 
 class Tourner:
@@ -78,9 +78,12 @@ class TracerCarre:
             return
 
         self.listeStrat.liste[self.listeStrat.indice].step()
-        
+
+        if isinstance(self.listeStrat.indice, AvancerToutDroit):
+            self.traceCote+=1
+
         if self.listeStrat.liste[self.listeStrat.indice].stop():
-            self.listeStrat.update()
+            self.start()
         
     def stop(self):
         return self.traceCote == 4
