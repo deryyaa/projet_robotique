@@ -15,9 +15,9 @@ class Monde(threading.Thread):
             conditionX=x-self.robot.longueur/2 >= (obst.x- obst.longueur/2) and self.robot.longueur/2+x <= (obst.x + obst.longueur/2)
             conditionY=y-self.robot.largeur/2 >= (obst.y-obst.largeur/2) and y+self.robot.largeur/2 <= (obst.y + obst.largeur/2)
             conditionLimiteX = x-self.robot.longueur/2 < 1 or x + self.robot.longueur/2 > self.colonne-1
-            conditionLimiteY = y - self.robot.largeur/2 < 1 or y+ self.robot.largeur/2 > self.ligne-1
+            conditionLimiteY = y - self.robot.largeur/2 < 2 or y+ self.robot.largeur/2 > self.ligne-2
             # Verifie si collision entre point et obstacle
-            if ((conditionX and conditionY) or (conditionLimiteX or conditionLimiteY)):
+            if (conditionX and conditionY) or (conditionLimiteX or conditionLimiteY):
                 return True
             return False
     
@@ -33,6 +33,12 @@ class Monde(threading.Thread):
         self.creation_obstacle(1,250,500,1) # mur du gauche
         self.creation_obstacle(250,499,1,500) # mur du haut
         self.creation_obstacle(500,250,500,1) # mur du droit 
+
+    def creation_monde(r1) :
+        """Creation d'un monde"""
+        monde = Monde(500, 500, r1)
+        return monde
+
         
     def update(self):
         for obs in self.obstacles:
@@ -40,11 +46,8 @@ class Monde(threading.Thread):
                 self.robot.crash=True
                 self.robot.vg=0
                 self.robot.vd=0
+                print("crash")
         self.robot.move(0.01)
-        #threading.Thread(target=self.robot.capteur_distance,args=(self,)).start()
-    
-    
-        
 
 
 def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonnées de mon rectangle (obstacle et robot)
