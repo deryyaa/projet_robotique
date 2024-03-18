@@ -18,6 +18,18 @@ class Test_Monde(unittest.TestCase):
         rectangle_obstacle = [(10, 20), (30, 40), (30, 40),(30,40)]  
         rectangle_robot = [(10, 20), (30, 40), (30, 40),(30,40)]  
         self.assertTrue(collision_rect(rectangle_obstacle,rectangle_robot))
+
+    def test_creation_obstacle(self):
+        x, y, largeur, longueur = 10, 20, 5, 3
+        self.monde.creation_obstacle(x, y, largeur, longueur)
+        self.assertEqual(len(self.monde.obstacles), 2, "L'obstacle n'a pas été ajouté à la liste")
+
+        # Vérifie si les attributs de l'obstacle sont corrects
+        obstacle_ajoute = self.monde.obstacles[1]
+        self.assertEqual(obstacle_ajoute.x, x, "Coordonnée x incorrecte")
+        self.assertEqual(obstacle_ajoute.y, y, "Coordonnée y incorrecte")
+        self.assertEqual(obstacle_ajoute.longueur, longueur, "Longueur incorrecte")
+        self.assertEqual(obstacle_ajoute.largeur, largeur, "Largeur incorrecte")
     
     def test_detecter_collision(self):
         self.assertFalse(self.monde.detecter_collision(5, 5))
