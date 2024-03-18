@@ -45,4 +45,4 @@ def runTourner(FPS):
         time.sleep(1./FPS)
 
 threading.Thread(target=runAvancer, args=(100,)).start()
-threading.Thread(target=runTourner, args=(100,)).start()
+#threading.Thread(target=runTourner, args=(100,)).start()
