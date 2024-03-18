@@ -16,11 +16,11 @@ class AvancerToutDroit:
     def step(self):
         self.robot.setVitesse(10,10)
         if self.stop() or self.robot.crash:
-            self.robot.vg=0
-            self.robot.vd=0
+            self.robot.setVitesse(0,0)
+            self.distance=0
 
     def stop(self):
-        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<7))
+        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<5))
 
 
 class Tourner:

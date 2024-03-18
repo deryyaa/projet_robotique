@@ -39,11 +39,12 @@ def run(strat,FPS):
     while True:
         strat.step()
         if(strat.stop() or robot.crash):
+            strat.stop()
             break
         time.sleep(1./FPS)
 
 #threading.Thread(target=run, args=(TracerCarre(50,robot),100,)).start()
 threading.Thread(target=run, args=(AvancerToutDroit(50,robot,monde),100,)).start()
-#threading.Thread(target=run, args=(Tourner(50,robot),100,)).start()
+#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),100,)).start()
 
 fenetre.mainloop()
