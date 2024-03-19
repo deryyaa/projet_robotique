@@ -13,7 +13,7 @@ FPS=100
 #Création de robot
 #robot = Robot(300, 200, 20, 15 , 10)  # Position du robot dans le monde
 robotreel=Robot2IN013()
-robot= Robot2I013Adaptateur(robotreel,300,250)
+robot= Robot2I013Adaptateur(robotreel,300,250,20,20)
 
 # Création du monde
 monde = Monde(500, 500,robot)
@@ -25,7 +25,6 @@ def update():
         monde.update()
         time.sleep(1./FPS)
         
-
 
 def runAvancer(FPS):
     strategie=AvancerToutDroit(100,robot,monde)
