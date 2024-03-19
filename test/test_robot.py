@@ -38,8 +38,8 @@ class Test_Robot(unittest.TestCase):
 
     def test_move_getdistance(self):
         self.assertEqual(self.new_robot.distanceParcouru,self.new_robot.getDistanceParcouru())
+        self.new_robot.setVitesse(10,10)
         self.new_robot.move(10)
-        print(self.new_robot.distanceParcouru)
         self.assertEqual(self.new_robot.distanceParcouru,self.new_robot.getDistanceParcouru())
 
 if __name__ =='__main__':
