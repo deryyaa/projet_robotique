@@ -43,7 +43,7 @@ class Robot:
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
         self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
-        print(self.distanceParcouru)
+        #print(self.distanceParcouru)
     
     def getDistanceParcouru(self):
         return self.distanceParcouru

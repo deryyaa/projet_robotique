@@ -61,55 +61,40 @@ class Tourner:
             return self.robot.dir>self.angleArrive
 
 class TracerCarre:
-    def __init__(self,cote, robot, FPS = 100):
+    def __init__(self, cote, robot, monde, FPS=100):
         self.robot = robot
         self.cote = cote
-        self.FPS=FPS
+        self.FPS = FPS
+        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot)])
+        self.traceCote = 0
 
     def start(self):
-        self.traceCote = 0
-        self.avancer=AvancerToutDroit(self.cote,self.robot)
-        self.tourner=Tourner(math.pi/2,self.robot)
-        self.strat=[self.avancer,self.tourner]
-        self.strat[0].start()
-        self.i=0
-        self.tours=0
+        self.listeStrat.update()
         
     def step(self):
-        if self.strat[self.i].stop():
-            if self.i==1:
-                self.i=0
-                self.tours=0
-            else:
-                self.i=1
-                self.tours=0
-                self.traceCote+=1
-        if self.tours==0:
-            self.strat[self.i].start()
-        self.strat[self.i].step()
-        self.tours+=1
+        if self.listeStrat.tours==0:
+            self.listeStrat.liste[self.listeStrat.indice].start()
+        self.listeStrat.liste[self.listeStrat.indice].step()
+        self.listeStrat.update()
+        
         if self.stop():
             self.robot.setVitesse(0,0)
-               
+            return
+        
     def stop(self):
-        return self.traceCote==4
+        return self.listeStrat.indice>=len(self.listeStrat.liste)
 
 
 class ListeStrat:
 
-    def __init__(self,liste):
-        self.liste=[AvancerToutDroit,Tourner,TracerCarre]
-        self.indice=0
+    def __init__(self, liste):
+        self.liste = liste
+        self.indice = 0
+        self.tours = 0
 
     def update(self):
-        self.liste[self.indice].update()
-        if (self.liste[self.indice].stop()):
+        self.liste[self.indice].step()
+        self.tours+=1
+        if self.liste[self.indice].stop():
+            self.tours=0
             self.indice += 1
-			
-    def stop(self):
-        if self.indice >= len(self.liste):
-            self.indice = 0
-            return True
-        return False
-
-        

@@ -1,13 +1,13 @@
-from robotFake import Robot2IN013
+from .robotReel import Robot2IN013
 import math
 
 class Robot2I013Adaptateur():
-    def __init__(self,robot):
+    def __init__(self,robot,x,y):
         self.robot=robot
-        self.x=0
-        self.y=0
-        self.vg=0
-        self.vd=0
+        self.x=x
+        self.y=y
+        self.vg=1
+        self.vd=1
         self.dir=0
         self.distanceParcouru=0
         
