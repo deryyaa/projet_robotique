@@ -15,6 +15,7 @@ class Robot2I013Adaptateur():
         self.largeur = largeur 
         self.longueur = longueur 
         self.crash=False
+        self.taille_roue = 8
         
     def move(self,dt):
         x=self.x

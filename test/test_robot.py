@@ -19,27 +19,28 @@ class Test_Robot(unittest.TestCase):
     def setUp(self):
         self.new_robot= Robot.creation_robot()
         self.new_monde=Monde(500,500,self.new_robot)
-        self.obstacle = self.new_monde.creation_obstacle(380,200,50,50)
+        self.obstacle = Obstacle(380,200,50,50)
 
-    def test(self):
-        """ test unitaire de getposition(), move(), getDistanceParcouru(), getRect(), setVitesse() """
-        print("position initiale: ", self.new_robot.getPosition())
-        print("position du corps du robot:", self.new_robot.getRect())
-        
-        self.new_robot.move(1)
-        
-        print("position apres le mouvement:", self.new_robot.getPosition()," distance parcouru: ",self.new_robot.getDistanceParcouru())
-        print("position du corps du robot:", self.new_robot.getRect())
+    def test_getposition(self):
+        pos = (self.new_robot.x, self.new_robot.y)
+        self.assertEqual(self.new_robot.getPosition(), pos)
+    
+    def test_getRect(self):
+        corps = [[self.new_robot.x-self.new_robot.longueur/2 ,self.new_robot.y-self.new_robot.largeur/2], [self.new_robot.x+self.new_robot.longueur/2 ,self.new_robot.y-self.new_robot.largeur/2], [self.new_robot.x+self.new_robot.longueur/2 ,self.new_robot.y+self.new_robot.largeur/2], [ self.new_robot.x-self.new_robot.longueur/2 ,self.new_robot.y+self.new_robot.largeur/2]]
+        self.assertEqual(self.new_robot.getRect(),corps)
 
     def test_setvitesse(self):
-        print("test_setvitesse")
-        print("vitesse initiale:", self.new_robot.vd, self.new_robot.vg)
-        self.new_robot.setVitesse(10,10)
-        print("vitesse apres setvitesse:", self.new_robot.vd, self.new_robot.vg)
-    
+        vitesse = self.new_robot.setVitesse(10,10)
+        self.assertEqual( (10,10), (self.new_robot.vd, self.new_robot.vg))
+
     def test_capteur_distance(self):
-        print("test_capteur_distance")
-        self.new_robot.capteur_distance(self.new_monde)
+        self.assertEqual(self.new_robot.capteur_distance(self.new_monde),51)
+
+    def test_move_getdistance(self):
+        self.assertEqual(self.new_robot.distanceParcouru,self.new_robot.getDistanceParcouru())
+        self.new_robot.setVitesse(10,10)
+        self.new_robot.move(10)
+        self.assertEqual(self.new_robot.distanceParcouru,self.new_robot.getDistanceParcouru())
 
 if __name__ =='__main__':
     unittest.main()
