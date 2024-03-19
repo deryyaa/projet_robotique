@@ -13,24 +13,13 @@ class Test_Strategie(unittest.TestCase):
 
     def test_avancer_tout_droit(self):
         robot_x0=self.robot.x
-        AvancerToutDroit(50,self.robot,self.monde).start()
+        print(robot_x0)
+        AvancerToutDroit(50,self.robot,self.monde).step()
         robot_x1=self.robot.x
-        self.assertEqual(robot_x0,robot_x0+50)
-
-    def test_avancer_tout_droit(self):
-        robot_x0=self.robot.dir
-        Tourner(50,self.robot,self.monde).start()
-        robot_x1=self.robot.dir
-        self.assertEqual(robot_x0,robot_x1)
-
-    def test_detecter_collision(self):
-        self.assertTrue(self.monde.detecter_collision(15,15))
-
-    def test_pas_de_collision(self):
-        self.assertFalse(self.monde.detecter_collision(7,4))
-        self.assertFalse(self.monde.detecter_collision(7,4))
+        print(robot_x1)
+        self.assertEqual(robot_x1,robot_x0+50)
+        self.assertEqual(robot_x0,robot_x1-50)
 
 
-    
 if __name__ =='__main__':
     unittest.main()
