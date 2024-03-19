@@ -31,8 +31,8 @@ class Robot2I013Adaptateur():
         
     def setVitesse(self, vg,vd):
         self.vg=vg
-        self.robot.set_motor_dps(self.robot.MOTOR_LETF,vg)
         self.vd=vd
+        self.robot.set_motor_dps(self.robot.MOTOR_LETF,vg)
         self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
 
     def getPosition(self):
