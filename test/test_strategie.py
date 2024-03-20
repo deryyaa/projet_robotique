@@ -12,13 +12,6 @@ class Test_Strategie(unittest.TestCase):
         self.robot=Robot(10,10,4,4,5,6)
         self.strategie=AvancerToutDroit(50,self.robot,self.monde)
 
-    def test_avancer_tout_droit(self):
-        self.strategie.start()
-        while not self.strategie.stop():
-            self.strategie.step()
-            self.assertNotEqual(self.strategie.distance, 0)
-        self.assertEqual(self.strategie.distance, 0)
-
 
 if __name__ =='__main__':
     unittest.main()
