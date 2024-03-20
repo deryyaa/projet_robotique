@@ -1,0 +1,17 @@
+pour le 20/03/24
+
+  - rendre le capteur de distance utilisable 
+  - les fonctions de creation ne doivent pas etre dans le main.
+  - plusieurs "run" inutile, a enlever  
+  - un seul update pour la partie graphique
+  - param fps dans graphique : à modifier ou supprimer
+  - detecter collision : capteur qui saute l’obstacle car court :prendre en compte le fait de sortir de l’arene
+  - strategies : avoir une classe liste de strategies
+  - avancertoutdroit : c'est le monde qui crash le robot pas au controleur 
+  - dans step : exit à supprimer 
+  - eviter les else, les return en fin de fonction vide 
+  - avancer sur adaptateur : faire un fichier qui servira de traducteur entre le robot simulé et le robot reel 
+  - modifier le fichier robot reel fournie de sorte a ce qu'il soit utilisable : mettre des print ou des pass
+
+FUTURAMA TEAM 7
+
