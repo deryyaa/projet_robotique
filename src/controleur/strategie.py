@@ -4,10 +4,10 @@ from threading import Thread
 
 
 class AvancerToutDroit:
-    def __init__(self, distance,robot, monde, FPS=100):
+    def __init__(self, distance,robot, FPS=100):
         self.distance = distance
         self.robot=robot
-        self.monde=monde
+        self.monde=robot.monde
         self.FPS=FPS
                     
     def start(self):
@@ -20,7 +20,7 @@ class AvancerToutDroit:
             self.distance=0
 
     def stop(self):
-        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<5))
+        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<40))
 
 
 class Tourner:
@@ -61,11 +61,11 @@ class Tourner:
             return self.robot.dir>self.angleArrive
 
 class TracerCarre:
-    def __init__(self, cote, robot, monde, FPS=100):
+    def __init__(self, cote, robot, FPS=100):
         self.robot = robot
         self.cote = cote
         self.FPS = FPS
-        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot)])
+        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot)])
         self.traceCote = 0
 
     def start(self):
@@ -82,7 +82,7 @@ class TracerCarre:
             return
         
     def stop(self):
-        return self.listeStrat.indice>=len(self.listeStrat.liste)
+        return self.listeStrat.stop()
 
 
 class ListeStrat:
@@ -98,3 +98,6 @@ class ListeStrat:
         if self.liste[self.indice].stop():
             self.tours=0
             self.indice += 1
+    
+    def stop(self):
+        return self.indice>=len(self.liste)
