@@ -35,12 +35,13 @@ class Monde(threading.Thread):
         self.creation_obstacle(500,250,500,1) # mur du droit 
 
     def creation_monde(r1) :
-        """Creation d'un monde"""
+        """Creation d'un monde par défaut"""
         monde = Monde(500, 500, r1)
         return monde
 
         
     def update(self):
+        """Update l'environnement"""
         for obs in self.obstacles:
             if collision_rect(self.robot.getRect(),obs.getRect()):
                 self.robot.crash=True

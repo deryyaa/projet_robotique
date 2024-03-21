@@ -4,10 +4,10 @@ from threading import Thread
 
 
 class AvancerToutDroit:
-    def __init__(self, distance,robot, monde, FPS=100):
+    def __init__(self, distance,robot, FPS=100):
         self.distance = distance
         self.robot=robot
-        self.monde=monde
+        self.monde=robot.monde
         self.FPS=FPS
                     
     def start(self):
@@ -16,11 +16,11 @@ class AvancerToutDroit:
     def step(self):
         self.robot.setVitesse(10,10)
         if self.stop() or self.robot.crash:
-            self.robot.vg=0
-            self.robot.vd=0
+            self.robot.setVitesse(0,0)
+            self.distance=0
 
     def stop(self):
-        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<7))
+        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<40))
 
 
 class Tourner:
@@ -61,32 +61,28 @@ class Tourner:
             return self.robot.dir>self.angleArrive
 
 class TracerCarre:
-    def __init__(self, cote, robot, monde, FPS=100):
+    def __init__(self, cote, robot, FPS=100):
         self.robot = robot
         self.cote = cote
         self.FPS = FPS
-        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot, monde), Tourner(math.pi/2, robot)])
+        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot)])
         self.traceCote = 0
 
     def start(self):
         self.listeStrat.update()
         
     def step(self):
-
+        if self.listeStrat.tours==0:
+            self.listeStrat.liste[self.listeStrat.indice].start()
+        self.listeStrat.liste[self.listeStrat.indice].step()
+        self.listeStrat.update()
+        
         if self.stop():
             self.robot.setVitesse(0,0)
             return
-
-        self.listeStrat.liste[self.listeStrat.indice].step()
-
-        if isinstance(self.listeStrat.indice, AvancerToutDroit):
-            self.traceCote+=1
-
-        if self.listeStrat.liste[self.listeStrat.indice].stop():
-            self.start()
         
     def stop(self):
-        return self.traceCote == 4
+        return self.listeStrat.stop()
 
 
 class ListeStrat:
@@ -94,14 +90,14 @@ class ListeStrat:
     def __init__(self, liste):
         self.liste = liste
         self.indice = 0
+        self.tours = 0
 
     def update(self):
         self.liste[self.indice].step()
+        self.tours+=1
         if self.liste[self.indice].stop():
+            self.tours=0
             self.indice += 1
-			
+    
     def stop(self):
-        if self.indice >= len(self.liste):
-            self.indice = 0
-            return True
-        return False
+        return self.indice>=len(self.liste)

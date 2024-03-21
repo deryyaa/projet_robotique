@@ -5,7 +5,7 @@ import time
 from src.univers.monde import Monde
 
 class Robot:
-    def __init__(self, x, y, longueur, largeur, vitesse_max,dir=0):
+    def __init__(self, x, y, longueur, largeur, vitesse_max, monde=None, dir=0):
         """Initialise un objet Robot avec les paramètres spécifiés
         x (float): La coordonnée x initiale du robot
         y (float): La coordonnée y initiale du robot
@@ -14,6 +14,7 @@ class Robot:
         vitesse_max (float): La vitesse maximale du robot
         dir (float, facultatif): La direction initiale du robot en degrés. Par défaut, 0 degré
         """
+        self.monde=monde
         self.distanceParcouru=0
         self.d=largeur # distance entre les 2 roue
         self.crash=False
@@ -44,7 +45,7 @@ class Robot:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
         self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
         #print(self.distanceParcouru)
-        
+    
     def getDistanceParcouru(self):
         return self.distanceParcouru
         
@@ -96,6 +97,6 @@ class Robot:
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(300, 200, 20, 15 , 10)
+        robot = Robot(320, 190, 20, 15 , 10)
         return robot
         

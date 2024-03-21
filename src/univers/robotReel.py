@@ -19,7 +19,7 @@ class Robot2IN013:
     WHEEL_BASE_CIRCUMFERENCE = WHEEL_BASE_WIDTH * math.pi # perimetre du cercle de rotation (mm)
     WHEEL_CIRCUMFERENCE      = WHEEL_DIAMETER   * math.pi # perimetre de la roue (mm)
     
-    def __init__(self,nb_img=10,fps=25,resolution=None,servoPort = "SERVO1",motionPort="AD1"):
+    def __init__(self):
         """ 
             Initialise le robot
             :resolution: resolution de la camera
@@ -29,7 +29,6 @@ class Robot2IN013:
   
 
     def stop(self):
-        """ Arrete le robot """
         print("Arrete le robot")
 
     def get_image(self):
@@ -39,12 +38,6 @@ class Robot2IN013:
         pass
   
     def set_motor_dps(self, port, dps):
-        """
-        Fixe la vitesse d'un moteur en nombre de degres par seconde
-
-        :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
-        :dps: la vitesse cible en nombre de degres par seconde
-        """
         print("Fixe la vitesse d'un motor")
 
     def setVitesse(self, vg,vd):
@@ -52,41 +45,18 @@ class Robot2IN013:
 
 
     def get_motor_position(self):
-        """
-        Lit les etats des moteurs en degre.
-        :return: couple du  degre de rotation des moteurs
-        """
         print("lecture etats des moteurs en degre")
     
     def getPosition():
         pass 
    
     def offset_motor_encoder(self, port, offset):
-        """
-        Fixe l'offset des moteurs (en degres) (permet par exemple de reinitialiser a 0 l'etat 
-        du moteur gauche avec offset_motor_encode(self.MOTOR_LEFT,self.read_encoders()[0])
-        
-        :port: un des deux moteurs MOTOR_LEFT ou MOTOR_RIGHT (ou les deux avec +)
-        :offset: l'offset de decalage en degre.
-
-        Zero the encoder by offsetting it by the current position
-        """
         print("Fixe l'offset des moteurs ")
 
     def get_distance(self):
-        """
-        Lit le capteur de distance (en mm).
-        :returns: entier distance en millimetre.
-            1. L'intervalle est de **5-8,000** millimeters.
-            2. Lorsque la valeur est en dehors de l'intervalle, le retour est **8190**.
-        """
         print("retourne distance")
 
     def servo_rotate(self,position):
-        """
-        Tourne le servo a l'angle en parametre.
-        :param int position: Angle de rotation, de **0** a **180** degres, 90 pour le milieu.
-        """
         print("Tourne le servo a l'angle en para")
 
     def start_recording(self):
@@ -99,13 +69,4 @@ class Robot2IN013:
         pass
 
     def __getattr__(self,attr):
-        """ Méthodes héritées de GPG : 
-        * set_led(self, led, red = 0, green = 0, blue = 0) 
-            Allume une led.
-            
-            :led: une des constantes LEDs (ou plusieurs combines avec +) : LED_LEFT_EYE, LED_RIGHT_EYE, LED_LEFT_BLINKER, LED_RIGHT_BLINKER, LED_WIFI.
-            :red: composante rouge (0-255)
-            :green:  composante verte (0-255)
-            :blue: composante bleu (0-255)
-        """
         pass

@@ -15,6 +15,7 @@ robot = Robot.creation_robot()
 
 # Création du monde
 monde = Monde.creation_monde(robot)
+robot.monde=monde
 monde.place_obstacle()
 
 
@@ -32,7 +33,7 @@ def update():
         time.sleep(1./FPS)
 
 
-def run(strat,FPS):
+def run(strat):
     graph.dessineObstacle()
     threading.Thread(target=update).start()
     strat.start()
@@ -43,8 +44,8 @@ def run(strat,FPS):
             break
         time.sleep(1./FPS)
 
-threading.Thread(target=run, args=(TracerCarre(20,robot,monde),100,)).start()
-#threading.Thread(target=run, args=(AvancerToutDroit(50,robot,monde),100,)).start()
-#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),100,)).start()
+#threading.Thread(target=run, args=(TracerCarre(20,robot),)).start()
+threading.Thread(target=run, args=(AvancerToutDroit(30,robot),)).start()
+#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),)).start()
 
 fenetre.mainloop()
