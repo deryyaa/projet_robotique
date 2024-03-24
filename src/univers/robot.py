@@ -50,26 +50,7 @@ class Robot:
         return self.distanceParcouru
         
     def getRect(self):
-        coin1 = [self.x - self.longueur / 2, self.y - self.largeur / 2]
-        coin2 = [self.x + self.longueur / 2, self.y - self.largeur / 2]
-        coin3 = [self.x + self.longueur / 2, self.y + self.largeur / 2]
-        coin4 = [self.x - self.longueur / 2, self.y + self.largeur / 2]
-
-        # Ajout de l'angle du robot (en degrés)
-        angle_degrees = self.dir  
-        angle_radians = math.radians(angle_degrees)
-
-        # Rotation des coins du rectangle autour du centre (self.x, self.y)
-        rotation_coin1 = [self.x + (coin1[0] - self.x) * math.cos(angle_radians) - (coin1[1] - self.y) * math.sin(angle_radians),
-            self.y + (coin1[0] - self.x) * math.sin(angle_radians) + (coin1[1] - self.y) * math.cos(angle_radians)]
-        rotation_coin2 = [self.x + (coin2[0] - self.x) * math.cos(angle_radians) - (coin2[1] - self.y) * math.sin(angle_radians),
-            self.y + (coin2[0] - self.x) * math.sin(angle_radians) + (coin2[1] - self.y) * math.cos(angle_radians)]
-        rotation_coin3 = [self.x + (coin3[0] - self.x) * math.cos(angle_radians) - (coin3[1] - self.y) * math.sin(angle_radians),
-            self.y + (coin3[0] - self.x) * math.sin(angle_radians) + (coin3[1] - self.y) * math.cos(angle_radians)]
-        rotation_coin4 = [self.x + (coin4[0] - self.x) * math.cos(angle_radians) - (coin4[1] - self.y) * math.sin(angle_radians),
-            self.y + (coin4[0] - self.x) * math.sin(angle_radians) + (coin4[1] - self.y) * math.cos(angle_radians)]
-
-        return [rotation_coin1, rotation_coin2, rotation_coin3, rotation_coin4]
+         return [[self.x-self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y+self.longeur/2], [ self.x-self.largeur/2 ,self.y+self.longeur/2]]
 
 
     def getPosition(self):
