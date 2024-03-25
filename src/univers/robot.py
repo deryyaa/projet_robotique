@@ -52,7 +52,6 @@ class Robot:
     def getRect(self):
          return [[self.x-self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y-self.longeur/2], [self.x+self.largeur/2 ,self.y+self.longeur/2], [ self.x-self.largeur/2 ,self.y+self.longeur/2]]
 
-
     def getPosition(self):
         return (self.x,self.y)
     
