@@ -8,7 +8,7 @@ import time
 import threading
 from tkinter import *
 
-FPS=100
+FPS=120
 
 #Création de robot
 robot = Robot.creation_robot() 
@@ -45,7 +45,7 @@ def run(strat):
         time.sleep(1./FPS)
 
 #threading.Thread(target=run, args=(TracerCarre(20,robot),)).start()
-threading.Thread(target=run, args=(AvancerToutDroit(30,robot),)).start()
+threading.Thread(target=run, args=(AvancerToutDroit(3000,robot),)).start()
 #threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),)).start()
 
 fenetre.mainloop()
