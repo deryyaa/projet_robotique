@@ -96,6 +96,6 @@ class Robot:
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(320, 190, 20, 15 , 10)
+        robot = Robot(300, 190, 20, 15 , 40,None)
         return robot
         

@@ -24,17 +24,23 @@ class Graphique(Thread):
         sin_robot = math.sin(robot.dir)
         
         # Coordonnées des deux points opposés du rectangle
-        x1 = robot.x - robot.largeur / 2 * sin_robot - robot.longueur / 2 * cos_robot
-        y1 = self.monde.colonne - robot.y - robot.largeur / 2 * cos_robot + robot.longueur / 2 * sin_robot
-        x2 = robot.x + robot.largeur / 2 * sin_robot + robot.longueur / 2 * cos_robot
-        y2 = self.monde.colonne - robot.y + robot.largeur / 2 * cos_robot - robot.longueur / 2 * sin_robot
         
-        self.cnv.create_rectangle(x1, y1, x2, y2, fill="blue", tags="rectangle")
-        self.cnv.create_line(robot.x-robot.largeur/2*sin_robot + robot.longueur/2 *cos_robot,
-                             self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                             robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                             self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                             fill="red", tags="head")
+        cos_robot=math.cos(robot.dir)
+        sin_robot=math.sin(robot.dir)
+        self.cnv.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                            robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
+                            robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            fill="blue",tags="rectangle")
+        self.cnv.create_line(robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
+                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
+                            fill="red",tags="head")
         
     def dessineObstacle(self):
         """Ajoute les obstacles dans la simulation."""
@@ -46,7 +52,7 @@ class Graphique(Thread):
     def update(self):
         """Met à jour l'affichage."""
         self.dessineRobot()
-        self.dessineTrait()
+        #self.dessineTrait()
         self.dessineObstacle()
         self.fenetre.update()
 
