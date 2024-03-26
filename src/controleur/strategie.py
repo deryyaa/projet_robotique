@@ -4,11 +4,10 @@ from threading import Thread
 
 
 class AvancerToutDroit:
-    def __init__(self, distance,robot, FPS=100):
+    def __init__(self, distance,robot):
         self.distance = distance
         self.robot=robot
         self.monde=robot.monde
-        self.FPS=FPS
                     
     def start(self):
         self.robot.distanceParcouru=0
@@ -24,7 +23,7 @@ class AvancerToutDroit:
 
 
 class Tourner:
-    def __init__(self, angle, robot, FPS = 100):
+    def __init__(self, angle, robot):
         """
         Fait tourner le robot sur lui même avec un angle.
         angle: angle de rotation (en radians).
@@ -34,7 +33,6 @@ class Tourner:
         # Initialisation des attributs avec les valeurs fournies
         self.robot=robot
         self.angle = angle
-        self.FPS=FPS
         
     def start(self):
         """Commence la rotation du robot en tournant avec un angle"""
@@ -61,22 +59,16 @@ class Tourner:
             return self.robot.dir>self.angleArrive
 
 class TracerCarre:
-    def __init__(self, cote, robot, FPS=100):
+    def __init__(self, cote, robot):
         self.robot = robot
         self.cote = cote
-        self.FPS = FPS
-        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot, robot.monde), Tourner(math.pi/2, robot)])
-        self.traceCote = 0
+        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot)])
 
     def start(self):
         self.listeStrat.update()
         
     def step(self):
-        if self.listeStrat.tours==0:
-            self.listeStrat.liste[self.listeStrat.indice].start()
-        self.listeStrat.liste[self.listeStrat.indice].step()
         self.listeStrat.update()
-        
         if self.stop():
             self.robot.setVitesse(0,0)
             return
@@ -93,6 +85,8 @@ class ListeStrat:
         self.tours = 0
 
     def update(self):
+        if self.tours==0:
+            self.liste[self.indice].start()
         self.liste[self.indice].step()
         self.tours+=1
         if self.liste[self.indice].stop():
