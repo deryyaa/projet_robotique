@@ -13,7 +13,7 @@ class AvancerToutDroit:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(10,10)
+        self.robot.setVitesse(30,30)
         if self.stop() or self.robot.crash:
             self.robot.setVitesse(0,0)
             self.distance=0
@@ -30,7 +30,7 @@ class Avancer:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(10,10)
+        self.robot.setVitesse(30,30)
         if self.stop() or self.robot.crash:
             self.robot.setVitesse(0,0)
             self.distance=0
@@ -59,9 +59,9 @@ class Tourner:
         Fais une étape de rotation.
         """
         if(self.angle>0):
-            self.robot.setVitesse(-10,10)
+            self.robot.setVitesse(-30,30)
         else:
-            self.robot.setVitesse(10,-10)
+            self.robot.setVitesse(30,-30)
         if self.stop() or self.robot.crash:
             self.robot.setVitesse(0,0)
         
