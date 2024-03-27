@@ -14,7 +14,7 @@ class AvancerToutDroit:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(60,60)
+        self.robot.setVitesse(20,20)
 
     def stop(self):
         return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<20))
