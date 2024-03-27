@@ -14,10 +14,10 @@ class AvancerToutDroit:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(10,10)
+        self.robot.setVitesse(60,60)
 
     def stop(self):
-        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<50))
+        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<20))
 
 class Avancer:
     def __init__(self,robot):
@@ -28,10 +28,7 @@ class Avancer:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(40,40)
-        if self.stop() or self.robot.crash:
-            self.robot.setVitesse(0,0)
-            self.distance=0
+        self.robot.setVitesse(10,10)
 
     def stop(self):
         return self.robot.capteur_distance(self.monde)<40
@@ -60,8 +57,6 @@ class Tourner:
             self.robot.setVitesse(-40,40)
         else:
             self.robot.setVitesse(40,-40)
-        if self.stop() or self.robot.crash:
-            self.robot.setVitesse(0,0)
         
     def stop(self):
         """
@@ -83,9 +78,6 @@ class TracerCarre:
         
     def step(self):
         self.listeStrat.update()
-        if self.stop():
-            self.robot.setVitesse(0,0)
-            return
         
     def stop(self):
         return self.listeStrat.stop()

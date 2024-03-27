@@ -82,20 +82,18 @@ class Robot:
         distanceP_capteur = 0
         capteur_x = self.x
         capteur_y = self.y
-
         while not monde.detecter_collision(capteur_x,capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
             distanceP_capteur+= 1
-            if distanceP_capteur>300:
+            if distanceP_capteur>150:
                 return distanceP_capteur
             capteur_x += ((self.vg*0.01+self.vd*0.01)/2.0) * math.cos(self.dir)
             capteur_y += ((self.vg*0.01+self.vd*0.01)/2.0) * math.sin(self.dir)
-            
-        print(f"Position actuelle du robot : {[self.x, self.y]}, Distance jusqu'a l'obstacle : {distanceP_capteur}")
+        
         return distanceP_capteur
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(320, 190, 20, 15 , 40, None, math.pi/4)
+        robot = Robot(320, 210, 20, 15 , 40, None)
         return robot
     def rect(self,x,y):
         coin1 = [x - self.longueur / 2, y - self.largeur / 2]

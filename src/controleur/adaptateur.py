@@ -28,7 +28,7 @@ class Robot2I013Adaptateur():
         dt = current_time - self.last_time  # Calcule la différence de temps
         self.last_time = current_time  # Met à jour le temps de la dernière mise à jour
 
-        print(self.robot.get_motor_position(),type(self.robot.get_motor_position()))
+        #print(self.robot.get_motor_position(),type(self.robot.get_motor_position()))
         rg,rd=self.robot.get_motor_position()
         old_x=self.x
         old_y=self.y #vitess roue droite et droite
@@ -59,19 +59,4 @@ class Robot2I013Adaptateur():
         return self.distanceParcouru
     
     def capteur_distance(self,monde):
-        distanceP_capteur = 0
-        capteur_x = self.x+self.longueur
-        capteur_y = self.y+self.largeur
-        rg,rd=self.robot.get_motor_position()
-        vg=rg*self.robot.WHEEL_DIAMETER/2
-        vd=rd*self.robot.WHEEL_DIAMETER/2
-
-        while not monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
-            distanceP_capteur+= 1
-            if distanceP_capteur>50:
-                return distanceP_capteur
-            capteur_x += ((vg*0.01+vd*0.01)/2.0) * math.cos(self.dir)
-            capteur_y += ((vg*0.01+vd*0.01)/2.0) * math.sin(self.dir)
-            
-        print(f"Position actuelle du robot : {[self.x, self.y]}, Distance jusqu'a l'obstacle : {distanceP_capteur}")
-        return distanceP_capteur    
+        return self.robot.get_distance()

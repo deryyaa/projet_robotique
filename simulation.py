@@ -8,7 +8,7 @@ import time
 import threading
 from tkinter import *
 
-FPS=120
+FPS=100
 
 #Création de robot
 robot = Robot.creation_robot() 
@@ -25,6 +25,7 @@ fenetre.title("Robot dans le monde")
 cnv = Canvas(fenetre, width=monde.ligne, height=monde.colonne, bg="ivory")
 cnv.pack()
 graph=Graphique(monde,cnv,fenetre)
+graph.dessineObstacle()
 
 def update():
     while True:
@@ -34,13 +35,12 @@ def update():
 
 
 def run(strat):
-    graph.dessineObstacle()
     threading.Thread(target=update).start()
     strat.start()
     while True:
         strat.step()
         if(strat.stop() or robot.crash):
-            strat.stop()
+            print(robot.capteur_distance(monde))
             robot.setVitesse(0,0)
             break
         time.sleep(1./FPS)

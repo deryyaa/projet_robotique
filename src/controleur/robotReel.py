@@ -46,6 +46,7 @@ class Robot2IN013:
 
     def get_motor_position(self):
         print("lecture etats des moteurs en degre")
+        return 0,0
     
     def getPosition():
         pass 
