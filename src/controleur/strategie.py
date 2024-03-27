@@ -18,7 +18,7 @@ class AvancerToutDroit:
         if self.stop() or self.robot.crash:
             self.robot.setVitesse(0,0)
             self.distance=0
-        self.robot.move(0)
+        #self.robot.move(0)
 
     def stop(self):
         return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<40))
