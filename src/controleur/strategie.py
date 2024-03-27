@@ -3,6 +3,7 @@ import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
 
+VITESSE = 40
 
 class AvancerToutDroit:
     def __init__(self, distance,robot):
@@ -14,7 +15,7 @@ class AvancerToutDroit:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(20,20)
+        self.robot.setVitesse(VITESSE,VITESSE)
 
     def stop(self):
         return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance(self.monde)<20))
@@ -28,7 +29,7 @@ class Avancer:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(10,10)
+        self.robot.setVitesse(VITESSE,VITESSE)
 
     def stop(self):
         return self.robot.capteur_distance(self.monde)<40
@@ -54,9 +55,9 @@ class Tourner:
         Fais une étape de rotation.
         """
         if(self.angle>0):
-            self.robot.setVitesse(-40,40)
+            self.robot.setVitesse(-VITESSE,VITESSE)
         else:
-            self.robot.setVitesse(40,-40)
+            self.robot.setVitesse(VITESSE,-VITESSE)
         
     def stop(self):
         """
