@@ -35,8 +35,8 @@ class Graphique(Thread):
         robot = self.monde.robot
         points = self.calculeRobotPosition(robot)
 
-        self.rectangle = self.cnv.create_polygon(*points, fill="blue", tags="rectangle") # corps du robot
-        self.head = self.cnv.create_line(points[2], points[3], fill="red", tags="head") # tete du robot
+        self.rectangle = self.cnv.create_polygon(*points, fill="blue", outline="black", tags="rectangle") # corps du robot
+        self.head = self.cnv.create_line(points[2], points[3], fill="red", width=2, tags="head") # tete du robot
 
     def deplaceRobot(self):
         """Deplace le robot dans la fenetre"""
