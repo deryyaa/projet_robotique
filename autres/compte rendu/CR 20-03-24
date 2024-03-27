@@ -1,0 +1,11 @@
+Pour le 27/03/24
+
+  - pour capteur distance : prendre en compte les angles 
+  - adaptateur : attributs problématiques 
+on ne duplique pas les variables du robot simulé : mettre getter pour vg et vd 
+  - fonction méthode move dans adaptateur : mettre à jour ce qu’il pense être la position, il faut faire marcher la fonction avec des vraies valeurs pas des valeurs qu’on communique 
+  - méthode diff pour la distance et l’angle : faire un angle parcourue dans move 
+  - listesStrats : doit être indépendant peu importe la stratégie qu’on lui donne --> lui ajouter start step et stop 
+  - dans stratégies : pas de monde en paramètre 
+  - adaptateur et robot réel pas dans univers mais doit etre mis dans un autre repertoire (ex :controleur)
+  - faire un diagramme pour mieux visualiser le fonctionnement de adaptateur 
