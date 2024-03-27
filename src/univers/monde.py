@@ -47,7 +47,9 @@ class Monde(threading.Thread):
                 self.robot.crash=True
                 self.robot.vg=0
                 self.robot.vd=0
-                print("crash")
+                print("\nLe robot crash\n")
+                break
+            
         self.robot.move(0.01)
 
 
