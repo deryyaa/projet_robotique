@@ -30,7 +30,7 @@ class Robot:
         self.longueur = longueur # longueur du robot en cm
 
     
-    def move(self,dt):
+    def move(self,dt=0.01):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
         dt : intervalle de temps de rafraichissment (fps)
         """

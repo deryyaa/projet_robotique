@@ -45,7 +45,7 @@ class Robot2IN013_Mockup:
 
 
     def get_motor_position(self):
-        print("lecture etats des moteurs en degre")
+        #print("lecture etats des moteurs en degre")
         return 0,0
     
     def getPosition():
@@ -56,6 +56,7 @@ class Robot2IN013_Mockup:
 
     def get_distance(self):
         print("retourne distance")
+        return 1
 
     def servo_rotate(self,position):
         print("Tourne le servo a l'angle en para")
