@@ -28,7 +28,7 @@ class Robot2I013Adaptateur():
         dt = current_time - self.last_time  # Calcule la différence de temps
         self.last_time = current_time  # Met à jour le temps de la dernière mise à jour
 
-        print(self.robot.get_motor_position(),type(self.robot.get_motor_position()))
+        #print(self.robot.get_motor_position(),type(self.robot.get_motor_position()))
         rg,rd=self.robot.get_motor_position()
         old_x=self.x
         old_y=self.y #vitess roue droite et droite
