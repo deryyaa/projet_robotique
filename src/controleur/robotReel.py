@@ -4,7 +4,7 @@ from io import BytesIO
 import threading
 from collections import deque
 
-class Robot2IN013:
+class Robot2IN013_Mockup:
     """ 
     Classe d'encapsulation du robot et des senseurs.
     Constantes disponibles : 

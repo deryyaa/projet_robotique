@@ -93,7 +93,7 @@ class Robot:
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(320, 210, 20, 15 , 40, None)
+        robot = Robot(320, 190, 20, 15 , 40, None,math.pi/4)
         return robot
     def rect(self,x,y):
         coin1 = [x - self.longueur / 2, y - self.largeur / 2]
