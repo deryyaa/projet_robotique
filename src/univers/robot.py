@@ -44,7 +44,6 @@ class Robot:
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
         self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
-        #print(self.distanceParcouru)
     
     def getDistanceParcouru(self):
         return self.distanceParcouru
@@ -81,12 +80,12 @@ class Robot:
 
     def capteur_distance(self,monde):
         distanceP_capteur = 0
-        capteur_x = self.x+self.longueur
-        capteur_y = self.y+self.largeur
+        capteur_x = self.x
+        capteur_y = self.y
 
-        while not monde.detecter_collision(capteur_x, capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
+        while not monde.detecter_collision(capteur_x,capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
             distanceP_capteur+= 1
-            if distanceP_capteur>50:
+            if distanceP_capteur>300:
                 return distanceP_capteur
             capteur_x += ((self.vg*0.01+self.vd*0.01)/2.0) * math.cos(self.dir)
             capteur_y += ((self.vg*0.01+self.vd*0.01)/2.0) * math.sin(self.dir)
@@ -96,6 +95,27 @@ class Robot:
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(320, 190, 20, 15 , 10)
+        robot = Robot(320, 190, 20, 15 , 40, None, math.pi/4)
         return robot
-        
+
+    def rect(self,x,y):
+        coin1 = [x - self.longueur / 2, y - self.largeur / 2]
+        coin2 = [x + self.longueur / 2, y - self.largeur / 2]
+        coin3 = [x + self.longueur / 2, y + self.largeur / 2]
+        coin4 = [x - self.longueur / 2, y + self.largeur / 2]
+
+        # Ajout de l'angle du robot (en degrés)  
+        angle_radians = self.dir
+
+
+        # Rotation des coins du rectangle autour du centre (self.x, self.y)
+        rotation_coin1 = [x + (coin1[0] - x) * math.cos(angle_radians) - (coin1[1] - y) * math.sin(angle_radians),
+            y + (coin1[0] - x) * math.sin(angle_radians) + (coin1[1] - y) * math.cos(angle_radians)]
+        rotation_coin2 = [x + (coin2[0] - x) * math.cos(angle_radians) - (coin2[1] - y) * math.sin(angle_radians),
+            y + (coin2[0] - x) * math.sin(angle_radians) + (coin2[1] - y) * math.cos(angle_radians)]
+        rotation_coin3 = [x + (coin3[0] - x) * math.cos(angle_radians) - (coin3[1] - y) * math.sin(angle_radians),
+            y + (coin3[0] - x) * math.sin(angle_radians) + (coin3[1] - y) * math.cos(angle_radians)]
+        rotation_coin4 = [x + (coin4[0] - x) * math.cos(angle_radians) - (coin4[1] - y) * math.sin(angle_radians),
+            y + (coin4[0] - x) * math.sin(angle_radians) + (coin4[1] - y) * math.cos(angle_radians)]
+
+        return [rotation_coin1, rotation_coin2, rotation_coin3, rotation_coin4]
