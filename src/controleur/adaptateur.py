@@ -27,11 +27,11 @@ class Robot2I013Adaptateur():
         current_time = time.time()  # Obtient le temps actuel
         dt = current_time - self.last_time  # Calcule la différence de temps
         self.last_time = current_time  # Met à jour le temps de la dernière mise à jour
-
+        rg,rd=self.robot.get_motor_position()
         old_x=self.x
-        old_y=self.y
-        self.x += ((self._vg*dt+self._vd*dt)/2.0) * math.cos(self.dir)
-        self.y += ((self._vg*dt+self._vd*dt)/2.0) * math.sin(self.dir)
+        old_y=self.y #vitess roue droite et droite
+        self.x += ((rg*self.robot.WHEEL_DIAMETER*dt+rd*self.robot.WHEEL_DIAMETER*dt)/2.0) * math.cos(self.dir)
+        self.y += ((rg*self.robot.WHEEL_DIAMETER*dt+rd*self.robot.WHEEL_DIAMETER*dt)/2.0) * math.sin(self.dir)
         if(self._vg!=self._vd):
             if(abs(self._vg)>abs(self._vd)):
                 self.dir-=self._vg*dt/(-self.d*self._vg*dt/(self._vd*dt-self._vg*dt))
