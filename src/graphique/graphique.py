@@ -7,40 +7,45 @@ import time
 from threading import Thread
 
 class Graphique(Thread):
+
     def __init__(self,monde,canvas,fenetre):
         self.monde=monde
         self.fenetre=fenetre
         self.cnv=canvas
+        self.dessineObstacle()
+        self.dessineRobot()
         
+    def calculeRobotPosition(self, robot):
+        """Calcule les coordonnees du robot en fonction de son angle de rotation"""
+        cos_dir = math.cos(robot.dir)
+        sin_dir = math.sin(robot.dir)
+
+        # Coordonnées du robot
+        points = [
+            (robot.x + robot.largeur / 2 * sin_dir - robot.longueur / 2 * cos_dir, self.monde.colonne - robot.y + robot.largeur / 2 * cos_dir + robot.longueur / 2 * sin_dir),
+            (robot.x - robot.largeur / 2 * sin_dir - robot.longueur / 2 * cos_dir, self.monde.colonne - robot.y - robot.largeur / 2 * cos_dir + robot.longueur / 2 * sin_dir),
+            (robot.x - robot.largeur / 2 * sin_dir + robot.longueur / 2 * cos_dir, self.monde.colonne - robot.y - robot.largeur / 2 * cos_dir - robot.longueur / 2 * sin_dir),
+            (robot.x + robot.largeur / 2 * sin_dir + robot.longueur / 2 * cos_dir, self.monde.colonne - robot.y + robot.largeur / 2 * cos_dir - robot.longueur / 2 * sin_dir)
+        ]
+
+        return points
+
     def dessineRobot(self):
-        """Dessine un robot sur le canvas avec les coordonnées et la direction spécifiées
-        canvas: Le canvas sur lequel le robot doit être dessiné
-        robot: L'objet représentant le robot avec les attributs x, y, dir, largeur et longueur.
-        """
-        self.cnv.delete("rectangle")
-        self.cnv.delete("head")
+        """Calcule et dessine le robot sur la fenetre"""
         robot = self.monde.robot
-        cos_robot = math.cos(robot.dir)
-        sin_robot = math.sin(robot.dir)
-        
-        # Coordonnées des deux points opposés du rectangle
-        
-        cos_robot=math.cos(robot.dir)
-        sin_robot=math.sin(robot.dir)
-        self.cnv.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
-                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
-                            robot.x-robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
-                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot+robot.longueur/2*sin_robot,
-                            robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                            robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                            fill="blue",tags="rectangle")
-        self.cnv.create_line(robot.x-robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                            self.monde.colonne-robot.y-robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                            robot.x+robot.largeur/2*sin_robot+robot.longueur/2*cos_robot,
-                            self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
-                            fill="red",tags="head")
+        points = self.calculeRobotPosition(robot)
+
+        self.rectangle = self.cnv.create_polygon(*points, fill="blue", tags="rectangle") # corps du robot
+        self.head = self.cnv.create_line(points[2], points[3], fill="red", tags="head") # tete du robot
+
+    def deplaceRobot(self):
+        """Deplace le robot dans la fenetre"""
+        robot = self.monde.robot
+        points = self.calculeRobotPosition(robot)
+
+        # déplacement du robot
+        self.cnv.coords(self.rectangle, *sum(points, ())) 
+        self.cnv.coords(self.head, points[2][0], points[2][1], points[3][0], points[3][1]) 
         
     def dessineObstacle(self):
         """Ajoute les obstacles dans la simulation."""
@@ -51,12 +56,12 @@ class Graphique(Thread):
 
     def update(self):
         """Met à jour l'affichage."""
-        self.dessineRobot()
-        #self.dessineTrait()
-        self.dessineObstacle()
+        self.deplaceRobot()
+        self.dessineTrait()
         self.fenetre.update()
 
     def dessineTrait (self):
+        """Dessine un trait en fonction du chemin du robot"""
         robot=self.monde.robot
         if not hasattr(self, 'prev_x') or not hasattr(self, 'prev_y'):
             self.prev_x = None
