@@ -1,5 +1,6 @@
 import time
 import math
+import random
 from io import BytesIO
 import threading
 from collections import deque
@@ -46,7 +47,7 @@ class Robot2IN013_Mockup:
 
     def get_motor_position(self):
         #print("lecture etats des moteurs en degre")
-        return 0,0
+        return (random.randint(0,20),random.randint(0,20))
     
     def getPosition():
         pass 
