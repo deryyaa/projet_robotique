@@ -29,10 +29,9 @@ def run(strat):
     strat.start()
     while True:
         strat.step()
-        print(robot.vg,robot.vd)
         print(robot.distanceParcouru,robot.angle_parcourue)
         if(strat.stop() or robot.crash):
-            print(robot.capteur_distance())
+            print(robot.capteur_distance(monde))
             robot.setVitesse(0,0)
             break
         time.sleep(1./FPS)

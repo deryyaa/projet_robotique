@@ -40,7 +40,7 @@ class Robot2I013Adaptateur():
         distanceD=drd*self.robot.WHEEL_DIAMETER/2 #distance parcourue par la roue droite
         self.x += ((distanceG*dt+distanceD*dt)/2.0) * math.cos(self.dir)
         self.y += ((distanceG*dt+distanceD*dt)/2.0) * math.sin(self.dir)
-        if(self._vg!=self._vd):
+        if(distanceG!=distanceD):
             if(abs(distanceG)>abs(distanceD)):
                 self.dir-=distanceG*dt/(-self.d*distanceG*dt/(distanceD*dt-distanceG*dt))
             else:
