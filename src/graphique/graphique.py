@@ -11,6 +11,7 @@ class Graphique(Thread):
         self.monde=monde
         self.fenetre=fenetre
         self.cnv=canvas
+        
     def dessineRobot(self):
         """Dessine un robot sur le canvas avec les coordonnées et la direction spécifiées
         canvas: Le canvas sur lequel le robot doit être dessiné
@@ -18,7 +19,12 @@ class Graphique(Thread):
         """
         self.cnv.delete("rectangle")
         self.cnv.delete("head")
-        robot=self.monde.robot
+        robot = self.monde.robot
+        cos_robot = math.cos(robot.dir)
+        sin_robot = math.sin(robot.dir)
+        
+        # Coordonnées des deux points opposés du rectangle
+        
         cos_robot=math.cos(robot.dir)
         sin_robot=math.sin(robot.dir)
         self.cnv.create_polygon(robot.x+robot.largeur/2*sin_robot-robot.longueur/2*cos_robot,
@@ -36,18 +42,18 @@ class Graphique(Thread):
                             self.monde.colonne-robot.y+robot.largeur/2*cos_robot-robot.longueur/2*sin_robot,
                             fill="red",tags="head")
         
-    def dessineObstacle (self):
-        """
-       Ajout obstacles dans la simulation.
-        """
-        for i in self.monde.obstacles:
-            self.cnv.create_rectangle(i.x-i.longueur/2,self.monde.colonne-i.y-i.largeur/2,i.x+i.longueur/2,self.monde.colonne-i.y+i.largeur/2,fill="grey") #affichage des obstacles
-
+    def dessineObstacle(self):
+        """Ajoute les obstacles dans la simulation."""
+        for obs in self.monde.obstacles:
+            self.cnv.create_rectangle(obs.x-obs.longueur/2,self.monde.colonne-obs.y-obs.largeur/2,
+                                      obs.x+obs.longueur/2,self.monde.colonne-obs.y+obs.largeur/2,
+                                      fill="grey")
 
     def update(self):
-        # Dessin du robot sur le canevas
+        """Met à jour l'affichage."""
         self.dessineRobot()
         #self.dessineTrait()
+        self.dessineObstacle()
         self.fenetre.update()
 
     def dessineTrait (self):

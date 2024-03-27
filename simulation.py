@@ -8,7 +8,7 @@ import time
 import threading
 from tkinter import *
 
-FPS=100
+FPS=120
 
 #Création de robot
 robot = Robot.creation_robot() 

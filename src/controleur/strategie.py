@@ -1,6 +1,7 @@
 import time
 import math
 from threading import Thread
+from src.controleur.adaptateur import Robot2I013Adaptateur
 
 
 class AvancerToutDroit:
@@ -27,7 +28,7 @@ class Avancer:
         self.robot.distanceParcouru=0
 
     def step(self):
-        self.robot.setVitesse(10,10)
+        self.robot.setVitesse(40,40)
         if self.stop() or self.robot.crash:
             self.robot.setVitesse(0,0)
             self.distance=0
@@ -56,9 +57,9 @@ class Tourner:
         Fais une étape de rotation.
         """
         if(self.angle>0):
-            self.robot.setVitesse(-10,10)
+            self.robot.setVitesse(-40,40)
         else:
-            self.robot.setVitesse(10,-10)
+            self.robot.setVitesse(40,-40)
         if self.stop() or self.robot.crash:
             self.robot.setVitesse(0,0)
         
