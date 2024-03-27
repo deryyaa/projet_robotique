@@ -11,15 +11,14 @@ class Monde(threading.Thread):
 
     def detecter_collision(self,x,y):
         """Renvoie true s'il y a collision entre un point et un des obstacles du monde, false sinon"""
-        for obst in self.obstacles:
-            conditionX=x-self.robot.longueur/2 >= (obst.x- obst.longueur/2) and self.robot.longueur/2+x <= (obst.x + obst.longueur/2)
-            conditionY=y-self.robot.largeur/2 >= (obst.y-obst.largeur/2) and y+self.robot.largeur/2 <= (obst.y + obst.largeur/2)
-            conditionLimiteX = x-self.robot.longueur/2 < 1 or x + self.robot.longueur/2 > self.colonne-1
-            conditionLimiteY = y - self.robot.largeur/2 < 2 or y+ self.robot.largeur/2 > self.ligne-2
-            # Verifie si collision entre point et obstacle
-            if (conditionX and conditionY) or (conditionLimiteX or conditionLimiteY):
-                return True
-            return False
+        collision=False
+        for obs in self.obstacles:
+            if collision_rect(self.robot.rect(x,y),obs.getRect()):
+                collision=True
+        conditionLimiteX = x-self.robot.longueur/2 < 1 or x + self.robot.longueur/2 > self.colonne-1
+        conditionLimiteY = y - self.robot.largeur/2 < 2 or y+ self.robot.largeur/2 > self.ligne-2
+        # Verifie si collision entre point et obstacle
+        return collision or (conditionLimiteX or conditionLimiteY)
     
     def creation_obstacle(self,x,y,longeur,largeur):
         """rajoute un obstacle a la liste"""
@@ -62,3 +61,7 @@ def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonn
     # La superposition est vérifiée en négatif, donc si l'une des conditions est vraie, la superposition n'a pas lieu.
     return not(x1 >= x2 + w2 or x1 + w1 <= x2 or y1 >= y2 + h2 or y1 + h1 <= y2)
 
+def collision2(r1,r2):
+    p1,p2,p3,p4=r1[0][0],r1[0][1],r1[0][2],r1[0][3]
+    o1,o2,o3,o4=r2[0][0],r2[0][1],r2[0][2],r2[0][3]
+    return p1
