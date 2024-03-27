@@ -9,3 +9,5 @@ on ne duplique pas les variables du robot simulé : mettre getter pour vg et vd
   - dans stratégies : pas de monde en paramètre 
   - adaptateur et robot réel pas dans univers mais doit etre mis dans un autre repertoire (ex :controleur)
   - faire un diagramme pour mieux visualiser le fonctionnement de adaptateur 
+
+FUTURAMA TEAM 7
