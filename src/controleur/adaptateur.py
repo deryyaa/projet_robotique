@@ -48,7 +48,62 @@ class Robot2I013Adaptateur():
         self.distanceParcouru+=math.sqrt((self.x-old_x)**2+(self.y-old_y)**2)
         self.angle_parcourue=math.atan2(old_y-self.y,old_x-self.x) #angle entre deux points
         
+    def getMonde(self):
+        return self.monde
+    
+    def setMonde(self,monde):
+        self.monde=monde
 
+    def getDistanceParcouru(self):
+        return self.distanceParcouru
+    
+    def setDistanceParcouru(self,dist):
+        self.distanceParcouru = dist
+
+    def getDistanceRoues(self):
+        return self.d
+
+    def setDistanceRoues(self,dist):
+        self.d = dist
+    
+    def getVitesseMax(self):
+        return self.vitesse_max
+    
+    def setVitesseMax(self,v):
+        self.vitesse_max=v
+
+    def getVitesseRoues(self):
+        return self.vg,self.vd
+    
+    def setVitesse(self,vg,vd):
+        self.vg=vg
+        self.vd=vd
+
+    def getNom(self):
+        return self.nom
+    
+    def setNom(self,n):
+        self.nom=n
+
+    def getPosition(self):
+        return (self.x,self.y)
+    
+    def setPosition(self,x,y):
+        self.x=x
+        self.y=y
+
+    def getDir(self):
+        return self.dir
+    
+    def setDir(self,d):
+        self.d = d % (2*math.pi)
+
+    def getLongLarg(self):
+        return self.longueur,self.largeur
+    
+    def setLongLarg(self,long,larg):
+        self.longueur = long
+        self.largeur = larg
         
     def setVitesse(self, vg,vd):
         self._vg=vg
@@ -56,11 +111,6 @@ class Robot2I013Adaptateur():
         self.robot.set_motor_dps(self.robot.MOTOR_LETF,vg)
         self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
 
-    def getPosition(self):
-        return (self.x,self.y)
-    
-    def getDistanceParcouru(self):
-        return self.distanceParcouru
     
     def capteur_distance(self,monde):
         return self.robot.get_distance()

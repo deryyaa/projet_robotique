@@ -32,7 +32,7 @@ class Robot:
     def getMonde(self):
         return self.monde
     
-    def setMonde(self,monde->Monde):
+    def setMonde(self,monde):
         self.monde=monde
 
     def getDistanceParcouru(self):
@@ -77,7 +77,7 @@ class Robot:
         return self.dir
     
     def setDir(self,d):
-        self.d = d
+        self.d = d % (2*math.pi)
 
     def getLongLarg(self):
         return self.longueur,self.largeur
@@ -100,7 +100,8 @@ class Robot:
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
         self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
-     def getRect(self):
+    
+    def getRect(self):
         coin1 = [self.x - self.longueur / 2, self.y - self.largeur / 2]
         coin2 = [self.x + self.longueur / 2, self.y - self.largeur / 2]
         coin3 = [self.x + self.longueur / 2, self.y + self.largeur / 2]

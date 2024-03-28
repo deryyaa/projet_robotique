@@ -44,7 +44,6 @@ class Robot2IN013_Mockup:
     def setVitesse(self, vg,vd):
         print("fixe vitesse des deux roues")
 
-
     def get_motor_position(self):
         #print("lecture etats des moteurs en degre")
         return (random.randint(0,20),random.randint(0,20))
