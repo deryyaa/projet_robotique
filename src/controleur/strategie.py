@@ -75,10 +75,10 @@ class TracerCarre:
         self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot)])
 
     def start(self):
-        self.listeStrat.update()
+        self.listeStrat.start()
         
     def step(self):
-        self.listeStrat.update()
+        self.listeStrat.step()
         
     def stop(self):
         return self.listeStrat.stop()
@@ -90,8 +90,12 @@ class ListeStrat:
         self.liste = liste
         self.indice = 0
         self.tours = 0
+    
+    def start(self):
+        self.indice = 0
+        self.tours = 0
 
-    def update(self):
+    def step(self):
         if self.tours==0:
             self.liste[self.indice].start()
         self.liste[self.indice].step()
