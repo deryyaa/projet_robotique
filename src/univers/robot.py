@@ -86,6 +86,10 @@ class Robot:
         self.longueur = long
         self.largeur = larg
         
+    def reset_distance(self):
+        self.distanceParcouru=0
+        
+
     def move(self,dt=0.01):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
         dt : intervalle de temps de rafraichissment (fps)

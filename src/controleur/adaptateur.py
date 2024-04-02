@@ -47,6 +47,12 @@ class Robot2I013Adaptateur():
                 self.dir+=distanceD*dt/(-self.d*distanceD*dt/(distanceG*dt-distanceD*dt))
         self.distanceParcouru+=math.sqrt((self.x-old_x)**2+(self.y-old_y)**2)
         self.angle_parcourue=math.atan2(old_y-self.y,old_x-self.x) #angle entre deux points
+
+    def reset_distance(self):
+        self.distanceParcouru=0
+        
+    def reset_angle_parcourue(self):
+        self.angle_parcourue=0
         
     def getMonde(self):
         return self.monde
