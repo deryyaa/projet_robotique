@@ -28,8 +28,68 @@ class Robot:
         self.dir = dir % (2*math.pi) # angle en radians
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
-
     
+    def getMonde(self):
+        return self.monde
+    
+    def setMonde(self,monde):
+        self.monde=monde
+
+    def getDistanceParcouru(self):
+        return self.distanceParcouru
+    
+    def setDistanceParcouru(self,dist):
+        self.distanceParcouru = dist
+
+    def getDistanceRoues(self):
+        return self.d
+
+    def setDistanceRoues(self,dist):
+        self.d = dist
+    
+    def getVitesseMax(self):
+        return self.vitesse_max
+    
+    def setVitesseMax(self,v):
+        self.vitesse_max=v
+
+    def getVitesseRoues(self):
+        return self.vg,self.vd
+    
+    def setVitesse(self,vg,vd):
+        self.vg=vg
+        self.vd=vd
+
+    def getNom(self):
+        return self.nom
+    
+    def setNom(self,n):
+        self.nom=n
+
+    def getPosition(self):
+        return (self.x,self.y)
+    
+    def setPosition(self,x,y):
+        self.x=x
+        self.y=y
+
+    def getDir(self):
+        return self.dir
+    
+    def setDir(self,d):
+        self.d = d % (2*math.pi)
+
+    def getLongLarg(self):
+        return self.longueur,self.largeur
+    
+    def setLongLarg(self,long,larg):
+        self.longueur = long
+        self.largeur = larg
+        
+    def reset_distance(self):
+        self.distanceParcouru=0
+        
+
     def move(self,dt=0.01):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
         dt : intervalle de temps de rafraichissment (fps)
@@ -45,9 +105,6 @@ class Robot:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
         self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
     
-    def getDistanceParcouru(self):
-        return self.distanceParcouru
-        
     def getRect(self):
         coin1 = [self.x - self.longueur / 2, self.y - self.largeur / 2]
         coin2 = [self.x + self.longueur / 2, self.y - self.largeur / 2]
@@ -70,14 +127,6 @@ class Robot:
 
         return [rotation_coin1, rotation_coin2, rotation_coin3, rotation_coin4]
 
-    def getPosition(self):
-        return (self.x,self.y)
-    
-    def setVitesse(self,vg,vd):
-        self.vg=vg
-        self.vd=vd
-        
-
     def capteur_distance(self,monde):
         distanceP_capteur = 0
         capteur_x = self.x
@@ -93,8 +142,9 @@ class Robot:
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(320, 190, 20, 15 , 40, None,math.pi/4)
+        robot = Robot(320, 320, 20, 15 , 40, None,math.pi/4)
         return robot
+    
     def rect(self,x,y):
         coin1 = [x - self.longueur / 2, y - self.largeur / 2]
         coin2 = [x + self.longueur / 2, y - self.largeur / 2]
@@ -116,3 +166,5 @@ class Robot:
             y + (coin4[0] - x) * math.sin(angle_radians) + (coin4[1] - y) * math.cos(angle_radians)]
 
         return [rotation_coin1, rotation_coin2, rotation_coin3, rotation_coin4]
+    
+    
