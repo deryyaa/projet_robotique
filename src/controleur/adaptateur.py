@@ -23,7 +23,7 @@ class Robot2I013Adaptateur():
         self.last_time=time.time()
         self.last_motor_pos=robot.get_motor_position()
 
-    def move(self,_dt):  #update, mise a jours des stats
+    def update(self):  #update, mise a jours des stats
 
         current_time = time.time()  # Obtient le temps actuel
         dt = current_time - self.last_time  # Calcule la différence de temps
@@ -38,13 +38,13 @@ class Robot2I013Adaptateur():
         old_y=self.y #vitess roue droite et droite
         distanceG=drg*self.robot.WHEEL_DIAMETER/2 #distance parcourue par la roue gauche
         distanceD=drd*self.robot.WHEEL_DIAMETER/2 #distance parcourue par la roue droite
-        self.x += ((distanceG*dt+distanceD*dt)/2.0) * math.cos(self.dir)
-        self.y += ((distanceG*dt+distanceD*dt)/2.0) * math.sin(self.dir)
+        self.x += ((distanceG+distanceD)/2.0) * math.cos(self.dir)
+        self.y += ((distanceG+distanceD)/2.0) * math.sin(self.dir)
         if(distanceG!=distanceD):
             if(abs(distanceG)>abs(distanceD)):
-                self.dir-=distanceG*dt/(-self.d*distanceG*dt/(distanceD*dt-distanceG*dt))
+                self.dir-=distanceG/(-self.d*distanceG/(distanceD-distanceG))
             else:
-                self.dir+=distanceD*dt/(-self.d*distanceD*dt/(distanceG*dt-distanceD*dt))
+                self.dir+=distanceD/(-self.d*distanceD/(distanceG-distanceD))
         self.distanceParcouru+=math.sqrt((self.x-old_x)**2+(self.y-old_y)**2)
         self.angle_parcourue=math.atan2(old_y-self.y,old_x-self.x) #angle entre deux points
 

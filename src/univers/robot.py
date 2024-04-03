@@ -28,6 +28,7 @@ class Robot:
         self.dir = dir % (2*math.pi) # angle en radians
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
+        self.last_time=time.time()
     
     def getMonde(self):
         return self.monde
@@ -90,10 +91,14 @@ class Robot:
         self.distanceParcouru=0
         
 
-    def move(self,dt=0.01):
+    def update(self):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
         dt : intervalle de temps de rafraichissment (fps)
         """
+        current_time = time.time()  # Obtient le temps actuel
+        dt = current_time - self.last_time  # Calcule la différence de temps
+        self.last_time = current_time  # Met à jour le temps de la dernière mise à jour
+        
         x=self.x
         y=self.y
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)

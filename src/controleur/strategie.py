@@ -3,7 +3,7 @@ import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
 
-VITESSE = 40
+VITESSE = 20
 
 class AvancerToutDroit:
     def __init__(self, distance,robot):
