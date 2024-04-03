@@ -58,18 +58,20 @@ def run(strat,graphique):
     strat.start()
     while condition:
         strat.step()
+        if not graphique:
+            print(robotReel.distanceParcouru,robotReel.angle_parcourue)
         if(strat.stop() or robot.crash):
             print(robot.capteur_distance())
             robot.setVitesse(0,0)
             condition=False
         time.sleep(1./FPS)
 
-threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
+#threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
 #threading.Thread(target=run, args=(AvancerToutDroit(40,robot),True,)).start()
 #threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),True,)).start()
         
 
-#threading.Thread(target=run, args=(TracerCarre(50,robotReel),False,)).start()
+threading.Thread(target=run, args=(TracerCarre(50,robotReel),False,)).start()
 #threading.Thread(target=run, args=(AvancerToutDroit(40,robot),False,)).start()
 #threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),False,)).start()
 
