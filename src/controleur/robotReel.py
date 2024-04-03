@@ -30,8 +30,8 @@ class Robot2IN013_Mockup:
             :servoPort: port du servo (SERVO1 ou SERVO2)
             :motionPort: port pour l'accelerometre (AD1 ou AD2)
         """
-        self.angle_gauche=10
-        self.angle_droit=10
+        self.angle_gauche=0
+        self.angle_droit=0
         self.dps_gauche=0
         self.dps_droit=0
 

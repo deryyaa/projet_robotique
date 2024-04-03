@@ -1,6 +1,5 @@
 from src.controleur.robotReel import Robot2IN013_Mockup
 import math
-from src.univers.monde import Monde
 import time
 
 
@@ -28,20 +27,16 @@ class Robot2I013Adaptateur():
         rg,rd=self.robot.get_motor_position()
         drg,drd=((rg,rd)[0]-self.last_motor_pos[0],(rg,rd)[1]-self.last_motor_pos[1])
         self.last_motor_pos=self.robot.get_motor_position()
-        
-        old_x=self.x
-        old_y=self.y #vitess roue droite et droite
-        distanceG=drg*self.robot.WHEEL_DIAMETER/2 #distance parcourue par la roue gauche
-        distanceD=drd*self.robot.WHEEL_DIAMETER/2 #distance parcourue par la roue droite
-        self.x += ((distanceG+distanceD)/2.0) * math.cos(self.dir)
-        self.y += ((distanceG+distanceD)/2.0) * math.sin(self.dir)
+        print(drg,drd)
+        distanceG=drg*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue gauche
+        distanceD=drd*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue droite
         if(distanceG!=distanceD):
             if(abs(distanceG)>abs(distanceD)):
-                self.dir-=distanceG/(-self.d*distanceG/(distanceD-distanceG))
+                self.angle_parcourue-=distanceG/(-self.d*distanceG/(distanceD-distanceG))
             else:
-                self.dir+=distanceD/(-self.d*distanceD/(distanceG-distanceD))
-        self.distanceParcouru+=math.sqrt((self.x-old_x)**2+(self.y-old_y)**2)
-        self.angle_parcourue=math.atan2(old_y-self.y,old_x-self.x) #angle entre deux points
+                self.angle_parcourue+=distanceD/(-self.d*distanceD/(distanceG-distanceD))
+        self.distanceParcouru+=(distanceG+distanceD)/2.0
+
 
 
     def getDistanceParcouru(self):
