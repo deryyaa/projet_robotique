@@ -72,5 +72,7 @@ threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
 #threading.Thread(target=run, args=(AvancerToutDroit(40,robot),False,)).start()
 #threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),False,)).start()
 
-fenetre.mainloop()
-
+try:
+    fenetre.mainloop()
+except NameError:
+    pass
