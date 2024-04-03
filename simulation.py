@@ -50,17 +50,18 @@ def update_sans_graphique():
 
 
 def run(strat,graphique):
+    condition=True
     if(graphique):
         threading.Thread(target=update).start()
     else:
         threading.Thread(target=update_sans_graphique).start()
     strat.start()
-    while True:
+    while condition:
         strat.step()
         if(strat.stop() or robot.crash):
             print(robot.capteur_distance())
             robot.setVitesse(0,0)
-            break
+            condition=False
         time.sleep(1./FPS)
 
 threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
