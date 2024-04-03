@@ -132,11 +132,11 @@ class Robot:
 
         return [rotation_coin1, rotation_coin2, rotation_coin3, rotation_coin4]
 
-    def capteur_distance(self,monde):
+    def capteur_distance(self):
         distanceP_capteur = 0
         capteur_x = self.x
         capteur_y = self.y
-        while not monde.detecter_collision(capteur_x,capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
+        while not self.monde.detecter_collision(capteur_x,capteur_y): #tant qu'il n'a rien detecté, on fait avancer le capteur dans la direction de robot et on incremente sa distance parcourue
             distanceP_capteur+= 1
             if distanceP_capteur>150:
                 return distanceP_capteur

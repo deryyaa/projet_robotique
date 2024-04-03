@@ -118,5 +118,5 @@ class Robot2I013Adaptateur():
         self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
 
     
-    def capteur_distance(self,monde):
+    def capteur_distance(self):
         return self.robot.get_distance()
