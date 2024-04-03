@@ -19,15 +19,21 @@ class Robot2IN013_Mockup:
     WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
     WHEEL_BASE_CIRCUMFERENCE = WHEEL_BASE_WIDTH * math.pi # perimetre du cercle de rotation (mm)
     WHEEL_CIRCUMFERENCE      = WHEEL_DIAMETER   * math.pi # perimetre de la roue (mm)
+
+    MOTOR_LETF  = 1
+    MOTOR_RIGHT = 2
     
-    def __init__(self):
+    def __init__(self,angle_gauche=0,angle_droit=0,dps_gauche=0,dps_droit=0):
         """ 
             Initialise le robot
             :resolution: resolution de la camera
             :servoPort: port du servo (SERVO1 ou SERVO2)
             :motionPort: port pour l'accelerometre (AD1 ou AD2)
         """
-  
+        self.angle_gauche=10
+        self.angle_droit=10
+        self.dps_gauche=0
+        self.dps_droit=0
 
     def stop(self):
         print("Arrete le robot")
@@ -39,15 +45,25 @@ class Robot2IN013_Mockup:
         pass
   
     def set_motor_dps(self, port, dps):
-        print("Fixe la vitesse d'un motor")
+        print(f"Fixe la vitesse d'un motor port = {port}, dps = {dps}")
+        if (port==1):
+            self.dps_gauche=dps
+        if (port==2):
+            self.dps_droit=dps
+        if (port==3):
+            self.dps_gauche=dps
+            self.dps_droit=dps
+
 
     def setVitesse(self, vg,vd):
         print("fixe vitesse des deux roues")
 
     def get_motor_position(self):
         #print("lecture etats des moteurs en degre")
-        return (random.randint(0,20),random.randint(0,20))
-    
+        self.angle_droit+=self.dps_droit
+        self.angle_gauche+=self.dps_gauche
+        return (self.angle_gauche,self.angle_droit)
+
     def getPosition():
         pass 
    

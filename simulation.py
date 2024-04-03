@@ -45,7 +45,7 @@ def run(strat):
             break
         time.sleep(1./FPS)
 
-#threading.Thread(target=run, args=(TracerCarre(20,robot),)).start()
+#threading.Thread(target=run, args=(TracerCarre(50,robot),)).start()
 threading.Thread(target=run, args=(AvancerToutDroit(40,robot),)).start()
 #threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),)).start()
 

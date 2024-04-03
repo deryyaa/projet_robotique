@@ -23,7 +23,7 @@ class Robot2I013Adaptateur():
         self.last_time=time.time()
         self.last_motor_pos=robot.get_motor_position()
 
-    def move(self,dt):  #update, mise a jours des stats
+    def move(self,_dt):  #update, mise a jours des stats
 
         current_time = time.time()  # Obtient le temps actuel
         dt = current_time - self.last_time  # Calcule la différence de temps
