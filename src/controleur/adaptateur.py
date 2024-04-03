@@ -20,14 +20,9 @@ class Robot2I013Adaptateur():
         self.taille_roue = 8
         self.angle_parcourue=0
         self.d=largeur
-        self.last_time=time.time()
         self.last_motor_pos=robot.get_motor_position()
 
     def update(self):  #update, mise a jours des stats
-
-        current_time = time.time()  # Obtient le temps actuel
-        dt = current_time - self.last_time  # Calcule la différence de temps
-        self.last_time = current_time  # Met à jour le temps de la dernière mise à jour
 
         #print(self.robot.get_motor_position(),type(self.robot.get_motor_position()))
         rg,rd=self.robot.get_motor_position()
