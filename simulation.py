@@ -7,6 +7,8 @@ import math
 import time
 import threading
 from tkinter import *
+from src.controleur.robotReel import Robot2IN013_Mockup
+from src.controleur.adaptateur import Robot2I013Adaptateur
 
 FPS=100
 
@@ -19,23 +21,39 @@ robot.monde=monde
 monde.place_obstacle()
 
 
+robotMockup=Robot2IN013_Mockup()
+robotReel= Robot2I013Adaptateur(robotMockup,300,250,20,20)
+
 #Paramétrage graphique
-fenetre = Tk()
-fenetre.title("Robot dans le monde")
-cnv = Canvas(fenetre, width=monde.ligne, height=monde.colonne, bg="ivory")
-cnv.pack()
-graph=Graphique(monde,cnv,fenetre)
-graph.dessineObstacle()
+
+
 
 def update():
+    fenetre = Tk()
+    fenetre.title("Robot dans le monde")
+    cnv = Canvas(fenetre, width=monde.ligne, height=monde.colonne, bg="ivory")
+    cnv.pack()
+    graph=Graphique(monde,cnv,fenetre)
+    graph.dessineObstacle()
+    
+
     while True:
         monde.update()
         graph.update()
         time.sleep(1./FPS)
 
+def update_sans_graphique():
+    while True:
+        monde.update()
+        time.sleep(1./FPS)
 
-def run(strat):
-    threading.Thread(target=update).start()
+
+
+def run(strat,graphique):
+    if(graphique):
+        threading.Thread(target=update).start()
+    else:
+        threading.Thread(target=update_sans_graphique).start()
     strat.start()
     while True:
         strat.step()
@@ -45,8 +63,16 @@ def run(strat):
             break
         time.sleep(1./FPS)
 
-threading.Thread(target=run, args=(TracerCarre(50,robot),)).start()
-#threading.Thread(target=run, args=(AvancerToutDroit(40,robot),)).start()
-#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),)).start()
+threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
+#threading.Thread(target=run, args=(AvancerToutDroit(40,robot),True,)).start()
+#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),True,)).start()
+        
 
-fenetre.mainloop()
+#threading.Thread(target=run, args=(TracerCarre(50,robotReel),False,)).start()
+#threading.Thread(target=run, args=(AvancerToutDroit(40,robot),False,)).start()
+#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),False,)).start()
+
+try:
+    fenetre.mainloop()
+except NameError:
+    pass
