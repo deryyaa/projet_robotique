@@ -29,67 +29,11 @@ class Robot:
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
         self.last_time=time.time()
-    
-    def getMonde(self):
-        return self.monde
-    
-    def setMonde(self,monde):
-        self.monde=monde
 
     def getDistanceParcouru(self):
         return self.distanceParcouru
     
-    def setDistanceParcouru(self,dist):
-        self.distanceParcouru = dist
 
-    def getDistanceRoues(self):
-        return self.d
-
-    def setDistanceRoues(self,dist):
-        self.d = dist
-    
-    def getVitesseMax(self):
-        return self.vitesse_max
-    
-    def setVitesseMax(self,v):
-        self.vitesse_max=v
-
-    def getVitesseRoues(self):
-        return self.vg,self.vd
-    
-    def setVitesse(self,vg,vd):
-        self.vg=vg
-        self.vd=vd
-
-    def getNom(self):
-        return self.nom
-    
-    def setNom(self,n):
-        self.nom=n
-
-    def getPosition(self):
-        return (self.x,self.y)
-    
-    def setPosition(self,x,y):
-        self.x=x
-        self.y=y
-
-    def getDir(self):
-        return self.dir
-    
-    def setDir(self,d):
-        self.d = d % (2*math.pi)
-
-    def getLongLarg(self):
-        return self.longueur,self.largeur
-    
-    def setLongLarg(self,long,larg):
-        self.longueur = long
-        self.largeur = larg
-        
-    def reset_distance(self):
-        self.distanceParcouru=0
-        
 
     def update(self):
         """Met à jour la position et la direction du véhicule en fonction des vitesses des roues
