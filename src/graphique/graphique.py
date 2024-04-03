@@ -15,7 +15,7 @@ class Graphique(Thread):
         self.dessineObstacle()
         self.dessineRobot()
         
-    def calculeRobotPosition(self, robot):
+    def coordonneesRobot(self, robot):
         """Calcule les coordonnees du robot en fonction de son angle de rotation"""
         cos_dir = math.cos(robot.dir)
         sin_dir = math.sin(robot.dir)
@@ -33,7 +33,7 @@ class Graphique(Thread):
     def dessineRobot(self):
         """Calcule et dessine le robot sur la fenetre"""
         robot = self.monde.robot
-        points = self.calculeRobotPosition(robot)
+        points = self.coordonneesRobot(robot)
 
         self.rectangle = self.cnv.create_polygon(*points, fill="blue", outline="black", tags="rectangle") # corps du robot
         self.head = self.cnv.create_line(points[2], points[3], fill="red", width=2, tags="head") # tete du robot
@@ -41,7 +41,7 @@ class Graphique(Thread):
     def deplaceRobot(self):
         """Deplace le robot dans la fenetre"""
         robot = self.monde.robot
-        points = self.calculeRobotPosition(robot)
+        points = self.coordonneesRobot(robot)
 
         # déplacement du robot
         self.cnv.coords(self.rectangle, *sum(points, ())) 
