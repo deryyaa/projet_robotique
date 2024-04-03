@@ -49,7 +49,7 @@ class Monde(threading.Thread):
                 print("\nLe robot crash\n")
                 break
             
-        self.robot.move(0.01)
+        self.robot.update()
 
 
 def collision_rect(r1,r2): #prend en parametre une liste de tuple des 2 coordonnées de mon rectangle (obstacle et robot)

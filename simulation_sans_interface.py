@@ -37,24 +37,11 @@ def run(strat):
             break
         time.sleep(1./FPS)
 
-def run_carre(size):
-    for _ in range(4):
-        
-        random_distance = random.randint(0, 20)  # Génère une distance aléatoire pour chaque côté
-        
-        run(AvancerToutDroit(random_distance, robot))  # Avance le robot
-        
-        run(Tourner(math.pi/2, robot))  # Tourne le robot
-        
-    print("Carré tracé")
-
 
 #threading.Thread(target=runAvancer, args=(100,)).start()
 #threading.Thread(target=runTourner, args=(100,)).start()
-    
-threading.Thread(target=run_carre, args=(20,)).start()
 
-#threading.Thread(target=run, args=(TracerCarre(20,robot),)).start()
+threading.Thread(target=run, args=(TracerCarre(20,robot),)).start()
 #threading.Thread(target=runAvancer, args=(AvancerToutDroit(30,robot),)).start()
 #threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),)).start()
 
