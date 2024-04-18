@@ -22,12 +22,10 @@ class Robot2I013Adaptateur():
         self.last_motor_pos=robot.get_motor_position()
 
     def update(self):  #update, mise a jours des stats
-
         #print(self.robot.get_motor_position(),type(self.robot.get_motor_position()))
         rg,rd=self.robot.get_motor_position()
         drg,drd=((rg,rd)[0]-self.last_motor_pos[0],(rg,rd)[1]-self.last_motor_pos[1])
         self.last_motor_pos=self.robot.get_motor_position()
-        print(drg,drd)
         distanceG=drg*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue gauche
         distanceD=drd*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue droite
         if(distanceG!=distanceD):
@@ -36,7 +34,6 @@ class Robot2I013Adaptateur():
             else:
                 self.angle_parcourue+=distanceD/(-self.d*distanceD/(distanceG-distanceD))
         self.distanceParcouru+=(distanceG+distanceD)/2.0
-
 
 
     def getDistanceParcouru(self):
@@ -51,4 +48,4 @@ class Robot2I013Adaptateur():
 
     
     def capteur_distance(self):
-        return self.robot.get_distance()
+        return 1000

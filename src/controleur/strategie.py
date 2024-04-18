@@ -48,7 +48,7 @@ class Tourner:
         
     def start(self):
         """Commence la rotation du robot en tournant avec un angle"""
-        self.angleArrive=self.robot.dir+self.angle
+        self.angleArrive=self.robot.angle_parcourue+self.angle
     
     def step(self):
         """
@@ -64,9 +64,9 @@ class Tourner:
         Arrête de faire la rotation lorsque l'angle parcouru dépasse l'angle à tourner.
         """
         if self.angle<0:
-            return self.robot.dir<self.angleArrive
+            return self.robot.angle_parcourue<self.angleArrive
         else:
-            return self.robot.dir>self.angleArrive
+            return self.robot.angle_parcourue>self.angleArrive
 
 class TracerCarre:
     def __init__(self, cote, robot):

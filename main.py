@@ -8,14 +8,13 @@ robot = Robot2I013Adaptateur(Robot2IN013_Mockup(),300,250,20,20)
 def run(strat):
     condition=True
     while condition:
-        strat.step()
         robot.update()
+        strat.step()
         print(robot.distanceParcouru,robot.angle_parcourue)
         if(strat.stop()):
-            print(robot.capteur_distance())
             robot.setVitesse(0,0)
             condition=False
-        time.sleep(0.2)
+        time.sleep(0.5)
         
         
-threading.Thread(target=run, args=(TracerCarre(50,robot),)).start()
+run(TracerCarre(50,robot))

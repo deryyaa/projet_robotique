@@ -45,7 +45,7 @@ class Robot2IN013_Mockup:
         pass
   
     def set_motor_dps(self, port, dps):
-        print(f"Fixe la vitesse d'un motor port = {port}, dps = {dps}")
+        #print(f"Fixe la vitesse d'un motor port = {port}, dps = {dps}")
         if (port==1):
             self.dps_gauche=dps
         if (port==2):
@@ -60,8 +60,8 @@ class Robot2IN013_Mockup:
 
     def get_motor_position(self):
         #print("lecture etats des moteurs en degre")
-        self.angle_droit+=self.dps_droit
-        self.angle_gauche+=self.dps_gauche
+        self.angle_droit+=self.dps_droit*0.5
+        self.angle_gauche+=self.dps_gauche*0.5
         return (self.angle_gauche,self.angle_droit)
 
     def getPosition():

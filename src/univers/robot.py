@@ -2,7 +2,6 @@ import sys
 import math
 import random
 import time 
-from src.univers.monde import Monde
 
 class Robot:
     def __init__(self, x, y, longueur, largeur, vitesse_max, monde=None, dir=0):
@@ -29,6 +28,7 @@ class Robot:
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
         self.last_time=time.time()
+        self.angle_parcourue=0
 
     def getDistanceParcouru(self):
         return self.distanceParcouru
@@ -50,8 +50,10 @@ class Robot:
         if(self.vg!=self.vd):
             if(abs(self.vg)>abs(self.vd)):
                 self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
+                self.angle_parcourue-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
             else:
                 self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
+                self.angle_parcourue+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
         self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
     
     def getRect(self):
@@ -116,4 +118,6 @@ class Robot:
 
         return [rotation_coin1, rotation_coin2, rotation_coin3, rotation_coin4]
     
-    
+    def setVitesse(self,vg,vd):
+        self.vg=vg
+        self.vd=vd
