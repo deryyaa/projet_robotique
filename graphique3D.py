@@ -66,7 +66,7 @@ class graphique3D:
 
 def main():
     root = tk.Tk()
-    app = Simulation3D(root)
+    app = graphique3D(root)
     root.mainloop()
 
 if __name__ == "__main__":
