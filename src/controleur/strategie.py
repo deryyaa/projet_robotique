@@ -3,7 +3,7 @@ import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
 
-VITESSE = 50
+VITESSE = 10
 
 class AvancerToutDroit:
     def __init__(self, distance,robot):
@@ -96,13 +96,14 @@ class ListeStrat:
         self.tours = 0
 
     def step(self):
-        if self.tours==0:
-            self.liste[self.indice].start()
-        self.liste[self.indice].step()
-        self.tours+=1
         if self.liste[self.indice].stop():
             self.tours=0
             self.indice += 1
-    
+        if not self.stop():
+            if self.tours==0:
+                self.liste[self.indice].start()
+            self.liste[self.indice].step()
+            self.tours+=1
+
     def stop(self):
         return self.indice>=len(self.liste)

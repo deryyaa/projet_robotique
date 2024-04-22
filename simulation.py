@@ -49,12 +49,13 @@ def run(strat,graphique):
         threading.Thread(target=update_sans_graphique).start()
     strat.start()
     while condition:
+        debut=time.time()
         strat.step()
         if(strat.stop() or robot.crash):
             print(robot.capteur_distance())
             robot.setVitesse(0,0)
             condition=False
-        time.sleep(1./FPS)
+        time.sleep(time.time()-debut)
 
 threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
 #threading.Thread(target=run, args=(AvancerToutDroit(40,robot),True,)).start()

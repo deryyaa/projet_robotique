@@ -8,13 +8,14 @@ robot = Robot2I013Adaptateur(Robot2IN013_Mockup(),300,250,20,20)
 def run(strat):
     condition=True
     while condition:
+        debut=time.time()
         robot.update()
         strat.step()
         print(robot.distanceParcouru,robot.angle_parcourue)
         if(strat.stop()):
             robot.setVitesse(0,0)
             condition=False
-        time.sleep(0.5)
+        time.sleep(time.time()-debut)
         
         
 run(TracerCarre(50,robot))

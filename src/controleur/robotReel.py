@@ -60,10 +60,10 @@ class Robot2IN013_Mockup:
 
     def get_motor_position(self):
         #print("lecture etats des moteurs en degre")
-        self.angle_droit+=self.dps_droit*0.5
-        self.angle_gauche+=self.dps_gauche*0.5
+        self.angle_droit+=self.dps_droit/(math.pi*self.WHEEL_BASE_WIDTH)
+        self.angle_gauche+=self.dps_gauche/(math.pi*self.WHEEL_BASE_WIDTH)
         return (self.angle_gauche,self.angle_droit)
-
+        
     def getPosition():
         pass 
    
