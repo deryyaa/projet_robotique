@@ -1,4 +1,7 @@
-from src.controleur.robotReel import Robot2IN013_Mockup
+try:
+    from robot2IN013 import Robot2IN013
+except:
+    from src.controleur.robotReel import Robot2IN013_Mockup
 from src.controleur.adaptateur import Robot2I013Adaptateur
 from src.controleur.strategie import *
 import threading
