@@ -28,6 +28,10 @@ class Monde(threading.Thread):
     def place_obstacle(self):
         """Place les obstacles dans le monde"""
         self.creation_obstacle(380,200,0,50,50,50) #obstacle
+        self.creation_obstacle(200,380,0,50,50,50) #obstacle
+
+    def place_mur(self):
+        """Place les murs dans le monde"""
         self.creation_obstacle(250,1,0,1,500,1) # mur du bas 
         self.creation_obstacle(1,250,0,500,1,1) # mur du gauche
         self.creation_obstacle(250,499,0,1,500,1) # mur du haut
