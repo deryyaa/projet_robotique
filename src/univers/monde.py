@@ -20,18 +20,18 @@ class Monde(threading.Thread):
         # Verifie si collision entre point et obstacle
         return collision or (conditionLimiteX or conditionLimiteY)
     
-    def creation_obstacle(self,x,y,z,longeur,largeur):
+    def creation_obstacle(self,x,y,z,longeur,largeur,hauteur):
         """rajoute un obstacle a la liste"""
-        o1=Obstacle(x,y,z,longeur,largeur)
+        o1=Obstacle(x,y,z,longeur,largeur,hauteur)
         self.obstacles.append(o1)
         
     def place_obstacle(self):
         """Place les obstacles dans le monde"""
-        self.creation_obstacle(380,200,0,50,50) #obstacle
-        self.creation_obstacle(250,1,0,1,500) # mur du bas 
-        self.creation_obstacle(1,250,0,500,1) # mur du gauche
-        self.creation_obstacle(250,499,0,1,500) # mur du haut
-        self.creation_obstacle(500,250,0,500,1) # mur du droit 
+        self.creation_obstacle(380,200,0,50,50,50) #obstacle
+        self.creation_obstacle(250,1,0,1,500,1) # mur du bas 
+        self.creation_obstacle(1,250,0,500,1,1) # mur du gauche
+        self.creation_obstacle(250,499,0,1,500,1) # mur du haut
+        self.creation_obstacle(500,250,0,500,1,1) # mur du droit 
 
     def creation_monde(r1) :
         """Creation d'un monde par défaut"""
