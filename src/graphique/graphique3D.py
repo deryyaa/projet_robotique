@@ -7,17 +7,10 @@ from src.univers.robot import Robot
 from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
 
-# Création du robot
-robot = Robot.creation_robot()
-
-# Création du monde
-monde = Monde.creation_monde(robot)
-robot.monde = monde
-monde.place_obstacle()
-
 
 class Graphique3D:
-    def __init__(self, master):
+    def __init__(self,monde,master):
+        self.monde=monde
         self.master = master
         self.master.title("Simulation 3D")
 
@@ -31,10 +24,11 @@ class Graphique3D:
         self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
 
         # Lancement de l'animation
-        self.animation()
+        self.graphique()
 
     def draw_robot(self):
         # Coordonnées du robot
+        robot = self.monde.robot
         x, y, z = robot.x, robot.y, robot.z
         longueur, largeur, hauteur = robot.longueur, robot.largeur, robot.hauteur
 
@@ -64,38 +58,45 @@ class Graphique3D:
             x, y, z = zip(*edge)
             self.ax.plot(x, y, z, color='red')
 
-    def draw_obstacle(self, obstacle):
-        # Coordonnées de l'obstacle
-        x, y, z = obstacle.x, obstacle.y, obstacle.z
-        longueur, largeur, hauteur = obstacle.longueur, obstacle.largeur, obstacle.hauteur
+    def draw_obstacle(self):
 
-        # Dessine les lignes pour former le cube de l'obstacle
-        edges = [
-            [x - longueur / 2, y - largeur / 2, z - hauteur / 2],
-            [x + longueur / 2, y - largeur / 2, z - hauteur / 2],
-            [x + longueur / 2, y + largeur / 2, z - hauteur / 2],
-            [x - longueur / 2, y + largeur / 2, z - hauteur / 2],
-            [x - longueur / 2, y - largeur / 2, z + hauteur / 2],
-            [x + longueur / 2, y - largeur / 2, z + hauteur / 2],
-            [x + longueur / 2, y + largeur / 2, z + hauteur / 2],
-            [x - longueur / 2, y + largeur / 2, z + hauteur / 2]
-        ]
+        obstacles=self.monde.obstacles
 
-        # Liste des arêtes qui forment le cube de l'obstacle
-        edges = [
-            [edges[0], edges[1], edges[2], edges[3], edges[0]],
-            [edges[4], edges[5], edges[6], edges[7], edges[4]],
-            [edges[0], edges[4]],
-            [edges[1], edges[5]],
-            [edges[2], edges[6]],
-            [edges[3], edges[7]]
-        ]
+        # Dessiner chaque obstacle
+        for obstacle in obstacles:
+            # Coordonnées de l'obstacle
+            x, y, z = obstacle.x, obstacle.y, obstacle.z
+            longueur, largeur, hauteur = obstacle.longueur, obstacle.largeur, obstacle.hauteur
 
-        for edge in edges:
-            x, y, z = zip(*edge)
-            self.ax.plot(x, y, z, color='blue')
+            # Dessiner les lignes pour former le cube de l'obstacle
+            edges = [
+                [x - longueur / 2, y - largeur / 2, z - hauteur / 2],
+                [x + longueur / 2, y - largeur / 2, z - hauteur / 2],
+                [x + longueur / 2, y + largeur / 2, z - hauteur / 2],
+                [x - longueur / 2, y + largeur / 2, z - hauteur / 2],
+                [x - longueur / 2, y - largeur / 2, z + hauteur / 2],
+                [x + longueur / 2, y - largeur / 2, z + hauteur / 2],
+                [x + longueur / 2, y + largeur / 2, z + hauteur / 2],
+                [x - longueur / 2, y + largeur / 2, z + hauteur / 2]
+            ]
 
-    def animation(self):
+            # Liste des arêtes qui forment le cube de l'obstacle
+            edges = [
+                [edges[0], edges[1], edges[2], edges[3], edges[0]],
+                [edges[4], edges[5], edges[6], edges[7], edges[4]],
+                [edges[0], edges[4]],
+                [edges[1], edges[5]],
+                [edges[2], edges[6]],
+                [edges[3], edges[7]]
+            ]
+
+            # Dessiner chaque arête
+            for edge in edges:
+                x, y, z = zip(*edge)
+                self.ax.plot(x, y, z, color='blue')
+
+
+    def graphique(self):
         # Supprime les graphiques précédents
         self.ax.clear()
 
@@ -108,8 +109,7 @@ class Graphique3D:
 
         # Ajout du robot et des obstacles dans le graphique 3D
         self.draw_robot()
-        for obstacle in monde.obstacles:
-            self.draw_obstacle(obstacle)
+        self.draw_obstacle()
 
         # Définit les étiquettes des axes
         self.ax.set_xlabel('X')
@@ -117,21 +117,15 @@ class Graphique3D:
         self.ax.set_zlabel('Z')
 
         # Définit l'origine du repère à (0,0,0)
-        self.ax.set_xlim([-monde.ligne, monde.ligne])
-        self.ax.set_ylim([-monde.colonne, monde.colonne])
-        self.ax.set_zlim([0, monde.colonne])
+        self.ax.set_xlim([-self.monde.ligne, self.monde.ligne])
+        self.ax.set_ylim([-self.monde.colonne, self.monde.colonne])
+        self.ax.set_zlim([0, self.monde.colonne])
 
         # Met à jour le graphique
         self.canvas.draw()
 
         # Appelle cette fonction à nouveau après un certain délai
-        self.master.after(100, self.animation)
+        self.master.after(100, self.graphique)
 
 
-def main():
-    root = tk.Tk()
-    app = Graphique3D(root)
-    root.mainloop()
 
-if __name__ == "__main__":
-    main()
