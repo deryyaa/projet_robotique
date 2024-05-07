@@ -6,27 +6,32 @@ import numpy as np
 from src.univers.robot import Robot
 from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
+import math
 
 
 class Graphique3D:
-    def __init__(self,monde,master):
-        self.monde=monde
-        self.master = master
-        self.master.title("Simulation 3D")
+    def __init__(self, monde, fenetre):
+        self.monde = monde
+        self.fenetre = fenetre
+        self.fenetre.title("Simulation 3D")
 
         # Création du graphique 3D matplotlib
         self.fig = Figure(figsize=(8, 6), dpi=100)
         self.ax = self.fig.add_subplot(111, projection='3d')
 
+        # List to store robot lines
+        self.robot_lines = []
+
         # Création du canevas Tkinter pour intégrer le graphique 3D matplotlib
-        self.canvas = FigureCanvasTkAgg(self.fig, master=self.master)
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self.fenetre)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
 
         # Lancement de l'animation
         self.graphique()
 
-    def draw_robot(self):
+
+    def dessineRobot(self):
         # Coordonnées du robot
         robot = self.monde.robot
         x, y, z = robot.x, robot.y, robot.z
@@ -58,7 +63,7 @@ class Graphique3D:
             x, y, z = zip(*edge)
             self.ax.plot(x, y, z, color='red')
 
-    def draw_obstacle(self):
+    def dessineObstacle(self):
 
         obstacles=self.monde.obstacles
 
@@ -108,8 +113,8 @@ class Graphique3D:
         self.ax.plot(x, y, z)
 
         # Ajout du robot et des obstacles dans le graphique 3D
-        self.draw_robot()
-        self.draw_obstacle()
+        self.dessineRobot()
+        self.dessineObstacle()
 
         # Définit les étiquettes des axes
         self.ax.set_xlabel('X')
@@ -125,7 +130,44 @@ class Graphique3D:
         self.canvas.draw()
 
         # Appelle cette fonction à nouveau après un certain délai
-        self.master.after(100, self.graphique)
+        self.fenetre.after(100, self.graphique)
 
+    def update(self):
+        """Met à jour l'affichage."""
+        self.deplaceRobot()
+        self.fenetre.update()
 
+    def coordonneesRobot(self, robot):
+        """Calculate the coordinates of the robot based on its rotation angle."""
+        cos_dir = math.cos(robot.dir)
+        sin_dir = math.sin(robot.dir)
 
+        # Robot coordinates
+        points = [
+            (robot.x + robot.largeur / 2 * sin_dir - robot.longueur / 2 * cos_dir, 
+            robot.y + robot.largeur / 2 * cos_dir + robot.longueur / 2 * sin_dir, 
+            robot.z),  # Front left
+            (robot.x - robot.largeur / 2 * sin_dir - robot.longueur / 2 * cos_dir, 
+            robot.y - robot.largeur / 2 * cos_dir + robot.longueur / 2 * sin_dir, 
+            robot.z),  # Front right
+            (robot.x - robot.largeur / 2 * sin_dir + robot.longueur / 2 * cos_dir, 
+            robot.y - robot.largeur / 2 * cos_dir - robot.longueur / 2 * sin_dir, 
+            robot.z),  # Back right
+            (robot.x + robot.largeur / 2 * sin_dir + robot.longueur / 2 * cos_dir, 
+            robot.y + robot.largeur / 2 * cos_dir - robot.longueur / 2 * sin_dir, 
+            robot.z)   # Back left
+        ]
+
+        return points
+
+    def deplaceRobot(self):
+        """Move the robot in the window."""
+        robot = self.monde.robot
+        points = self.coordonneesRobot(robot)
+
+        # Update the coordinates of the robot lines
+        for line, edge in zip(self.robot_lines, points):
+            x, y, z = edge
+            line.set_data_3d(np.array([x]), np.array([y]), np.array([z]))
+
+        self.canvas.draw()

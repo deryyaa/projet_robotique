@@ -25,7 +25,7 @@ graph = Graphique3D(monde, root)
 
 # Paramétrage graphique
 def update():
-    graph.draw_obstacle()
+    graph.dessineObstacle()
     while True:
         monde.update()
         graph.update()
