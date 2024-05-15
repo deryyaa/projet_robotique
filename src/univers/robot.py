@@ -93,7 +93,7 @@ class Robot:
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(320, 320, 20, 15 , 40, None,math.pi/4)
+        robot = Robot(320, 320, 20, 15 , 40, None)
         return robot
     
     def rect(self,x,y):

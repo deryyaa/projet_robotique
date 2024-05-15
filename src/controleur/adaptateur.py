@@ -26,13 +26,13 @@ class Robot2I013Adaptateur():
         rg,rd=self.robot.get_motor_position()
         drg,drd=((rg,rd)[0]-self.last_motor_pos[0],(rg,rd)[1]-self.last_motor_pos[1])
         self.last_motor_pos=self.robot.get_motor_position()
-        distanceG=drg*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue gauche
-        distanceD=drd*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue droite
+        distanceG=math.radians(drg)*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue gauche
+        distanceD=math.radians(drd)*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue droite
         if(distanceG!=distanceD):
             if(abs(distanceG)>abs(distanceD)):
-                self.angle_parcourue-=distanceG/(-self.d*distanceG/(distanceD-distanceG))
+                self.angle_parcourue-=distanceG/(float)(-self.robot.WHEEL_BASE_WIDTH*distanceG/(float)(distanceD-distanceG))
             else:
-                self.angle_parcourue+=distanceD/(-self.d*distanceD/(distanceG-distanceD))
+                self.angle_parcourue+=distanceD/(float)(-self.robot.WHEEL_BASE_WIDTH*distanceD/(float)(distanceG-distanceD))
         self.distanceParcouru+=(distanceG+distanceD)/2.0
 
 
@@ -41,10 +41,11 @@ class Robot2I013Adaptateur():
 
         
     def setVitesse(self, vg,vd):
-        self._vg=vg
-        self._vd=vd
-        self.robot.set_motor_dps(self.robot.MOTOR_LETF,vg)
-        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vd)
+        if vg==vd:
+            self.robot.set_motor_dps(3,vg)
+        else:
+            self.robot.set_motor_dps(1,vg)
+            self.robot.set_motor_dps(2,vd)
 
     
     def capteur_distance(self):

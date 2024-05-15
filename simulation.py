@@ -50,6 +50,7 @@ def run(strat,graphique):
     strat.start()
     while condition:
         debut=time.time()
+        print(robot.distanceParcouru,robot.angle_parcourue)
         strat.step()
         if(strat.stop() or robot.crash):
             print(robot.capteur_distance())
@@ -57,9 +58,9 @@ def run(strat,graphique):
             condition=False
         time.sleep(time.time()-debut)
 
-threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
-#threading.Thread(target=run, args=(AvancerToutDroit(40,robot),True,)).start()
-#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),True,)).start()
+run(TracerCarre(50,robot),True)
+#run(AvancerToutDroit(50,robot),True)
+#run(Tourner(math.pi/2,robot),True)
 
 try:
     fenetre.mainloop()
