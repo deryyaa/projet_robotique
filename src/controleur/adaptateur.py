@@ -49,4 +49,4 @@ class Robot2I013Adaptateur():
 
     
     def capteur_distance(self):
-        return 1000
+        return self.robot.get_distance()

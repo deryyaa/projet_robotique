@@ -21,7 +21,7 @@ class AvancerToutDroit:
             self.robot.setVitesse(VITESSE/5.0,VITESSE/5.0)  
 
     def stop(self):
-        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance()<20))
+        return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance()<50))
 
 class Avancer:
     def __init__(self,robot):
@@ -34,7 +34,7 @@ class Avancer:
         self.robot.setVitesse(VITESSE,VITESSE)
 
     def stop(self):
-        return self.robot.capteur_distance()<40
+        return self.robot.capteur_distance()<50
 
 class Tourner:
     def __init__(self, angle, robot):
