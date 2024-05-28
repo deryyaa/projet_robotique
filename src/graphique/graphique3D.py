@@ -10,5 +10,5 @@ class MyRobot(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
 
-app = MyApp()
+app = MyRobot()
 app.run()
