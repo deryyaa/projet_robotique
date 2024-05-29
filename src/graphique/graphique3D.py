@@ -24,6 +24,11 @@ class MyRobot(ShowBase):
         env.setPos(0, 0, 0)  # Ajusté pour que l'environnement soit à la position d'origine
         env.reparentTo(self.render)
 
+        # Charger le modèle de l'environnement
+        obs = self.loader.loadModel("model/obstacle")
+        obs.setPos(10, 10, 0)  # Ajusté pour que l'environnement soit à la position d'origine
+        obs.reparentTo(self.render)
+
         # Placer la caméra au-dessus de l'objet principal
         self.camera.setPos(0, -20, 20)  # Ajusté pour observer le robot
         self.camera.lookAt(self.robot)
