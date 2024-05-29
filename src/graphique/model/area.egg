@@ -1,5 +1,5 @@
 <CoordinateSystem> { Z-up } 
-<Material> Material.004 {
+<Material> terre {
   <Scalar> baser { 1.0 }
   <Scalar> baseg { 1.0 }
   <Scalar> baseb { 1.0 }
@@ -23,7 +23,40 @@
   <Scalar> local { 1 }
 }
 
-<Material> Material.001 {
+<Material> mur {
+  <Scalar> baser { 1.0 }
+  <Scalar> baseg { 1.0 }
+  <Scalar> baseb { 1.0 }
+  <Scalar> basea { 1.0 }
+  <Scalar> ambr { 1.0 }
+  <Scalar> ambg { 1.0 }
+  <Scalar> ambb { 1.0 }
+  <Scalar> amba { 1.0 }
+  <Scalar> emitr { 0.0 }
+  <Scalar> emitg { 0.0 }
+  <Scalar> emitb { 0.0 }
+  <Scalar> emita { 1.0 }
+  <Scalar> specr { 1.0 }
+  <Scalar> specg { 1.0 }
+  <Scalar> specb { 1.0 }
+  <Scalar> speca { 1.0 }
+  <Scalar> shininess { 0.5 }
+  <Scalar> roughness { 0.5 }
+  <Scalar> metallic { 0.0 }
+  <Scalar> ior { 1.4500000476837158 }
+  <Scalar> local { 1 }
+}
+
+<Texture> "Material Base Color" {
+  "./tex/Material Base Color.png"
+  <Scalar> format { rgba }
+  <Scalar> envtype { modulate }
+  <Scalar> uv-name { UVMap }
+  <Scalar> minfilter { linear_mipmap_linear }
+  <Scalar> magfilter { linear }
+  <Scalar> wrapu { repeat }
+  <Scalar> wrapv { repeat }
+  <Scalar> alpha { off }
 }
 
 <Texture> "Material.004 Base Color" {
@@ -81,7 +114,8 @@
     
     
     <Polygon> {
-      <MRef> { Material.001 }
+      <TRef> { "Material Base Color" }
+      <MRef> { terre }
       <Normal> {0.000000 0.000000 1.000000}
       <BFace> { 1 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane }} 
@@ -271,42 +305,42 @@
     
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {-1.000000 0.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 1.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {1.000000 0.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 -1.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 -1.000000}
       <BFace> { 1 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 1.000000}
       <BFace> { 1 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube }} 
@@ -496,42 +530,42 @@
     
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {-1.000000 0.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.001 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 1.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.001 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {1.000000 0.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.001 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 -1.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.001 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 -1.000000}
       <BFace> { 1 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.001 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 1.000000}
       <BFace> { 1 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.001 }} 
@@ -721,42 +755,42 @@
     
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {-0.009514 0.999955 0.000000}
       <BFace> { 1 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.002 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.999955 0.009514 0.000000}
       <BFace> { 1 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.002 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.009514 -0.999955 0.000000}
       <BFace> { 1 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.002 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {-0.999955 -0.009514 0.000000}
       <BFace> { 1 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.002 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 -1.000000}
       <BFace> { 1 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.002 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 1.000000}
       <BFace> { 1 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.002 }} 
@@ -946,42 +980,42 @@
     
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {-0.009514 0.999955 0.000000}
       <BFace> { 1 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.003 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.999955 0.009514 0.000000}
       <BFace> { 1 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.003 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.009514 -0.999955 0.000000}
       <BFace> { 1 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.003 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {-0.999955 -0.009514 0.000000}
       <BFace> { 1 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.003 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 -1.000000}
       <BFace> { 1 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.003 }} 
     }
     <Polygon> {
       <TRef> { "Material.004 Base Color" }
-      <MRef> { Material.004 }
+      <MRef> { mur }
       <Normal> {0.000000 0.000000 1.000000}
       <BFace> { 1 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.003 }} 

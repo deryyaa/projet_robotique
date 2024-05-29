@@ -23,8 +23,8 @@
   <Scalar> local { 1 }
 }
 
-<Texture> "Material Base Color" {
-  "./tex/Material Base Color.png"
+<Texture> robot {
+  "./tex/robot.png"
   <Scalar> format { rgba }
   <Scalar> envtype { modulate }
   <Scalar> uv-name { UVMap }
@@ -1492,357 +1492,357 @@
     
     
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.707107 -0.707107}
       <BFace> { 1 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.000000 -1.000000}
       <BFace> { 1 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 -1.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.867135 -0.497963 0.010494}
       <BFace> { 1 }
       <VertexRef> { 12 13 14 15 16 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.998766 0.000000 0.049659}
       <BFace> { 1 }
       <VertexRef> { 17 18 19 20 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.998766 0.000000 0.049659}
       <BFace> { 1 }
       <VertexRef> { 21 22 23 24 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.000000 1.000000}
       <BFace> { 1 }
       <VertexRef> { 25 26 27 28 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 -0.233147 -0.972442}
       <BFace> { 1 }
       <VertexRef> { 29 30 31 32 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 -0.352072 0.935973}
       <BFace> { 1 }
       <VertexRef> { 33 34 35 36 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.707107 0.707107 0.000000}
       <BFace> { 1 }
       <VertexRef> { 37 38 39 40 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.919968 -0.391993}
       <BFace> { 1 }
       <VertexRef> { 41 42 43 44 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.000000 -0.969947 0.243318}
       <BFace> { 1 }
       <VertexRef> { 45 46 47 48 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 -0.886997 0.461775}
       <BFace> { 1 }
       <VertexRef> { 49 50 51 52 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.066260 0.969660 -0.235307}
       <BFace> { 1 }
       <VertexRef> { 53 54 55 56 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.271047 0.000000 -0.962566}
       <BFace> { 1 }
       <VertexRef> { 57 58 59 60 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.000000 0.499999 -0.866026}
       <BFace> { 1 }
       <VertexRef> { 61 62 63 64 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.000000 -0.829960 0.557823}
       <BFace> { 1 }
       <VertexRef> { 65 66 67 68 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.388942 -0.903496 0.180050}
       <BFace> { 1 }
       <VertexRef> { 69 70 71 72 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.000000 -0.981337 -0.192297}
       <BFace> { 1 }
       <VertexRef> { 73 74 75 76 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.388942 -0.903497 0.180050}
       <BFace> { 1 }
       <VertexRef> { 77 78 79 80 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 -0.820130 0.572178}
       <BFace> { 1 }
       <VertexRef> { 81 82 83 84 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.992900 0.000000 0.118956}
       <BFace> { 1 }
       <VertexRef> { 85 86 87 88 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.271047 0.000000 0.962566}
       <BFace> { 1 }
       <VertexRef> { 89 90 91 92 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.066260 -0.969660 -0.235307}
       <BFace> { 1 }
       <VertexRef> { 93 94 95 96 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.066260 0.969660 -0.235307}
       <BFace> { 1 }
       <VertexRef> { 97 98 99 100 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.992900 0.000000 0.118956}
       <BFace> { 1 }
       <VertexRef> { 101 102 103 104 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.271047 0.000000 0.962566}
       <BFace> { 1 }
       <VertexRef> { 105 106 107 108 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.271048 0.000000 -0.962566}
       <BFace> { 1 }
       <VertexRef> { 109 110 111 112 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.066260 -0.969660 -0.235307}
       <BFace> { 1 }
       <VertexRef> { 113 114 115 116 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.969947 0.243318}
       <BFace> { 1 }
       <VertexRef> { 117 118 119 120 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.886997 -0.461775}
       <BFace> { 1 }
       <VertexRef> { 121 122 123 124 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.985016 0.152972 -0.079638}
       <BFace> { 1 }
       <VertexRef> { 125 126 127 128 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.985016 0.152972 -0.079638}
       <BFace> { 1 }
       <VertexRef> { 129 130 131 132 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.356010 -0.837809 0.413923}
       <BFace> { 1 }
       <VertexRef> { 133 134 135 136 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.000474 -0.965689 0.259699}
       <BFace> { 1 }
       <VertexRef> { 137 138 139 140 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.347084 -0.851417 0.393220}
       <BFace> { 1 }
       <VertexRef> { 141 142 143 144 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000388 -0.682469 0.730915}
       <BFace> { 1 }
       <VertexRef> { 145 146 147 148 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.816158 -0.577794 0.006349}
       <BFace> { 1 }
       <VertexRef> { 149 150 151 152 153 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.392375 0.919805 0.000084}
       <BFace> { 1 }
       <VertexRef> { 154 155 156 157 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.694637 0.719361}
       <BFace> { 1 }
       <VertexRef> { 158 159 160 161 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.978327 -0.207067}
       <BFace> { 1 }
       <VertexRef> { 162 163 164 165 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.707107 0.707107 0.000000}
       <BFace> { 1 }
       <VertexRef> { 166 167 168 169 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.207554 0.978224 0.000121}
       <BFace> { 1 }
       <VertexRef> { 170 171 172 173 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.957657 0.287911}
       <BFace> { 1 }
       <VertexRef> { 174 175 176 177 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 1.000000 0.000000}
       <BFace> { 1 }
       <VertexRef> { 178 179 180 181 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.392375 0.919805 0.000084}
       <BFace> { 1 }
       <VertexRef> { 182 183 184 185 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.994271 -0.106886}
       <BFace> { 1 }
       <VertexRef> { 186 187 188 189 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.107246 0.994232 0.000075}
       <BFace> { 1 }
       <VertexRef> { 190 191 192 193 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {-0.107246 0.994232 0.000075}
       <BFace> { 1 }
       <VertexRef> { 194 195 196 197 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.000000 0.992012 0.126145}
       <BFace> { 1 }
       <VertexRef> { 198 199 200 201 <Ref> { Cube }} 
     }
     <Polygon> {
-      <TRef> { "Material Base Color" }
+      <TRef> { robot }
       <MRef> { Material }
       <Normal> {0.207554 0.978224 0.000121}
       <BFace> { 1 }
