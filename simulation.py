@@ -27,8 +27,6 @@ def update():
     cnv.pack()
     graph=Graphique(monde,cnv,fenetre)
     graph.dessineObstacle()
-    
-
     while True:
         monde.update()
         graph.update()
@@ -45,20 +43,23 @@ def run(strat,graphique):
     condition=True
     if(graphique):
         threading.Thread(target=update).start()
+        time.sleep(1.5)
     else:
         threading.Thread(target=update_sans_graphique).start()
     strat.start()
     while condition:
+        debut=time.time()
+        print(robot.distanceParcouru,robot.angle_parcourue)
         strat.step()
         if(strat.stop() or robot.crash):
             print(robot.capteur_distance())
             robot.setVitesse(0,0)
             condition=False
-        time.sleep(1./FPS)
+        time.sleep(time.time()-debut)
 
-threading.Thread(target=run, args=(TracerCarre(50,robot),True,)).start()
-#threading.Thread(target=run, args=(AvancerToutDroit(40,robot),True,)).start()
-#threading.Thread(target=run, args=(Tourner(-math.pi/2,robot),True,)).start()
+run(TracerCarre(50,robot),True)
+#run(AvancerToutDroit(50,robot),True)
+#run(Tourner(math.pi/2,robot),True)
 
 try:
     fenetre.mainloop()
