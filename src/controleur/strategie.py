@@ -16,9 +16,9 @@ class AvancerToutDroit:
 
     def step(self):
         self.robot.setVitesse(VITESSE,VITESSE)
-        if self.distance-self.robot.distanceParcouru<5:
+        if self.distance-self.robot.distanceParcouru<1:
             print("ralenti")
-            self.robot.setVitesse(VITESSE/5.0,VITESSE/5.0)  
+            self.robot.setVitesse(VITESSE/15.0,VITESSE/15.0)  
 
     def stop(self):
         return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance()<50))
@@ -58,18 +58,18 @@ class Tourner:
         Fais une étape de rotation.
         """
         if(self.angle>0):
-            if self.angle-self.robot.angle_parcourue<math.pi/16.0:
+            if self.angle-self.robot.angle_parcourue<math.pi/64.0:
                 print("ralenti")
-                self.robot.setVitesse(-VITESSE/5.0,VITESSE/5.0)
+                self.robot.setVitesse(-VITESSE/30.0,VITESSE/30.0)
             else:
-                self.robot.setVitesse(-VITESSE,VITESSE)
+                self.robot.setVitesse(-VITESSE/2.0,VITESSE/2.0)
                  
         else:
-            if self.angle-self.robot.angle_parcourue<-math.pi/16.0:
+            if self.angle-self.robot.angle_parcourue<-math.pi/64.0:
                 print("ralenti")
-                self.robot.setVitesse(VITESSE/5.0,-VITESSE/5.0)
+                self.robot.setVitesse(VITESSE/30.0,-VITESSE/30.0)
             else:
-                self.robot.setVitesse(VITESSE,-VITESSE)
+                self.robot.setVitesse(VITESSE/2.0,-VITESSE/2.0)
         
     def stop(self):
         """
@@ -113,9 +113,8 @@ class ListeStrat:
             if self.tours==0:
                 self.liste[self.indice].start()
             self.liste[self.indice].step()
-            self.tours+=1
+            self.tours=1
         if self.liste[self.indice].stop():
-            self.robot.setVitesse(0,0)
             self.tours=0
             self.indice += 1
 

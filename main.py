@@ -15,16 +15,15 @@ def update(fps):
 
 def run(strat):
     condition=True
-    #threading.Thread(target=update).start()
     while condition:
-        debut=time.time()
-        threading.Thread(target=update(time.time()-debut,)).start()
+        robot.update()
         strat.step()
-        time.sleep(time.time()-debut)
         print(robot.distanceParcouru,robot.angle_parcourue)
         if(strat.stop()):
             robot.setVitesse(0,0)
             condition=False
+        time.sleep(1/300.0)
         
         
-run(TracerCarre(300,robot))
+#run(TracerCarre(300,robot))
+run(AvancerToutDroit(300,robot))

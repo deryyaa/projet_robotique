@@ -41,7 +41,7 @@ class Robot:
         """
         current_time = time.time()  # Obtient le temps actuel
         dt = current_time - self.last_time  # Calcule la différence de temps
-        self.last_time = current_time  # Met à jour le temps de la dernière mise à jour
+        self.last_time = time.time()  # Met à jour le temps de la dernière mise à jour
         
         x=self.x
         y=self.y
@@ -93,7 +93,7 @@ class Robot:
     
     def creation_robot():
         """ Creation d'un robot"""
-        robot = Robot(320, 320, 20, 15 , 40, None)
+        robot = Robot(320, 320, 20, 15 , 40, None, math.pi/4.0)
         return robot
     
     def rect(self,x,y):
