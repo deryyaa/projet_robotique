@@ -45,6 +45,7 @@ def run(strat,graphique):
     condition=True
     if(graphique):
         threading.Thread(target=update).start()
+        time.sleep(1.5)
     else:
         threading.Thread(target=update_sans_graphique).start()
     strat.start()
