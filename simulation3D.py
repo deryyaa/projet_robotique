@@ -9,11 +9,12 @@ from direct.showbase.ShowBase import ShowBase
 from src.graphique.graphique3D import MyRobot
 import sys
 import os
+import threading
 
 FPS = 100
 
 # Création de robot
-robot = Robot.creation_robot()
+robot = Robot.creation_robot(0,0,0)
 
 # Création du monde
 monde = Monde.creation_monde(robot)
@@ -23,20 +24,17 @@ monde.place_obstacle()
 # Création de l'instance Graphique3D
 game = MyRobot(monde)
 
-game.afficheRobot()
-
-game.afficheObstacle()
-
-game.afficheEnvironnement()
 
 # Paramétrage graphique
 def update(task):
-    monde.update()
     game.update(task)
+    monde.update()
+    time.sleep(1./FPS)
     return task.cont
 
-def run(strat):
+def run(strat,):
     condition = True
+    threading.Thread(target=update).start()
     strat.start()
     while condition:
         strat.step()
@@ -47,7 +45,7 @@ def run(strat):
         time.sleep(1. / FPS)
 
 # Lancement de la stratégie
-threading.Thread(target=run, args=(TracerCarre(50, robot),)).start()
+threading.Thread(target=run, args=(TracerCarre(10, robot),)).start()
 
 game.taskMgr.add(update, "updateTask")
 game.run()

@@ -49,14 +49,17 @@ class Robot:
         y=self.y
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
         self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
-        if(self.vg!=self.vd):
-            if(abs(self.vg)>abs(self.vd)):
-                self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
-                self.angle_parcourue-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
-            else:
-                self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
-                self.angle_parcourue+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
-        self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
+        if self.vg != self.vd:
+            denominator = self.vg * dt - self.vd * dt
+            if abs(denominator) > 1e-10:  # Check for non-zero denominator
+                if abs(self.vg) > abs(self.vd):
+                    self.dir -= self.vg * dt / (-self.d * self.vg * dt / denominator)
+                    self.angle_parcourue -= self.vg * dt / (-self.d * self.vg * dt / denominator)
+                else:
+                    self.dir += self.vd * dt / (-self.d * self.vd * dt / denominator)
+                    self.angle_parcourue += self.vd * dt / (-self.d * self.vd * dt / denominator)
+        
+        self.distanceParcouru += math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
     
     def getRect(self):
         coin1 = [self.x - self.longueur / 2, self.y - self.largeur / 2]
@@ -93,9 +96,9 @@ class Robot:
         
         return distanceP_capteur
     
-    def creation_robot():
+    def creation_robot(x,y,z):
         """ Creation d'un robot"""
-        robot = Robot(0, 0, 0, 20, 20,20 , 40, None,math.pi/4)
+        robot = Robot(x, y, z, 20, 20,20 , 40, None,math.pi/4)
         return robot
     
     def rect(self,x,y):
