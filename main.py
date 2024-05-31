@@ -26,6 +26,7 @@ def run(strat):
         strat.step()
         if(strat.stop()):
             robot.setVitesse(0,0)
+            robot.stopRec()
             condition=False
         time.sleep(time.time()-debut)
         

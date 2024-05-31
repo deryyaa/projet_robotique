@@ -3,7 +3,7 @@ import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
 
-VITESSE = 80
+VITESSE = 450
 
 class AvancerToutDroit:
     def __init__(self, distance,robot):
@@ -78,12 +78,48 @@ class Tourner:
         else:
             return self.robot.angle_parcourue>self.angle
 
+
 class TracerCarre:
     def __init__(self, cote, robot):
         self.robot = robot
         self.cote = cote
-        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot)],self.robot)
+        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot)])
 
+    def start(self):
+        self.listeStrat.start()
+        
+    def step(self):
+        self.listeStrat.step()
+        
+    def stop(self):
+        return self.listeStrat.stop()
+
+class RepereBalise:
+    
+    def __init__(self,robot):
+        self.robot=robot
+        
+    def start(self):
+        self.robot.angle_parcourue=0
+        self.robot.resetMotor(3,0)
+        self.robot.rec()
+    
+    def step(self):
+        if(fun(self.robot.getImage())):
+            self.robot.stopRec()
+            self.robot.setVitesse(VITESSE,VITESSE)
+        else:
+            self.robot.setVitesse(-VITESSE,VITESSE)
+    
+    def stop(self):
+        return self.robot.angle_parcourue>=2*math.pi
+
+class CapterBalise:
+
+    def __init__(self,robot):
+        self.robot=robot
+        self.listeStrat = ListeStrat([RepereBalise(robot),Avancer(robot)])
+        
     def start(self):
         self.listeStrat.start()
         

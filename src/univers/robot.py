@@ -124,3 +124,7 @@ class Robot:
     
     def resetMotor(self,port,angle):
         pass
+    def stopRec(self):
+        pass
+    def getImage(self):
+        pass

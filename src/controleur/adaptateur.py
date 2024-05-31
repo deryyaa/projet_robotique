@@ -52,3 +52,12 @@ class Robot2I013Adaptateur():
     
     def capteur_distance(self):
         return self.robot.get_distance()
+    
+    def rec(self):
+        return self.robot._start_recording()
+    
+    def stopRec(self):
+        return self.robot._stop_recording()
+    
+    def getImage(self):
+        return self.robot.get_image()
