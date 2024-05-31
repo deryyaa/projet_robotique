@@ -31,6 +31,7 @@ class Robot:
         self.hauteur= hauteur
         self.last_time=time.time()
         self.angle_parcourue=0
+        self.tourne=False
 
     def getDistanceParcouru(self):
         return self.distanceParcouru

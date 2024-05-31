@@ -3,7 +3,7 @@ import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
 DIST = 50
-VITESSE = 100
+VITESSE = 50
 
 class AvancerToutDroit:
     def __init__(self, distance,robot):
@@ -102,21 +102,30 @@ class ListeStrat:
         self.liste = liste
         self.indice = 0
         self.tours = 0
-        self.robot=robot
-    
+        self.robot = robot
+        self.finished = False  # Indicateur pour arrêter après un cycle complet
+
     def start(self):
         self.indice = 0
         self.tours = 0
+        self.finished = False
+        if self.liste:
+            self.liste[0].start()
 
     def step(self):
         if not self.stop():
-            if self.tours==0:
-                self.liste[self.indice].start()
-            self.liste[self.indice].step()
-            self.tours=1
-        if self.liste[self.indice].stop():
-            self.tours=0
-            self.indice += 1
+            current_strategy = self.liste[self.indice]
+            current_strategy.step()
+            if current_strategy.stop():
+                self.indice += 1
+                if self.indice < len(self.liste):
+                    self.liste[self.indice].start()
+                else:
+                    self.finished = True  # Indiquer que toutes les stratégies ont été exécutées
+        else:
+            # Reset indices to prevent IndexError
+            self.indice = 0
+            self.tours = 0
 
     def stop(self):
-        return self.indice>=len(self.liste)
+        return self.finished

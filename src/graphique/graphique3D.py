@@ -66,13 +66,21 @@ class MyRobot(ShowBase):
         self.camDist += 50
 
     def deplaceRobot(self):
-        self.strategie.step()
+        dt = globalClock.getDt()  # Obtient l'intervalle de temps écoulé depuis la dernière frame
+        self.monde.robot.update()  # Met à jour la position et la direction du robot
+
+        # Mise à jour de la position du modèle graphique du robot
         self.robot.setPos(self.monde.robot.x, self.monde.robot.y, self.monde.robot.z)
+        self.robot.setH(math.degrees(self.monde.robot.dir))
+
+    def rotationRobot(self):
+        self.robot.setH(self.robot,((self.monde.robot.dir)*180)/(math.pi))
 
     def afficheRobot(self):
         # Charger le modèle de l'objet
         self.robot = self.loader.loadModel("src/graphique/model/robot")
         self.robot.setPos(self.monde.robot.x, self.monde.robot.y, self.monde.robot.z)
+        self.robot.setH(self.robot,(self.monde.robot.dir * 180) / math.pi)
         self.robot.reparentTo(self.render)
 
     def afficheObstacle(self):

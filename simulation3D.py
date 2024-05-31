@@ -21,7 +21,7 @@ robot.monde = monde
 monde.place_obstacle()
 
 # Initialiser la stratégie TracerCarre
-tracer_carre = TracerCarre(50, robot)
+tracer_carre = TracerCarre(500, robot)
 
 # Création de l'instance Graphique3D
 game = MyRobot(monde, tracer_carre)

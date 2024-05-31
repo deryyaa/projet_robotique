@@ -29,7 +29,7 @@ class Monde(threading.Thread):
         """Place les obstacles dans le monde"""
         self.creation_obstacle(380,200,0,50,50,50) #obstacle
         self.creation_obstacle(200,380,0,50,50,50) #obstacle
-        #self.creation_obstacle(150,150,0,50,50,50) #obstacle
+        self.creation_obstacle(150,150,0,50,50,50) #obstacle
         self.creation_obstacle(10,30,0,50,50,50) #obstacle
         self.creation_obstacle(400,450,0,50,50,50) #obstacle
         self.creation_obstacle(480,249,0,50,50,50) #obstacle
