@@ -13,16 +13,18 @@ import os
 FPS = 100
 
 # Création de robot
-robot = Robot.creation_robot(0,0,0)
+robot = Robot.creation_robot(222, 220, 0)
 
 # Création du monde
 monde = Monde.creation_monde(robot)
 robot.monde = monde
 monde.place_obstacle()
 
-# Création de l'instance Graphique3D
-game = MyRobot(monde)
+# Initialiser la stratégie TracerCarre
+tracer_carre = TracerCarre(50, robot)
 
+# Création de l'instance Graphique3D
+game = MyRobot(monde, tracer_carre)
 
 # Paramétrage graphique
 def update(task):
@@ -41,8 +43,11 @@ def run(strat):
             condition = False
         time.sleep(1. / FPS)
 
-# Lancement de la stratégie
-threading.Thread(target=run, args=(TracerCarre(50, robot),)).start()
+# Lancement de la stratégie dans un thread séparé
+threading.Thread(target=run, args=(tracer_carre,)).start()
+
+game.taskMgr.add(update, "updateTask")
+game.run()
 
 game.taskMgr.add(update, "updateTask")
 game.run()

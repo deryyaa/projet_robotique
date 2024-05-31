@@ -8,10 +8,13 @@ from threading import Thread
 
 class Graphique(Thread):
 
-    def __init__(self,monde,canvas,fenetre):
-        self.monde=monde
-        self.fenetre=fenetre
-        self.cnv=canvas
+    def __init__(self, monde, canvas, fenetre):
+        Thread.__init__(self)
+        self.monde = monde
+        self.fenetre = fenetre
+        self.cnv = canvas
+        self.coord_label = Label(fenetre, text="")
+        self.coord_label.pack()
         self.dessineObstacle()
         self.dessineRobot()
         
@@ -50,22 +53,28 @@ class Graphique(Thread):
     def dessineObstacle(self):
         """Ajoute les obstacles dans la simulation."""
         for obs in self.monde.obstacles:
-            self.cnv.create_rectangle(obs.x-obs.longueur/2,self.monde.colonne-obs.y-obs.largeur/2,
-                                      obs.x+obs.longueur/2,self.monde.colonne-obs.y+obs.largeur/2,
+            self.cnv.create_rectangle(obs.x - obs.longueur / 2, self.monde.colonne - obs.y - obs.largeur / 2,
+                                      obs.x + obs.longueur / 2, self.monde.colonne - obs.y + obs.largeur / 2,
                                       fill="grey")
             coord_text = f"({obs.x}, {obs.y})"
             self.cnv.create_text(obs.x, self.monde.colonne - obs.y, text=coord_text, anchor=NW, fill="black")
-
 
     def update(self):
         """Met à jour l'affichage."""
         self.deplaceRobot()
         self.dessineTrait()
         self.fenetre.update()
+        self.updateCoordLabel()
 
-    def dessineTrait (self):
+    def updateCoordLabel(self):
+        """Met à jour le label des coordonnées du robot"""
+        robot = self.monde.robot
+        coord_text = f"coordonnées robot : x = {robot.x:.2f}, y = {robot.y:.2f}"
+        self.coord_label.config(text=coord_text)
+
+    def dessineTrait(self):
         """Dessine un trait en fonction du chemin du robot"""
-        robot=self.monde.robot
+        robot = self.monde.robot
         if not hasattr(self, 'prev_x') or not hasattr(self, 'prev_y'):
             self.prev_x = None
             self.prev_y = None

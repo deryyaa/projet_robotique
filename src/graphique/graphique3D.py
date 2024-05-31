@@ -11,13 +11,13 @@ confVars = """
 win-size 1280 720
 window-title My Robot
 show-frame-rate-meter True
-
+sync-video 0
 """
 
 loadPrcFileData("", confVars)
 
 class MyRobot(ShowBase):
-    def __init__(self, monde):
+    def __init__(self, monde, strategie):
         super().__init__()
 
         self.monde = monde
@@ -27,6 +27,7 @@ class MyRobot(ShowBase):
         self.z = monde.robot.z
         self.direction = monde.robot.dir
         self.speed = monde.robot.vitesse_max
+        self.strategie = strategie
 
         self.camDist = 1000  # Distance of the camera from the robot
         self.camAngle = 0  # Horizontal angle for rotating the camera around the robot
@@ -65,13 +66,8 @@ class MyRobot(ShowBase):
         self.camDist += 50
 
     def deplaceRobot(self):
-        dt = globalClock.getDt()
-        self.x += self.speed * self.x
-        self.y += self.speed * self.y
-
-        # Mettre à jour la position de l'acteur robot
-        if self.robot:
-            self.robot.setPos(self.x, self.y, self.z)
+        self.strategie.step()
+        self.robot.setPos(self.monde.robot.x, self.monde.robot.y, self.monde.robot.z)
 
     def afficheRobot(self):
         # Charger le modèle de l'objet
@@ -127,5 +123,3 @@ class MyRobot(ShowBase):
         self.camera.lookAt(Point3(self.x, self.y, self.z))
 
         return task.cont  # Continuer l'appel de cette tâche à chaque frame
-
-
