@@ -3,7 +3,7 @@ import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
 
-VITESSE = 50
+VITESSE = 80
 
 class AvancerToutDroit:
     def __init__(self, distance,robot):
@@ -11,14 +11,13 @@ class AvancerToutDroit:
         self.robot=robot
                     
     def start(self):
-        self.robot.distanceParcouru=0
-        self.robot.angle_parcourue=0
+        self.robot.distanceParcouru=0.0
+        self.robot.resetMotor(3,0)
 
     def step(self):
         self.robot.setVitesse(VITESSE,VITESSE)
         if self.distance-self.robot.distanceParcouru<1:
-            print("ralenti")
-            self.robot.setVitesse(VITESSE/15.0,VITESSE/15.0)  
+            self.robot.setVitesse(VITESSE/10.0,VITESSE/10.0)  
 
     def stop(self):
         return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance()<50))
@@ -28,7 +27,8 @@ class Avancer:
         self.robot=robot
                     
     def start(self):
-        self.robot.distanceParcouru=0
+        self.robot.distanceParcouru=0.0
+        self.robot.resetMotor(3,0)
 
     def step(self):
         self.robot.setVitesse(VITESSE,VITESSE)
@@ -51,7 +51,7 @@ class Tourner:
     def start(self):
         """Commence la rotation du robot en tournant avec un angle"""
         self.robot.angle_parcourue=0
-        self.robot.distanceParcouru=0
+        self.robot.resetMotor(3,0)
     
     def step(self):
         """
@@ -59,15 +59,13 @@ class Tourner:
         """
         if(self.angle>0):
             if self.angle-self.robot.angle_parcourue<math.pi/64.0:
-                print("ralenti")
-                self.robot.setVitesse(-VITESSE/30.0,VITESSE/30.0)
+                self.robot.setVitesse(-VITESSE/10.0,VITESSE/10.0)
             else:
                 self.robot.setVitesse(-VITESSE/2.0,VITESSE/2.0)
                  
         else:
             if self.angle-self.robot.angle_parcourue<-math.pi/64.0:
-                print("ralenti")
-                self.robot.setVitesse(VITESSE/30.0,-VITESSE/30.0)
+                self.robot.setVitesse(VITESSE/10.0,-VITESSE/10.0)
             else:
                 self.robot.setVitesse(VITESSE/2.0,-VITESSE/2.0)
         
@@ -114,9 +112,10 @@ class ListeStrat:
                 self.liste[self.indice].start()
             self.liste[self.indice].step()
             self.tours=1
-        if self.liste[self.indice].stop():
-            self.tours=0
-            self.indice += 1
+            if self.liste[self.indice].stop():
+                self.tours=0
+                self.indice += 1
+                time.sleep(0.1)
 
     def stop(self):
         return self.indice>=len(self.liste)

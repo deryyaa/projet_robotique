@@ -121,3 +121,6 @@ class Robot:
     def setVitesse(self,vg,vd):
         self.vg=vg
         self.vd=vd
+    
+    def resetMotor(self,port,angle):
+        pass

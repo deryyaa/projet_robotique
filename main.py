@@ -9,21 +9,27 @@ from src.controleur.strategie import *
 import threading
 import time
 
-def update(fps):
-    robot.update()
-    time.sleep(fps)
+def update():
+    while True:
+        robot.update()
+        time.sleep(1/60.0)
+        
 
 def run(strat):
     condition=True
+    threading.Thread(target=update).start()
+    strat.start()
     while condition:
-        robot.update()
+        debut=time.time()
         strat.step()
-        print(robot.distanceParcouru,robot.angle_parcourue)
+        #print("robot : ",robot.distanceParcouru,robot.angle_parcourue)
+        strat.step()
         if(strat.stop()):
             robot.setVitesse(0,0)
             condition=False
-        time.sleep(1/300.0)
+        time.sleep(time.time()-debut)
         
         
 #run(TracerCarre(300,robot))
-run(AvancerToutDroit(300,robot))
+#run(AvancerToutDroit(300,robot))
+run(Avancer(robot))

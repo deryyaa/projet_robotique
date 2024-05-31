@@ -52,7 +52,6 @@ def run(strat,graphique):
         print(robot.distanceParcouru,robot.angle_parcourue)
         strat.step()
         if(strat.stop() or robot.crash):
-            print(robot.capteur_distance())
             robot.setVitesse(0,0)
             condition=False
         time.sleep(time.time()-debut)

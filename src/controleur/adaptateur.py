@@ -9,8 +9,8 @@ class Robot2I013Adaptateur():
         self.robot=robot
         self.x=x
         self.y=y
-        self._vg=1 #on ne touche pas aux valeur vg et vd
-        self._vd=1
+        self._vg=0 #on ne touche pas aux valeur vg et vd
+        self._vd=0
         self.dir=0
         self.distanceParcouru=0
         self.largeur = largeur 
@@ -30,11 +30,13 @@ class Robot2I013Adaptateur():
         distanceD=math.radians(drd)*self.robot.WHEEL_DIAMETER/2.0 #distance parcourue par la roue droite
         if(distanceG!=distanceD):
             if(abs(distanceG)>abs(distanceD)):
-                self.angle_parcourue-=distanceG/(float)(-self.robot.WHEEL_BASE_WIDTH*distanceG/(float)(distanceD-distanceG))
+                self.angle_parcourue-=distanceG/(-self.robot.WHEEL_BASE_WIDTH*distanceG/(distanceD-distanceG))
             else:
-                self.angle_parcourue+=distanceD/(float)(-self.robot.WHEEL_BASE_WIDTH*distanceD/(float)(distanceG-distanceD))
-        self.distanceParcouru+=(distanceG+distanceD)/2.0
+                self.angle_parcourue+=distanceD/(-self.robot.WHEEL_BASE_WIDTH*distanceD/(distanceG-distanceD))
+        self.distanceParcouru+=(distanceD+distanceG)/2.0
 
+    def resetMotor(self,port,angle):
+        self.robot.offset_motor_encoder(port,angle)
 
     def getDistanceParcouru(self):
         return self.distanceParcouru
