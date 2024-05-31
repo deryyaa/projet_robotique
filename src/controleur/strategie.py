@@ -2,6 +2,7 @@ import time
 import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
+from src.camera.camera import isBalise
 
 VITESSE = 450
 
@@ -105,7 +106,7 @@ class RepereBalise:
         self.robot.rec()
     
     def step(self):
-        if(fun(self.robot.getImage())):
+        if(isBalise(self.robot.getImage())):
             self.robot.stopRec()
             self.robot.setVitesse(VITESSE,VITESSE)
         else:
