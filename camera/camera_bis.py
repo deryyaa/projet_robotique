@@ -1,26 +1,22 @@
 import cv2 as cv
 from matplotlib.pyplot import *
-import numpy
+import numpy 
 import math
 import imageio
 import sys
 
+
 def detecter_balise(img_path):
     pass
 
-def coloriage_pixel_pile(image,shape,seuil,valeur,pile,i,j):
-   image[j][i] = valeur
-   voisins = [(i+1,j),(i-1,j),(i,j-1),(i,j+1)]
-   for pixel in voisins:
-        (k,l) = pixel
-        if k>=0 and k<shape[1] and l>=0 and l<shape[0]:
-            if image[l][k]>seuil:
-                image[l][k] = valeur
-                pile.append(pixel)
+def verifier_adjacence(barycentre1, barycentre2, seuil):
+    distance = math.sqrt((barycentre2[0] - barycentre1[0])**2 + (barycentre2[1] - barycentre1[1])**2)
+    print(distance)
+    return round(distance) < seuil
 
 if __name__ == "__main__":
 
-    img_path = r"C:\Users\nutella\Documents\LICENCE 2\S2\PROJET DE DEV\projet_robotique\pattern.jpg"
+    img_path = r"C:\Users\nutella\Documents\LICENCE 2\S2\PROJET DE DEV\projet_robotique\pattern_f1.jpg"
     detecter_balise(img_path)
 
     img = cv.resize(cv.imread(img_path, 1),(200,200))
@@ -60,6 +56,7 @@ if __name__ == "__main__":
     title("Rouge avec Barycentre")
     centre_rouge = (cX,cY)
     
+    
 
     #jaune
     lower = numpy.array([36/2,180,0],dtype=numpy.uint8)
@@ -83,8 +80,6 @@ if __name__ == "__main__":
     scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
     title("Jaune avec Barycentre")
     centre_jaune = (cX,cY)
-
-    
 
     #verte
     lower = numpy.array([70/2,0,0],dtype=numpy.uint8)
@@ -131,8 +126,27 @@ if __name__ == "__main__":
     title("Bleu avec Barycentre")
     centre_bleu = (cX,cY)
 
+
     show()
-    
 
-   
+    # Seuils de distance pour chaque paire de couleurs voisines
+    seuil_jaune_vert = 71  # Seuil de distance entre jaune et vert
+    seuil_vert_bleu = 64   # Seuil de distance entre vert et bleu
+    seuil_bleu_rouge = 70  # Seuil de distance entre bleu et rouge
+    seuil_rouge_jaune = 64 # Seuil de distance entre rouge et jaune
 
+    # Vérifier l'adjacence entre les barycentres des zones de couleur
+    adjacence_jaune_vert = verifier_adjacence(centre_jaune, centre_vert, seuil_jaune_vert)
+    adjacence_vert_bleu = verifier_adjacence(centre_vert, centre_bleu, seuil_vert_bleu)
+    adjacence_bleu_rouge = verifier_adjacence(centre_bleu, centre_rouge, seuil_bleu_rouge)
+    adjacence_rouge_jaune = verifier_adjacence(centre_rouge, centre_jaune, seuil_rouge_jaune)
+
+    # Afficher les résultats
+    print("Jaune est à côté de Vert et Rouge :", adjacence_jaune_vert and adjacence_rouge_jaune)
+    print("Vert est à côté de Bleu et Jaune :", adjacence_vert_bleu and adjacence_jaune_vert)
+    print("Bleu est à côté de Vert et Rouge :", adjacence_bleu_rouge and adjacence_vert_bleu)
+    print("Rouge est à côté de Jaune et Bleu :", adjacence_rouge_jaune and adjacence_bleu_rouge)
+
+    if ((adjacence_jaune_vert and adjacence_rouge_jaune) and (adjacence_vert_bleu and adjacence_jaune_vert) and (adjacence_bleu_rouge and adjacence_vert_bleu) and (adjacence_rouge_jaune and adjacence_bleu_rouge)):
+
+        
