@@ -53,6 +53,9 @@ class Graphique(Thread):
             self.cnv.create_rectangle(obs.x-obs.longueur/2,self.monde.colonne-obs.y-obs.largeur/2,
                                       obs.x+obs.longueur/2,self.monde.colonne-obs.y+obs.largeur/2,
                                       fill="grey")
+            coord_text = f"({obs.x}, {obs.y})"
+            self.cnv.create_text(obs.x, self.monde.colonne - obs.y, text=coord_text, anchor=NW, fill="black")
+
 
     def update(self):
         """Met à jour l'affichage."""

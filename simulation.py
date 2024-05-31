@@ -58,8 +58,9 @@ def run(strat,graphique):
         time.sleep(time.time()-debut)
 
 run(TracerCarre(50,robot),True)
-#run(AvancerToutDroit(50,robot),True)
+#run(AvancerToutDroit(100000000000000000000000000000000000000,robot),True)
 #run(Tourner(math.pi/2,robot),True)
+#run(None,True)
 
 try:
     fenetre.mainloop()

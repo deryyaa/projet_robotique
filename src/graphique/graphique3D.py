@@ -11,7 +11,7 @@ confVars = """
 win-size 1280 720
 window-title My Robot
 show-frame-rate-meter True
-sync-video 0
+
 """
 
 loadPrcFileData("", confVars)
@@ -28,8 +28,10 @@ class MyRobot(ShowBase):
         self.direction = monde.robot.dir
         self.speed = monde.robot.vitesse_max
 
-        self.camDist = 100  # Distance of the camera from the robot
-        self.camAngle = 0  # Angle for rotating the camera around the robot
+        self.camDist = 1000  # Distance of the camera from the robot
+        self.camAngle = 0  # Horizontal angle for rotating the camera around the robot
+        self.camPitch = 10  # Vertical angle for rotating the camera around the robot (set to -45 to look from above)
+        self.camHeight = 50  # Height of the camera above the robot
 
         self.afficheEnvironnement()
         self.afficheRobot()
@@ -41,7 +43,12 @@ class MyRobot(ShowBase):
         self.disableMouse()
         self.accept("mouse3", self.startCameraControl)
         self.accept("mouse3-up", self.stopCameraControl)
+        self.accept("wheel_up", self.zoomIn)
+        self.accept("wheel_down", self.zoomOut)
         self.cameraControl = False
+
+        # Set initial camera position
+        self.setInitialCameraPosition()
 
     def startCameraControl(self):
         self.cameraControl = True
@@ -51,10 +58,16 @@ class MyRobot(ShowBase):
     def stopCameraControl(self):
         self.cameraControl = False
 
+    def zoomIn(self):
+        self.camDist = max(20, self.camDist - 50)
+
+    def zoomOut(self):
+        self.camDist += 50
+
     def deplaceRobot(self):
         dt = globalClock.getDt()
-        self.x += self.speed * math.cos(self.direction) * dt
-        self.y += self.speed * math.sin(self.direction) * dt
+        self.x += self.speed * self.x
+        self.y += self.speed * self.y
 
         # Mettre à jour la position de l'acteur robot
         if self.robot:
@@ -64,23 +77,28 @@ class MyRobot(ShowBase):
         # Charger le modèle de l'objet
         self.robot = self.loader.loadModel("src/graphique/model/robot")
         self.robot.setPos(self.monde.robot.x, self.monde.robot.y, self.monde.robot.z)
-        self.robot.setScale(self.monde.robot.longueur / 20.0, self.monde.robot.largeur / 20.0, self.monde.robot.hauteur / 20.0)  # Ajuster la taille du robot
         self.robot.reparentTo(self.render)
 
     def afficheObstacle(self):
         # Charger le modèle de l'obstacle
         for obstacle in self.monde.obstacles:
             obs = self.loader.loadModel("src/graphique/model/obstacle")
-            obs.setScale(obstacle.longueur / 20.0, obstacle.largeur / 20.0, obstacle.hauteur / 20.0)  # Ajuster la taille des obstacles
             obs.setPos(obstacle.x, obstacle.y, obstacle.z)
             obs.reparentTo(self.render)
 
     def afficheEnvironnement(self):
         # Charger le modèle de l'environnement
         env = self.loader.loadModel("src/graphique/model/area")
-        env.setScale(self.monde.colonne, self.monde.ligne, 0)  # Ajuster la taille des obstacles    
-        env.setPos(0, 0, 0)
         env.reparentTo(self.render)
+
+    def setInitialCameraPosition(self):
+        # Calculate the initial camera's position
+        camX = self.x + self.camDist * math.cos(math.radians(self.camPitch)) * math.sin(math.radians(self.camAngle))
+        camY = self.y + self.camDist * math.cos(math.radians(self.camPitch)) * -math.cos(math.radians(self.camAngle))
+        camZ = self.z + self.camDist * math.sin(math.radians(self.camPitch))
+
+        self.camera.setPos(camX, camY, camZ)
+        self.camera.lookAt(Point3(self.x, self.y, self.z))
 
     def update(self, task):
         self.deplaceRobot()
@@ -94,16 +112,20 @@ class MyRobot(ShowBase):
             deltaY = newMouseY - self.mouseY
 
             self.camAngle += deltaX * 100  # Adjust sensitivity as needed
-            self.camDist -= deltaY * 100
-            self.camDist = max(20, self.camDist)  # Prevent the camera from getting too close
+            self.camPitch -= deltaY * 100
+            self.camPitch = max(-89, min(89, self.camPitch))  # Limit the vertical angle
 
             self.mouseX = newMouseX
             self.mouseY = newMouseY
 
-        # Update the camera position to follow the robot
-        camX = self.x + self.camDist * math.sin(math.radians(self.camAngle))
-        camY = self.y - self.camDist * math.cos(math.radians(self.camAngle))
-        self.camera.setPos(camX, camY, self.z + 50)
+        # Calculate the camera's position
+        camX = self.x + self.camDist * math.cos(math.radians(self.camPitch)) * math.sin(math.radians(self.camAngle))
+        camY = self.y + self.camDist * math.cos(math.radians(self.camPitch)) * -math.cos(math.radians(self.camAngle))
+        camZ = self.z + self.camDist * math.sin(math.radians(self.camPitch))
+
+        self.camera.setPos(camX, camY, camZ)
         self.camera.lookAt(Point3(self.x, self.y, self.z))
 
         return task.cont  # Continuer l'appel de cette tâche à chaque frame
+
+
