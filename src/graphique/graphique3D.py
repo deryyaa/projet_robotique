@@ -1,5 +1,7 @@
-from panda3d.core import loadPrcFileData, Point3
+from panda3d.core import loadPrcFileData, Point3, TextNode
 from direct.showbase.ShowBase import ShowBase
+from direct.gui.OnscreenText import OnscreenText
+from direct.showbase.DirectObject import DirectObject
 import math
 from direct.showbase.ShowBaseGlobal import globalClock
 from src.univers.monde import Monde
@@ -16,7 +18,7 @@ sync-video 0
 
 loadPrcFileData("", confVars)
 
-class MyRobot(ShowBase):
+class MyRobot(ShowBase, DirectObject):
     def __init__(self, monde, strategie):
         super().__init__()
 
@@ -51,6 +53,9 @@ class MyRobot(ShowBase):
         # Set initial camera position
         self.setInitialCameraPosition()
 
+        # Setup text for displaying robot coordinates
+        self.setupText()
+
     def startCameraControl(self):
         self.cameraControl = True
         self.mouseX = self.mouseWatcherNode.getMouseX()
@@ -72,6 +77,9 @@ class MyRobot(ShowBase):
         # Mise à jour de la position du modèle graphique du robot
         self.robot.setPos(self.monde.robot.x, self.monde.robot.y, self.monde.robot.z)
         self.robot.setH(math.degrees(self.monde.robot.dir))
+
+        # Envoyer un signal pour mettre à jour les coordonnées
+        self.messenger.send("update_coordinates", [self.monde.robot.x, self.monde.robot.y])
 
     def rotationRobot(self):
         self.robot.setH(self.robot,((self.monde.robot.dir)*180)/(math.pi))
@@ -131,3 +139,21 @@ class MyRobot(ShowBase):
         self.camera.lookAt(Point3(self.x, self.y, self.z))
 
         return task.cont  # Continuer l'appel de cette tâche à chaque frame
+
+    def setupText(self):
+        # Créer un objet OnscreenText pour afficher les coordonnées du robot
+        self.coordText = OnscreenText(
+            text="",
+            pos=(-1.75, 0.95),
+            scale=0.07,
+            fg=(1, 1, 1, 1),  # Couleur du texte (blanc)
+            align=TextNode.ALeft,
+            mayChange=True  # Indique que le texte peut changer dynamiquement
+        )
+
+        # Mettre à jour le texte des coordonnées à chaque frame
+        self.accept("update_coordinates", self.updateCoordinates)
+
+    def updateCoordinates(self, x, y):
+        # Mettre à jour le texte avec les nouvelles coordonnées
+        self.coordText.setText(f"x = {x:.2f}, y = {y:.2f}")

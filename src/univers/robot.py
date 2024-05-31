@@ -2,6 +2,7 @@ import sys
 import math
 import random
 import time 
+DIR = math.pi
 
 class Robot:
     def __init__(self, x, y, z, longueur, largeur, hauteur, vitesse_max, monde=None, dir=0):
@@ -31,7 +32,6 @@ class Robot:
         self.hauteur= hauteur
         self.last_time=time.time()
         self.angle_parcourue=0
-        self.tourne=False
 
     def getDistanceParcouru(self):
         return self.distanceParcouru
@@ -99,7 +99,7 @@ class Robot:
     
     def creation_robot(x,y,z):
         """ Creation d'un robot"""
-        robot = Robot(x, y, z, 20, 20, 20 , 40, None, math.pi/4)
+        robot = Robot(x, y, z, 20, 20, 20 , 40, None, DIR)
         return robot
     
     def rect(self,x,y):

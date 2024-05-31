@@ -2,7 +2,7 @@ import time
 import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
-DIST = 50
+DIST = 20
 VITESSE = 50
 
 class AvancerToutDroit:
@@ -34,7 +34,7 @@ class Avancer:
         self.robot.setVitesse(VITESSE,VITESSE)
 
     def stop(self):
-        return self.robot.capteur_distance()<50
+        return self.robot.capteur_distance()<DIST
 
 class Tourner:
     def __init__(self, angle, robot):

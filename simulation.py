@@ -52,13 +52,14 @@ def run(strat,graphique):
         print(robot.distanceParcouru,robot.angle_parcourue)
         strat.step()
         if(strat.stop() or robot.crash):
-            print(robot.capteur_distance())
+            print("distance obstacle : ",robot.capteur_distance()) # Affiche la distance entre le robot et l'obstacle captée par le capteur de distance
             robot.setVitesse(0,0)
             condition=False
         time.sleep(time.time()-debut)
 
 run(TracerCarre(50,robot),True)
-#run(AvancerToutDroit(100000000000000000000000000000000000000,robot),True)
+#run(AvancerToutDroit(1000,robot),True)
+#run(Avancer(robot),True)
 #run(Tourner(math.pi/2,robot),True)
 #run(None,True)
 
