@@ -1,6 +1,6 @@
 import cv2 as cv
-from matplotlib.pyplot import *
-import numpy 
+import matplotlib.pyplot
+import numpy as np
 import math
 import imageio
 import sys
@@ -13,6 +13,7 @@ def verifier_adjacence(barycentre1, barycentre2, seuil):
     distance = math.sqrt((barycentre2[0] - barycentre1[0])**2 + (barycentre2[1] - barycentre1[1])**2)
     print(distance)
     return round(distance) < seuil
+
 def isBalise(image):
     if __name__ == "__main__":
 
@@ -47,17 +48,17 @@ def isBalise(image):
             cX, cY = 0, 0
 
         # Afficher la segmentation et le barycentre
-        figure(figsize=(4, 4))
-        imshow(median_seg_red, cmap=cm.gray)
-        scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
-        title("Rouge avec Barycentre")
+        cv.figure(figsize=(4, 4))
+        cv.imshow(median_seg_red, cmap=cm.gray)
+        cv.scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
+        cv.title("Rouge avec Barycentre")
         centre_rouge = (cX,cY)
         
         
 
         #jaune
-        lower = numpy.array([36/2,180,0],dtype=numpy.uint8)
-        upper = numpy.array([60/2,255,255],dtype=numpy.uint8)
+        lower = np.array([36/2,180,0],dtype=numpy.uint8)
+        upper = np.array([60/2,255,255],dtype=numpy.uint8)
         seg = cv.inRange(hsv,lower,upper)
         median_seg = cv.medianBlur(seg,9)
         
@@ -72,15 +73,15 @@ def isBalise(image):
             cX, cY = 0, 0
 
         # Afficher la segmentation et le barycentre
-        figure(figsize=(4, 4))
-        imshow(median_seg, cmap=cm.gray)
-        scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
-        title("Jaune avec Barycentre")
+        cv.figure(figsize=(4, 4))
+        cv.imshow(median_seg, cmap=cm.gray)
+        cv.scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
+        cv.title("Jaune avec Barycentre")
         centre_jaune = (cX,cY)
 
         #verte
-        lower = numpy.array([70/2,0,0],dtype=numpy.uint8)
-        upper = numpy.array([180/2,255,255],dtype=numpy.uint8)
+        lower = np.array([70/2,0,0],dtype=numpy.uint8)
+        upper = np.array([180/2,255,255],dtype=numpy.uint8)
         seg = cv.inRange(hsv,lower,upper)
         median_seg = cv.medianBlur(seg,9)
         # Calculer les moments de l'image segmentée
@@ -94,16 +95,16 @@ def isBalise(image):
             cX, cY = 0, 0
 
         # Afficher la segmentation et le barycentre
-        figure(figsize=(4, 4))
-        imshow(median_seg, cmap=cm.gray)
-        scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
-        title("Vert avec Barycentre")
+        cv.figure(figsize=(4, 4))
+        cv.imshow(median_seg, cmap=cm.gray)
+        cv.scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
+        cv.title("Vert avec Barycentre")
         centre_vert = (cX,cY)
 
         
         #bleu 
-        lower = numpy.array([190/2,190,0],dtype=numpy.uint8)
-        upper = numpy.array([255/2,255,255],dtype=numpy.uint8)
+        lower = np.array([190/2,190,0],dtype=np.uint8)
+        upper = np.array([255/2,255,255],dtype=np.uint8)
         seg = cv.inRange(hsv,lower,upper)
         median_seg = cv.medianBlur(seg,9)
         # Calculer les moments de l'image segmentée
@@ -117,14 +118,14 @@ def isBalise(image):
             cX, cY = 0, 0
 
         # Afficher la segmentation et le barycentre
-        figure(figsize=(4, 4))
-        imshow(median_seg, cmap=cm.gray)
-        scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
-        title("Bleu avec Barycentre")
+        cv.figure(figsize=(4, 4))
+        cv.imshow(median_seg, cmap=cm.gray)
+        cv.scatter(cX, cY, color='red', s=50, marker='x')  # Marquer le barycentre
+        cv.title("Bleu avec Barycentre")
         centre_bleu = (cX,cY)
 
 
-        show()
+        cv.show()
 
         # Seuils de distance pour chaque paire de couleurs voisines
         seuil_jaune_vert = 71  # Seuil de distance entre jaune et vert
@@ -144,6 +145,6 @@ def isBalise(image):
         print("Bleu est à côté de Vert et Rouge :", adjacence_bleu_rouge and adjacence_vert_bleu)
         print("Rouge est à côté de Jaune et Bleu :", adjacence_rouge_jaune and adjacence_bleu_rouge)
 
-        if ((adjacence_jaune_vert and adjacence_rouge_jaune) and (adjacence_vert_bleu and adjacence_jaune_vert) and (adjacence_bleu_rouge and adjacence_vert_bleu) and (adjacence_rouge_jaune and adjacence_bleu_rouge)):
+        return ((adjacence_jaune_vert and adjacence_rouge_jaune) and (adjacence_vert_bleu and adjacence_jaune_vert) and (adjacence_bleu_rouge and adjacence_vert_bleu) and (adjacence_rouge_jaune and adjacence_bleu_rouge))
 
         
