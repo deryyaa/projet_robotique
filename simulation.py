@@ -3,12 +3,20 @@ from src.univers.monde import Monde
 from src.univers.obstacle import Obstacle
 from src.graphique.graphique import Graphique
 from src.controleur.strategie import *
+from src.controleur.adaptateur import Robot2I013Adaptateur
 import math
 import time
 import threading
 from tkinter import *
 
-FPS=100
+try:
+    from robot2IN013 import Robot2IN013 as Robot
+    robot=Robot2I013Adaptateur(Robot(),300,250,20,20)
+except ImportError:
+    from src.controleur.robotReel import Robot2IN013_Mockup
+    robot = Robot2I013Adaptateur(Robot2IN013_Mockup(),300,250,20,20)
+
+FPS=80
 
 #Création de robot
 robot = Robot.creation_robot() 
@@ -34,7 +42,10 @@ def update():
 
 def update_sans_graphique():
     while True:
-        monde.update()
+        try:
+            monde.update()
+        except NameError:
+            robot.update()
         time.sleep(1./FPS)
 
 
@@ -49,10 +60,10 @@ def run(strat,graphique):
     strat.start()
     while condition:
         debut=time.time()
-        print(robot.distanceParcouru,robot.angle_parcourue)
         strat.step()
         if(strat.stop() or robot.crash):
             robot.setVitesse(0,0)
+            robot.stopRec()
             condition=False
         time.sleep(time.time()-debut)
 

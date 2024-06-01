@@ -2,9 +2,9 @@ import time
 import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
-from src.camera.camera import isBalise
+#from src.camera.camera import isBalise
 
-VITESSE = 450
+VITESSE = 100
 
 class AvancerToutDroit:
     def __init__(self, distance,robot):
@@ -17,8 +17,8 @@ class AvancerToutDroit:
 
     def step(self):
         self.robot.setVitesse(VITESSE,VITESSE)
-        if self.distance-self.robot.distanceParcouru<1:
-            self.robot.setVitesse(VITESSE/10.0,VITESSE/10.0)  
+        if self.distance-self.robot.distanceParcouru<2:
+            self.robot.setVitesse(VITESSE/50.0,VITESSE/50.0)  
 
     def stop(self):
         return ((self.robot.distanceParcouru>self.distance) or (self.robot.capteur_distance()<50))
@@ -59,14 +59,14 @@ class Tourner:
         Fais une étape de rotation.
         """
         if(self.angle>0):
-            if self.angle-self.robot.angle_parcourue<math.pi/64.0:
-                self.robot.setVitesse(-VITESSE/10.0,VITESSE/10.0)
+            if self.angle-self.robot.angle_parcourue<math.pi/16.0:
+                self.robot.setVitesse(-VITESSE/100.0,VITESSE/100.0)
             else:
                 self.robot.setVitesse(-VITESSE/2.0,VITESSE/2.0)
                  
         else:
-            if self.angle-self.robot.angle_parcourue<-math.pi/64.0:
-                self.robot.setVitesse(VITESSE/10.0,-VITESSE/10.0)
+            if self.angle-self.robot.angle_parcourue<-math.pi/16.0:
+                self.robot.setVitesse(VITESSE/100.0,-VITESSE/100.0)
             else:
                 self.robot.setVitesse(VITESSE/2.0,-VITESSE/2.0)
         
@@ -84,7 +84,7 @@ class TracerCarre:
     def __init__(self, cote, robot):
         self.robot = robot
         self.cote = cote
-        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot)])
+        self.listeStrat = ListeStrat([AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot),AvancerToutDroit(cote, robot), Tourner(math.pi/2, robot)],robot)
 
     def start(self):
         self.listeStrat.start()
@@ -95,6 +95,7 @@ class TracerCarre:
     def stop(self):
         return self.listeStrat.stop()
 
+"""
 class RepereBalise:
     
     def __init__(self,robot):
@@ -114,22 +115,7 @@ class RepereBalise:
     
     def stop(self):
         return self.robot.angle_parcourue>=2*math.pi
-
-class CapterBalise:
-
-    def __init__(self,robot):
-        self.robot=robot
-        self.listeStrat = ListeStrat([RepereBalise(robot),Avancer(robot)])
-        
-    def start(self):
-        self.listeStrat.start()
-        
-    def step(self):
-        self.listeStrat.step()
-        
-    def stop(self):
-        return self.listeStrat.stop()
-
+"""
 
 class ListeStrat:
 
