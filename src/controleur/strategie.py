@@ -2,7 +2,7 @@ import time
 import math
 from threading import Thread
 from src.controleur.adaptateur import Robot2I013Adaptateur
-from src.camera.camera import isBalise
+from src.camera.camera import *
 
 VITESSE = 450
 

@@ -8,6 +8,7 @@ except ImportError:
 from src.controleur.strategie import *
 import threading
 import time
+from matplotlib.pyplot import *
 
 def update():
     while True:
@@ -31,6 +32,7 @@ def run(strat):
         time.sleep(time.time()-debut)
         
         
-run(TracerCarre(300,robot))
+#run(TracerCarre(300,robot))
 #run(AvancerToutDroit(300,robot))
 #run(Avancer(robot))
+run(RepereBalise(robot))
