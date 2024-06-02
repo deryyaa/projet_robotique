@@ -16,7 +16,7 @@ except ImportError:
     from src.controleur.robotReel import Robot2IN013_Mockup
     robot = Robot2I013Adaptateur(Robot2IN013_Mockup(),300,250,20,20)
 
-FPS=80
+FPS=100 # nombre d'image par seconde
 
 #Création de robot
 robot = Robot.creation_robot() 
