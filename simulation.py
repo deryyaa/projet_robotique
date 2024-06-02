@@ -21,10 +21,10 @@ except ImportError:
     robot = Robot2I013Adaptateur(Robot2IN013_Mockup(),300,250,20,20)
 
 FPS = 100 # nombre d'image par seconde
-GRAPH = 1 # 0-> sans graph // 1-> graph 2D // 2-> graph 3D
+GRAPH = 2 # 0-> sans graph // 1-> graph 2D // 2-> graph 3D
 
 # Création du robot aux coordonnées x,y,z
-robot = Robot.creation_robot(250,250,0) 
+robot = Robot.creation_robot(400,250,0) 
 
 # Création du monde
 monde = Monde.creation_monde(robot) # Création et attribution du robot au monde
@@ -65,10 +65,6 @@ def update_sans_graphique():
         except NameError:
             robot.update()
         time.sleep(1./FPS)
-
-def creation3D():
-    # Création de l'instance Graphique3D
-    pass
     
 def run(strat,graphique):
     condition=True
