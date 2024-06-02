@@ -12,7 +12,7 @@ class AvancerToutDroit:
         Stratégie qui fait avancé le robot d'une distance (en mm)
         Args:
             distance (float): Distance a parcourir pour le robot (en mm)
-            robot (Class): Robot que l'on contrôle
+            robot (Object): Robot que l'on contrôle
         """
         self.distance = distance
         self.robot=robot
@@ -43,7 +43,7 @@ class Avancer:
         """
         Stratégie qui fait avancé en continue jusqu'a trouvé un obstacle
         Args:
-            robot (Class): Robot que l'on contrôle
+            robot (Object): Robot que l'on contrôle
         """
         self.robot=robot
                     
@@ -71,7 +71,7 @@ class Tourner:
         """
         Fait tourner le robot sur lui même avec un angle.
         angle (float): angle de rotation (en radians).
-        robot (Class): robot à faire tourner.
+        robot (Object): robot à faire tourner.
         """
         # Initialisation des attributs avec les valeurs fournies
         self.robot=robot
@@ -115,9 +115,9 @@ class TracerCarre:
         """
         Stratégie qui fait faire un déplacement carré au robot
         Args:
-            robot (Class): Robot que l'on contrôle
+            robot (Object): Robot que l'on contrôle
             cote (float): Largeur du carré en mm
-            listeStrat (Class): Liste de stratégie pour faire un déplacement carré
+            listeStrat (Object): Liste de stratégie pour faire un déplacement carré
         """
         self.robot = robot
         self.cote = cote
@@ -147,8 +147,8 @@ class ListeStrat:
         """
         Execute une liste de strategie a la suite
         Args:
-            liste (List[Class]): La liste des strategie a execute
-            robot (Class): Robot que l'on contrôle
+            liste (List[Object]): La liste des strategie a execute
+            robot (Object): Robot que l'on contrôle
             debut (int): donne l'information si c'est le debut ou non de la strategie (0 -> debut)
             indice (int): Position dans la liste
         """
