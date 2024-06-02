@@ -178,21 +178,21 @@ class MyRobot(ShowBase, DirectObject):
 
         return task.cont  # Continuer l'appel de cette tâche à chaque frame.
 
-def setupText(self):
-    """Configure l'affichage du texte des coordonnées."""
-    # Créer un objet OnscreenText pour afficher les coordonnées du robot.
-    self.coordText = OnscreenText(
-        text="",  # Texte initial vide.
-        pos=(-1.75, 0.95),  # Position de l'affichage du texte à l'écran.
-        scale=0.07,  # Échelle du texte.
-        fg=(1, 1, 1, 1),  # Couleur du texte (blanc).
-        align=TextNode.ALeft,  # Alignement du texte à gauche.
-        mayChange=True  # Indique que le texte peut changer dynamiquement.
-    )
+    def setupText(self):
+        """Configure l'affichage du texte des coordonnées."""
+        # Créer un objet OnscreenText pour afficher les coordonnées du robot.
+        self.coordText = OnscreenText(
+            text="",  # Texte initial vide.
+            pos=(-1.75, 0.95),  # Position de l'affichage du texte à l'écran.
+            scale=0.07,  # Échelle du texte.
+            fg=(1, 1, 1, 1),  # Couleur du texte (blanc).
+            align=TextNode.ALeft,  # Alignement du texte à gauche.
+            mayChange=True  # Indique que le texte peut changer dynamiquement.
+        )
 
-    # Mettre à jour le texte des coordonnées à chaque frame en écoutant l'événement "update_coordinates".
-    self.accept("update_coordinates", self.updateCoordinates)
-    
+        # Mettre à jour le texte des coordonnées à chaque frame en écoutant l'événement "update_coordinates".
+        self.accept("update_coordinates", self.updateCoordinates)
+        
     def updateCoordinates(self, x, y):
         """Met à jour le texte affichant les coordonnées du robot."""
         # Mettre à jour le texte avec les nouvelles coordonnées
