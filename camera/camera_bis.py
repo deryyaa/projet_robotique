@@ -3,7 +3,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-def detecter_balise(img_path):
+def resize_img(img_path):
     img = cv.imread(img_path, 1)
     if img is None:
         print("Erreur: Impossible de lire l'image. Vérifiez le chemin du fichier.")
@@ -34,8 +34,8 @@ def verifier_adjacence(barycentre1, barycentre2, seuil):
 
 if __name__ == "__main__":
 
-    img_path = r"C:\Users\nutella\Documents\LICENCE 2\S2\PROJET DE DEV\projet_robotique\pattern_1.jpg"
-    img = detecter_balise(img_path)
+    img_path = r"C:\Users\nutella\Documents\LICENCE 2\S2\PROJET DE DEV\projet_robotique\pattern_f1.jpg"
+    img = resize_img(img_path)
     
     if img is not None:
         hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
@@ -93,4 +93,10 @@ if __name__ == "__main__":
         print("Bleu est à côté de Vert et Rouge :", adjacence_bleu_rouge and adjacence_vert_bleu)
         print("Rouge est à côté de Jaune et Bleu :", adjacence_rouge_jaune and adjacence_bleu_rouge)
 
-       
+        # Afficher les images segmentées avec les barycentres
+        afficher_resultat(seg_red, centre_rouge, 'red', "Rouge avec Barycentre")
+        afficher_resultat(seg_yellow, centre_jaune, 'yellow', "Jaune avec Barycentre")
+        afficher_resultat(seg_green, centre_vert, 'green', "Vert avec Barycentre")
+        afficher_resultat(seg_blue, centre_bleu, 'blue', "Bleu avec Barycentre")
+        
+        plt.show()
