@@ -1,0 +1,262 @@
+<CoordinateSystem> { Z-up } 
+<Material> obstacle {
+  <Scalar> baser { 1.0 }
+  <Scalar> baseg { 1.0 }
+  <Scalar> baseb { 1.0 }
+  <Scalar> basea { 1.0 }
+  <Scalar> ambr { 1.0 }
+  <Scalar> ambg { 1.0 }
+  <Scalar> ambb { 1.0 }
+  <Scalar> amba { 1.0 }
+  <Scalar> emitr { 0.0 }
+  <Scalar> emitg { 0.0 }
+  <Scalar> emitb { 0.0 }
+  <Scalar> emita { 1.0 }
+  <Scalar> specr { 1.0 }
+  <Scalar> specg { 1.0 }
+  <Scalar> specb { 1.0 }
+  <Scalar> speca { 1.0 }
+  <Scalar> shininess { 0.5 }
+  <Scalar> roughness { 0.4000000059604645 }
+  <Scalar> metallic { 0.0 }
+  <Scalar> ior { 1.4500000476837158 }
+  <Scalar> local { 1 }
+}
+
+<Texture> obstacle {
+  "./tex/obstacle.png"
+  <Scalar> format { rgba }
+  <Scalar> envtype { modulate }
+  <Scalar> uv-name { UVMap }
+  <Scalar> minfilter { linear_mipmap_linear }
+  <Scalar> magfilter { linear }
+  <Scalar> wrapu { repeat }
+  <Scalar> wrapv { repeat }
+  <Scalar> alpha { off }
+}
+
+  <Group> Cube {
+    <Transform> {
+      <Matrix4> {
+        1.0 0.0 0.0 0.0 
+        0.0 1.0 0.0 0.0 
+        0.0 0.0 1.0 0.0 
+        0.0 0.0 5.0 1.0 
+      }
+    }
+    
+    <VertexPool> Cube {
+    
+      <Vertex> 0 {
+        -24.993673 -24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.000000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 1 {
+        -24.993673 -24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.000000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 2 {
+        -24.993673 24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.250000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 3 {
+        -24.993673 24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.250000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 4 {
+        -24.993673 24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.250000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 5 {
+        -24.993673 24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.250000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 6 {
+        24.993673 24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 7 {
+        24.993673 24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 8 {
+        24.993673 24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 9 {
+        24.993673 24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 10 {
+        24.993673 -24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 11 {
+        24.993673 -24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 12 {
+        24.993673 -24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 13 {
+        24.993673 -24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 14 {
+        -24.993673 -24.993673 55.403629
+        <UV> UVMap {
+          0.625000 1.000000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 15 {
+        -24.993673 -24.993673 5.416280
+        <UV> UVMap {
+          0.375000 1.000000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 16 {
+        -24.993673 24.993673 5.416280
+        <UV> UVMap {
+          0.125000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 17 {
+        24.993673 24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 18 {
+        24.993673 -24.993673 5.416280
+        <UV> UVMap {
+          0.375000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 19 {
+        -24.993673 -24.993673 5.416280
+        <UV> UVMap {
+          0.125000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 20 {
+        24.993673 24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 21 {
+        -24.993673 24.993673 55.403629
+        <UV> UVMap {
+          0.875000 0.500000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 22 {
+        -24.993673 -24.993673 55.403629
+        <UV> UVMap {
+          0.875000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }
+      <Vertex> 23 {
+        24.993673 -24.993673 55.403629
+        <UV> UVMap {
+          0.625000 0.750000 
+        }
+        <RGBA> { 1 1 1 1 }
+      }}
+    
+    
+    <Polygon> {
+      <TRef> { obstacle }
+      <MRef> { obstacle }
+      <Normal> {-1.000000 0.000000 0.000000}
+      <BFace> { 1 }
+      <VertexRef> { 0 1 2 3 <Ref> { Cube }} 
+    }
+    <Polygon> {
+      <TRef> { obstacle }
+      <MRef> { obstacle }
+      <Normal> {0.000000 1.000000 0.000000}
+      <BFace> { 1 }
+      <VertexRef> { 4 5 6 7 <Ref> { Cube }} 
+    }
+    <Polygon> {
+      <TRef> { obstacle }
+      <MRef> { obstacle }
+      <Normal> {1.000000 0.000000 0.000000}
+      <BFace> { 1 }
+      <VertexRef> { 8 9 10 11 <Ref> { Cube }} 
+    }
+    <Polygon> {
+      <TRef> { obstacle }
+      <MRef> { obstacle }
+      <Normal> {0.000000 -1.000000 0.000000}
+      <BFace> { 1 }
+      <VertexRef> { 12 13 14 15 <Ref> { Cube }} 
+    }
+    <Polygon> {
+      <TRef> { obstacle }
+      <MRef> { obstacle }
+      <Normal> {0.000000 0.000000 -1.000000}
+      <BFace> { 1 }
+      <VertexRef> { 16 17 18 19 <Ref> { Cube }} 
+    }
+    <Polygon> {
+      <TRef> { obstacle }
+      <MRef> { obstacle }
+      <Normal> {0.000000 0.000000 1.000000}
+      <BFace> { 1 }
+      <VertexRef> { 20 21 22 23 <Ref> { Cube }} 
+    }
+  }
