@@ -2,9 +2,10 @@ import sys
 import math
 import random
 import time 
+DIR = math.pi
 
 class Robot:
-    def __init__(self, x, y, longueur, largeur, vitesse_max, monde=None, dir=0):
+    def __init__(self, x, y, z, longueur, largeur, hauteur, vitesse_max, monde=None, dir=0):
         """Initialise un objet Robot avec les paramètres spécifiés
         x (float): La coordonnée x initiale du robot
         y (float): La coordonnée y initiale du robot
@@ -24,9 +25,11 @@ class Robot:
         self.nom="dexter"
         self.x = x
         self.y = y
+        self.z=z
         self.dir = dir % (2*math.pi) # angle en radians
         self.largeur = largeur # largeur du robot en cm
         self.longueur = longueur # longueur du robot en cm
+        self.hauteur= hauteur
         self.last_time=time.time()
         self.angle_parcourue=0
 
@@ -41,20 +44,23 @@ class Robot:
         """
         current_time = time.time()  # Obtient le temps actuel
         dt = current_time - self.last_time  # Calcule la différence de temps
-        self.last_time = time.time()  # Met à jour le temps de la dernière mise à jour
+        self.last_time = current_time  # Met à jour le temps de la dernière mise à jour
         
         x=self.x
         y=self.y
         self.x += ((self.vg*dt+self.vd*dt)/2.0) * math.cos(self.dir)
         self.y += ((self.vg*dt+self.vd*dt)/2.0) * math.sin(self.dir)
-        if(self.vg!=self.vd):
-            if(abs(self.vg)>abs(self.vd)):
-                self.dir-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
-                self.angle_parcourue-=self.vg*dt/(-self.d*self.vg*dt/(self.vd*dt-self.vg*dt))
-            else:
-                self.dir+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
-                self.angle_parcourue+=self.vd*dt/(-self.d*self.vd*dt/(self.vg*dt-self.vd*dt))
-        self.distanceParcouru+=math.sqrt((self.x-x)**2+(self.y-y)**2)
+        if self.vg != self.vd:
+            denominator = self.vg * dt - self.vd * dt
+            if abs(denominator) > 1e-10:  # Check for non-zero denominator
+                if abs(self.vg) > abs(self.vd):
+                    self.dir -= self.vg * dt / (-self.d * self.vg * dt / denominator)
+                    self.angle_parcourue -= self.vg * dt / (-self.d * self.vg * dt / denominator)
+                else:
+                    self.dir += self.vd * dt / (-self.d * self.vd * dt / denominator)
+                    self.angle_parcourue += self.vd * dt / (-self.d * self.vd * dt / denominator)
+        
+        self.distanceParcouru += math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
     
     def getRect(self):
         coin1 = [self.x - self.longueur / 2, self.y - self.largeur / 2]
@@ -91,9 +97,9 @@ class Robot:
         
         return distanceP_capteur
     
-    def creation_robot():
+    def creation_robot(x,y,z):
         """ Creation d'un robot"""
-        robot = Robot(320, 320, 20, 15 , 40, None, math.pi/4.0)
+        robot = Robot(x, y, z, 20, 20, 20 , 40, None, DIR)
         return robot
     
     def rect(self,x,y):

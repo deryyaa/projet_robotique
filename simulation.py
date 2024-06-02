@@ -19,7 +19,7 @@ except ImportError:
 FPS=100 # nombre d'image par seconde
 
 #Création de robot
-robot = Robot.creation_robot() 
+robot = Robot.creation_robot(250,250,0) 
 
 # Création du monde
 monde = Monde.creation_monde(robot)

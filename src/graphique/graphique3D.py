@@ -64,14 +64,12 @@ class MyRobot(ShowBase, DirectObject):
     def stopCameraControl(self):
         self.cameraControl = False
 
-<<<<<<< HEAD
     def deplaceRobot(self):
         self.x = self.robot.x
         self.y = self.robot.y
-=======
+        
     def zoomIn(self):
         self.camDist = max(20, self.camDist - 50)
->>>>>>> f1cae23a7bc4da1c3682ed5437f8e6c416e31ca4
 
     def zoomOut(self):
         self.camDist += 50

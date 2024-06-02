@@ -13,7 +13,7 @@ import os
 FPS = 100 # nombre d'image par seconde
 
 # Création du robot aux coordonnées x,y,z
-robot = Robot.creation_robot(252, 300, 0)
+robot = Robot.creation_robot(600, 400, 0)
 
 
 monde = Monde.creation_monde(robot) # Création et attribution du robot au monde
@@ -28,7 +28,7 @@ immobile = None # Ne pas bouger
 
 
 # Création de l'instance Graphique3D
-game = MyRobot(monde)
+game = MyRobot(monde,tracer_carre)
 
 
 # Paramétrage graphique
@@ -43,7 +43,6 @@ def run(strat):
     while condition:
         strat.step() # Exécute une étape de la stratégie
         if strat.stop() or robot.crash:  # Vérifie si la stratégie doit s'arrêter ou si le robot a crashé
-            print("distance obstacle : ",robot.capteur_distance()) # Affiche la distance entre le robot et l'obstacle captée par le capteur de distance
             robot.setVitesse(0, 0) # Arrete le robot en conséquence
             condition = False # Fin de la boucle, on arrete la simulation
         time.sleep(1. / FPS) # Ralentit le déroulement de la boucle pour maintenir un taux de rafraîchissement constant
