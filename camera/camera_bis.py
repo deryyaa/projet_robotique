@@ -34,7 +34,7 @@ def verifier_adjacence(barycentre1, barycentre2, seuil):
 
 if __name__ == "__main__":
 
-    img_path = r"C:\Users\nutella\Documents\LICENCE 2\S2\PROJET DE DEV\projet_robotique\pattern_f1.jpg"
+    img_path = r"C:\Users\nutella\Documents\LICENCE 2\S2\PROJET DE DEV\projet_robotique\img_lamda.jpg"
     img = resize_img(img_path)
     
     if img is not None:
