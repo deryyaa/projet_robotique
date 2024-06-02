@@ -39,13 +39,15 @@ class Robot2IN013_Mockup:
         print("Arrete le robot")
 
     def get_image(self):
+        """Renvoie une image capturée par le robot."""
         pass
 
     def get_images(self):
+        """Renvoie une liste d'image capturée par le robot."""
         pass
   
     def set_motor_dps(self, port, dps):
-        #print(f"Fixe la vitesse d'un motor port = {port}, dps = {dps}")
+        """Fixe la vitesse d'un motor port = {port}, dps = {dps}"""
         if (port==1):
             self.dps_gauche=dps
         if (port==2):
@@ -56,10 +58,11 @@ class Robot2IN013_Mockup:
 
 
     def setVitesse(self, vg,vd):
-        print("fixe vitesse des deux roues")
+        """fixe vitesse des deux roues"""
+        pass
 
     def get_motor_position(self):
-        #print("lecture etats des moteurs en degre")
+        """lecture etats des moteurs en degre"""
         self.angle_droit+=self.dps_droit/(math.pi*self.WHEEL_BASE_WIDTH)
         self.angle_gauche+=self.dps_gauche/(math.pi*self.WHEEL_BASE_WIDTH)
         return (self.angle_gauche,self.angle_droit)
@@ -68,23 +71,22 @@ class Robot2IN013_Mockup:
         pass 
    
     def offset_motor_encoder(self, port, offset):
-        print("Fixe l'offset des moteurs ")
+        """Fixe l'offset des moteurs """
 
     def get_distance(self):
-        print("retourne distance")
+        """retourne distance"""
         return 1
 
     def servo_rotate(self,position):
-        print("Tourne le servo a l'angle en para")
+        """Tourne le servo a l'angle en para"""
 
     def start_recording(self):
+        """Commence l'enregistrement des images du robot."""
         pass
 
     def _stop_recording(self):
+        """Arrête l'enregistrement des images du robot."""
         pass
-        
-    def _start_recording(self):
-        pass
-
+    
     def __getattr__(self,attr):
         pass
