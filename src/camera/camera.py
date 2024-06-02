@@ -5,12 +5,6 @@ import math
 import imageio
 import sys
 
-
-import cv2 as cv
-import numpy as np
-import math
-import matplotlib.pyplot as plt
-
 def resize_img(img_path):
     img = cv.imread(img_path, 1)
     if img is None:
