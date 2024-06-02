@@ -40,7 +40,7 @@ class MyRobot(ShowBase, DirectObject):
         self.afficheRobot()
         self.afficheObstacle()
 
-        self.taskMgr.add(self.update, "update")
+        self.taskMgr.add(self.update3D, "update")
 
         # Enable mouse control for camera
         self.disableMouse()
@@ -116,7 +116,7 @@ class MyRobot(ShowBase, DirectObject):
         self.camera.setPos(camX, camY, camZ)
         self.camera.lookAt(Point3(self.x, self.y, self.z))
 
-    def update(self, task):
+    def update3D(self, task):
         self.deplaceRobot()
 
         # Update camera rotation
