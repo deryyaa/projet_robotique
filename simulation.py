@@ -26,7 +26,7 @@ FPS = 100 # nombre d'image par seconde
 GRAPH = 2 # 0-> sans graph // 1-> graph 2D // 2-> graph 3D
 
 # Création du robot aux coordonnées x,y,z
-robot = Robot.creation_robot(250,240,0) 
+robot = Robot.creation_robot(252, 300,0) 
 
 # Création du monde
 monde = Monde.creation_monde(robot) # Création et attribution du robot au monde
@@ -85,6 +85,7 @@ def run(strat, graphique):
         time.sleep(1.5)
     elif graphique == 2:
         # Si l'option graphique est 2, laisser passer (utilisé pour l'interface graphique en 3D)
+        time.sleep(1.5)
         pass
     
     strat.start()  # Démarre l'exécution de la stratégie
